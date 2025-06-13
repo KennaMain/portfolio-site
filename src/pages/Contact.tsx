@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Typography, useTheme } from '@mui/material';
+import { Box, Grid, Typography, useTheme } from '@mui/material';
 import { DarkBackgroundLeftOffsetBox } from '../components/DarkBackgroundLeftOffsetBox';
 
 export const Contact = () => {
@@ -7,37 +7,47 @@ export const Contact = () => {
 
   return (
     <DarkBackgroundLeftOffsetBox>
-      <Typography variant="h3" component="h1" gutterBottom sx={{ fontWeight: 700 }}>
-        Discover Our World
-      </Typography>
+      <Grid container spacing={0}>
+        {/* Left Column - Contact Info */}
+        <Grid item xs={12} md={6}>
+          <Typography variant="h3" component="h1" gutterBottom sx={{ fontWeight: 700 }}>
+            Discover Our World
+          </Typography>
 
-      <Typography variant="body1" paragraph sx={{ mb: 3, fontSize: '1.1rem' }}>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui mauris. Vivamus hendrerit arcu sed erat molestie vehicula.
-      </Typography>
+          <Typography variant="body1" paragraph sx={{ mb: 3, fontSize: '1.1rem' }}>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui mauris. Vivamus hendrerit arcu sed erat molestie vehicula.
+          </Typography>
 
-      <Typography variant="body1" paragraph sx={{ mb: 3, fontSize: '1.1rem' }}>
-        Sed auctor neque eu tellus rhoncus ut eleifend nibh porttitor. Ut in nulla enim. Phasellus molestie magna non est bibendum non venenatis nisl tempor.
-      </Typography>
+          <Typography variant="body1" paragraph sx={{ mb: 3, fontSize: '1.1rem' }}>
+            Sed auctor neque eu tellus rhoncus ut eleifend nibh porttitor. Ut in nulla enim. Phasellus molestie magna non est bibendum non venenatis nisl tempor.
+          </Typography>
 
-      <Typography variant="h5" component="h2" gutterBottom sx={{ mt: 4, fontWeight: 600 }}>
-        Key Features
-      </Typography>
+          <Typography variant="h5" component="h2" gutterBottom sx={{ mt: 4, fontWeight: 600 }}>
+            Key Features
+          </Typography>
 
-      <Box component="ul" sx={{ pl: 3, mb: 4 }}>
-        <Typography component="li" paragraph sx={{ fontSize: '1.1rem' }}>
-          High-quality imagery
-        </Typography>
-        <Typography component="li" paragraph sx={{ fontSize: '1.1rem' }}>
-          Responsive design
-        </Typography>
-        <Typography component="li" paragraph sx={{ fontSize: '1.1rem' }}>
-          Easy navigation
-        </Typography>
-      </Box>
+          <Box component="ul" sx={{ pl: 3, mb: 4 }}>
+            <Typography component="li" paragraph sx={{ fontSize: '1.1rem' }}>
+              High-quality imagery
+            </Typography>
+            <Typography component="li" paragraph sx={{ fontSize: '1.1rem' }}>
+              Responsive design
+            </Typography>
+            <Typography component="li" paragraph sx={{ fontSize: '1.1rem' }}>
+              Easy navigation
+            </Typography>
+          </Box>
 
-      <Typography variant="body1" sx={{ fontStyle: 'italic', color: theme.palette.text.secondary }}>
-        &quot;The beauty of nature is that it&apos;s always changing, yet always constant.&quot;
-      </Typography>
+          <Typography variant="body1" sx={{ fontStyle: 'italic', color: theme.palette.text.secondary }}>
+            &quot;The beauty of nature is that it&apos;s always changing, yet always constant.&quot;
+          </Typography>
+        </Grid>
+
+        {/* Right Column - Image */}
+        <Grid item xs={12} md={6}>
+          <img style={{width: "100%", height: "auto"}} src='./site-assets/contact_seahorse.png' />
+        </Grid>
+      </Grid>
     </DarkBackgroundLeftOffsetBox>
   );
 };
