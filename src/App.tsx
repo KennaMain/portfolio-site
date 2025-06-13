@@ -9,6 +9,7 @@ import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
 import { About } from './pages/About';
 import { Home } from './pages/Home';
+import { AboutMe } from './pages/AboutMe';
 
 const App: React.FC = () => {
 	return (
@@ -37,6 +38,7 @@ const App: React.FC = () => {
 						<Router>
 							<ResponsiveAppBar pages={['About', 'Portfolio', 'Contact']} />
 							<Routes>
+								<Route path="/about-me" element={<AboutMe />} />
 								<Route path="/about" element={<About />} />
 								<Route path="/" element={<Home />} />
 							</Routes>
