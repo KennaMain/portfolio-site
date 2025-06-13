@@ -1,7 +1,7 @@
-import { createTheme, Theme } from '@mui/material/styles';
+import { createTheme } from '@mui/material/styles';
 
 // Define your custom theme
-const createCustomTheme = (mode: 'light' | 'dark' = 'light'): Theme => {
+const createCustomTheme = (mode: 'light' | 'dark' = 'light') => {
   return createTheme({
     palette: {
       mode,
