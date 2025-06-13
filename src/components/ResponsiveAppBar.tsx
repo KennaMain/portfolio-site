@@ -7,18 +7,13 @@ import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
-import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
-import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import { useNavigate } from 'react-router-dom';
 
-// const pages = ['Products', 'Pricing', 'Blog'];
-// const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
-
 interface Props {
-  pages: string[]
+  pages: string[];
 }
 
 function ResponsiveAppBar(props: Props) {
@@ -33,11 +28,10 @@ function ResponsiveAppBar(props: Props) {
     setAnchorElNav(null);
   };
 
-  const navigationClick = (page: string) => {
-    console.log("Navigating to " + page)
-    handleCloseNavMenu()
-    navigate('/' + page.toLowerCase().replace(" ", "-"))
-  }
+  const handleNavigation = (page: string) => {
+    handleCloseNavMenu();
+    navigate(`/${page.toLowerCase().replace(" ", "-")}`);
+  };
 
   return (
     <AppBar position="static">
@@ -48,11 +42,10 @@ function ResponsiveAppBar(props: Props) {
             variant="h6"
             noWrap
             component="a"
-            href="#app-bar-with-responsive-menu"
+            href="/"  // Changed to root path
             sx={{
               mr: 2,
               display: { xs: 'none', md: 'flex' },
-              // fontFamily: 'monospace',
               fontWeight: 700,
               letterSpacing: '.3rem',
               color: 'inherit',
@@ -62,10 +55,11 @@ function ResponsiveAppBar(props: Props) {
             LOGO
           </Typography>
 
+          {/* Mobile menu */}
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton
               size="large"
-              aria-label="account of current user"
+              aria-label="menu"
               aria-controls="menu-appbar"
               aria-haspopup="true"
               onClick={handleOpenNavMenu}
@@ -87,27 +81,32 @@ function ResponsiveAppBar(props: Props) {
               }}
               open={Boolean(anchorElNav)}
               onClose={handleCloseNavMenu}
-              sx={{ display: { xs: 'block', md: 'none' } }}
-              onSelect={() => console.log("select change!")}
+              sx={{
+                display: { xs: 'block', md: 'none' },
+              }}
             >
               {props.pages.map((page) => (
-                <MenuItem key={page} onClick={() => navigationClick(page)}>
-                  <Typography sx={{ textAlign: 'center' }}>{page}</Typography>
+                <MenuItem 
+                  key={page} 
+                  onClick={() => handleNavigation(page)}
+                >
+                  <Typography textAlign="center">{page}</Typography>
                 </MenuItem>
               ))}
             </Menu>
           </Box>
+
+          {/* Mobile logo */}
           <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
           <Typography
             variant="h5"
             noWrap
             component="a"
-            href="#app-bar-with-responsive-menu"
+            href="/"  // Changed to root path
             sx={{
               mr: 2,
               display: { xs: 'flex', md: 'none' },
               flexGrow: 1,
-              // fontFamily: 'monospace',
               fontWeight: 700,
               letterSpacing: '.3rem',
               color: 'inherit',
@@ -116,11 +115,13 @@ function ResponsiveAppBar(props: Props) {
           >
             LOGO
           </Typography>
+
+          {/* Desktop menu */}
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {props.pages.map((page) => (
               <Button
                 key={page}
-                onClick={handleCloseNavMenu}
+                onClick={() => handleNavigation(page)}  // Fixed: Added navigation
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
                 {page}
@@ -132,4 +133,5 @@ function ResponsiveAppBar(props: Props) {
     </AppBar>
   );
 }
+
 export default ResponsiveAppBar;
