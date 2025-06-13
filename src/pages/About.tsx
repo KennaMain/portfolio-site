@@ -37,7 +37,7 @@ export const About = () => {
   const theme = useTheme();
 
   return (
-    <Box sx={{ flexGrow: 1, minHeight: '100vh' }}>
+    <Box sx={{ flexGrow: 1, minHeight: '100vh' }} paddingTop={9}>
       <Grid container spacing={0}>
         {/* Left Column - Carousel */}
         <Grid item xs={12} md={6}>
@@ -85,7 +85,7 @@ export const About = () => {
 
         {/* Right Column - Text Content */}
         <Grid item xs={12} md={6}>
-          <Box sx={{ p: 6, height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+          <Box sx={{ paddingRight: 6, paddingLeft: 6, paddingBottom: 6, height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
             <Typography variant="h3" component="h1" gutterBottom sx={{ fontWeight: 700 }}>
               Discover Our World
             </Typography>
@@ -115,7 +115,7 @@ export const About = () => {
             </Box>
             
             <Typography variant="body1" sx={{ fontStyle: 'italic', color: theme.palette.text.secondary }}>
-              "The beauty of nature is that it's always changing, yet always constant."
+              &quot;The beauty of nature is that it&apos;s always changing, yet always constant.&quot;
             </Typography>
           </Box>
         </Grid>
