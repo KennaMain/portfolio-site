@@ -19,7 +19,10 @@ const SquareButton = styled(Button)(({ theme }) => ({
   textTransform: 'none',
 
   backgroundColor: theme.palette.background.paper,
-  color: theme.palette.secondary.main,
+  color: theme.palette.secondary.light,
+  "&:hover": {
+    color: theme.palette.primary.main,
+  }
 }));
 
 const CenteredButtons: React.FC = () => {

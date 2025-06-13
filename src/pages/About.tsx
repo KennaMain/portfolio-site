@@ -28,8 +28,8 @@ export const About = () => {
   const theme = useTheme();
 
 
-  const leftArrowImage = <ArrowBackIosIcon fontSize="large" />
-  const rightArrowImage = <ArrowForwardIosIcon fontSize="large" />
+  const leftArrowImage = <img src="./site-assets/left_arrow.png"/>//<ArrowBackIosIcon fontSize="large" />
+  const rightArrowImage = <img src="./site-assets/right_arrow.png"/>//<ArrowForwardIosIcon fontSize="large" />
 
   // Custom arrow button component
   const CustomArrowButton = ({
@@ -50,10 +50,9 @@ export const About = () => {
         transform: 'translateY(-50%)',
         zIndex: 2,
         color: theme.palette.common.white,
-        backgroundColor: 'rgba(0, 0, 0, 0.5)',
         '&:hover': {
-          backgroundColor: 'rgba(0, 0, 0, 0.8)',
-        },
+          filter: "brightness(50%)"
+        }
       }}
     >
       {children}
