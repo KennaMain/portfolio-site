@@ -1,8 +1,9 @@
 import React from 'react';
-import { Box, Grid, Typography, Paper, useTheme } from '@mui/material';
+import { Box, Grid, Typography, Paper, useTheme, IconButton } from '@mui/material';
 import Carousel from 'react-material-ui-carousel';
-import { styled } from '@mui/system';
 import { DarkBox } from '../components/DarkBox';
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
 // Sample carousel items
 const carouselItems = [
@@ -26,6 +27,39 @@ const carouselItems = [
 export const About = () => {
   const theme = useTheme();
 
+
+  const leftArrowImage = <ArrowBackIosIcon fontSize="large" />
+  const rightArrowImage = <ArrowForwardIosIcon fontSize="large" />
+
+  // Custom arrow button component
+  const CustomArrowButton = ({
+    direction,
+    onClick,
+    children,
+  }: {
+    direction: 'left' | 'right';
+    onClick: Function;
+    children: React.ReactNode;
+  }) => (
+    <IconButton
+      onClick={() => onClick()}
+      sx={{
+        position: 'absolute',
+        top: '50%',
+        ...(direction === 'left' ? { left: 16 } : { right: 16 }),
+        transform: 'translateY(-50%)',
+        zIndex: 2,
+        color: theme.palette.common.white,
+        backgroundColor: 'rgba(0, 0, 0, 0.5)',
+        '&:hover': {
+          backgroundColor: 'rgba(0, 0, 0, 0.8)',
+        },
+      }}
+    >
+      {children}
+    </IconButton>
+  );
+
   return (
     <Box sx={{ flexGrow: 1, minHeight: '100vh' }} paddingTop={17}>
       <Grid container spacing={0}>
@@ -35,6 +69,14 @@ export const About = () => {
             <Carousel
               animation="fade"
               navButtonsAlwaysVisible
+              NavButton={({ onClick, next, prev }) => {
+                const direction = next ? 'right' : 'left';
+                return (
+                  <CustomArrowButton direction={direction} onClick={onClick}>
+                    {direction === 'left' ? leftArrowImage : rightArrowImage}
+                  </CustomArrowButton>
+                );
+              }}
               indicatorContainerProps={{
                 style: {
                   marginTop: '20px',
