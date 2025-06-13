@@ -11,6 +11,7 @@ import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import { useNavigate } from 'react-router-dom';
+import { useTheme } from '@mui/material/styles';
 
 interface Props {
   pages: string[];
@@ -19,6 +20,7 @@ interface Props {
 function ResponsiveAppBar(props: Props) {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
   const navigate = useNavigate();
+  const theme = useTheme();
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
@@ -33,28 +35,32 @@ function ResponsiveAppBar(props: Props) {
     navigate(`/${page.toLowerCase().replace(" ", "-")}`);
   };
 
+  const logo = (
+    <Box sx={{ display: { xs: 'none', md: 'flex' }, mr: 1, mt: 5 }}>
+      <img src="./site-assets/navbar_logo.png" height={'100px'}/>
+    </Box>
+  )
+          // {/* <Typography
+          //   variant="h6"
+          //   noWrap
+          //   component="a"
+          //   href="/"  // Changed to root path
+          //   sx={{
+          //     mr: 2,
+          //     display: { xs: 'none', md: 'flex' },
+          //     fontWeight: 700,
+          //     letterSpacing: '.3rem',
+          //     color: 'inherit',
+          //     textDecoration: 'none',
+          //   }}
+          // >
+          //   LOGO
+          // </Typography> */}
+
   return (
     <AppBar>
       <Container maxWidth="xl">
-        <Toolbar disableGutters>
-          <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
-          <Typography
-            variant="h6"
-            noWrap
-            component="a"
-            href="/"  // Changed to root path
-            sx={{
-              mr: 2,
-              display: { xs: 'none', md: 'flex' },
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
-            }}
-          >
-            LOGO
-          </Typography>
-
+        <Toolbar disableGutters>        
           {/* Mobile menu */}
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton
@@ -97,32 +103,22 @@ function ResponsiveAppBar(props: Props) {
           </Box>
 
           {/* Mobile logo */}
-          <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
-          <Typography
-            variant="h5"
-            noWrap
-            component="a"
-            href="/"  // Changed to root path
-            sx={{
-              mr: 2,
-              display: { xs: 'flex', md: 'none' },
-              flexGrow: 1,
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
-            }}
-          >
-            LOGO
-          </Typography>
+          <Box sx={{ display: { xs: 'flex', md: 'none' }, mr: 1, mt: 5 }}>
+            <img src="./site-assets/navbar_logo.png" height={'100px'}/>
+          </Box>
+
+          {/* Desktop logo */}
+          <Box sx={{ display: { xs: 'none', md: 'flex' }, mr: 1, mt: 5 }}>
+            <img src="./site-assets/navbar_logo.png" height={'100px'}/>
+          </Box>
 
           {/* Desktop menu */}
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, justifyContent: "center", marginTop: 6 }}>
             {props.pages.map((page) => (
               <Button
                 key={page}
                 onClick={() => handleNavigation(page)}  // Fixed: Added navigation
-                sx={{ my: 2, color: 'white', display: 'block' }}
+                sx={{ my: 2, display: 'block', fontSize: 24, color: theme.palette.secondary.light, textTransform: 'none' }}
               >
                 {page}
               </Button>
