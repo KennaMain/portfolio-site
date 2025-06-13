@@ -19,7 +19,7 @@ const App: React.FC = () => {
 				{({ toggleTheme, isDark }) => (
 					<Box sx={{ position: 'relative' }}>
 						{/* Theme toggle button */}
-						<Tooltip title="Toggle light/dark theme">
+{/* 						<Tooltip title="Toggle light/dark theme">
 							<IconButton
 								onClick={toggleTheme}
 								color="inherit"
@@ -32,7 +32,7 @@ const App: React.FC = () => {
 							>
 								{isDark ? <Brightness7Icon /> : <Brightness4Icon />}
 							</IconButton>
-						</Tooltip>
+						</Tooltip> */}
 
 						{/* Main Page Content */}
 						<CssBaseline />
