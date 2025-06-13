@@ -1,11 +1,11 @@
 import CenteredButtons from '../components/CenteredButtons';
-import FloatingImages from '../components/FloatingImages';
+import MouseTrackingSeahorse from '../components/MouseTrackingSeahorse';
 
 export const Home = () => {
 	return (
 		<>
 			<CenteredButtons/>
-			<FloatingImages/>
+			<MouseTrackingSeahorse/>
 		</>
 	)
 };

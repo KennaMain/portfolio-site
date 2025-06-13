@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Box } from '@mui/material';
 import { styled } from '@mui/system';
 
-const FloatingImages: React.FC = () => {
+const MouseTrackingSeahorse: React.FC = () => {
   const [angle, setAngle] = useState(0);
   const [position, setPosition] = useState({ x: 0, y: 0 });
 
@@ -70,4 +70,4 @@ const FloatingImages: React.FC = () => {
   );
 };
 
-export default FloatingImages;
+export default MouseTrackingSeahorse;
