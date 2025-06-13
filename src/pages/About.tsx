@@ -27,7 +27,7 @@ export const About = () => {
   const theme = useTheme();
 
   return (
-    <Box sx={{ flexGrow: 1, minHeight: '100vh' }} paddingTop={9}>
+    <Box sx={{ flexGrow: 1, minHeight: '100vh' }} paddingTop={17}>
       <Grid container spacing={0}>
         {/* Left Column - Carousel */}
         <Grid item xs={12} md={6}>

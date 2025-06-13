@@ -8,7 +8,7 @@ type Props = {
 
 export const DarkBackgroundLeftOffsetBox = ({children}: Props) => {
   return (
-    <Box sx={{ flexGrow: 1, minHeight: '100vh' }} paddingTop={9} paddingRight={16}>
+    <Box sx={{ flexGrow: 1, minHeight: '100vh' }} paddingTop={19} paddingRight={16}>
       <DarkBox>
         <Box sx={{ paddingRight: 6, paddingLeft: 6, paddingBottom: 6, height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
             {children}
