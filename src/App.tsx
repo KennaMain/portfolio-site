@@ -19,7 +19,7 @@ const App: React.FC = () => {
 				{({ toggleTheme, isDark }) => (
 					<Box sx={{ position: 'relative' }}>
 						{/* Theme toggle button */}
-{/* 						<Tooltip title="Toggle light/dark theme">
+						{/* <Tooltip title="Toggle light/dark theme">
 							<IconButton
 								onClick={toggleTheme}
 								color="inherit"
@@ -37,7 +37,7 @@ const App: React.FC = () => {
 						{/* Main Page Content */}
 						<CssBaseline />
 						<Router>
-							<ResponsiveAppBar pages={['About', 'Portfolio', 'Contact']} />
+							<ResponsiveAppBar pages={['About', 'Portfolio', 'Contact', 'About Me']} />
 							<Routes>
 								<Route path="/contact" element={<Contact />} />
 								<Route path="/about-me" element={<AboutMe />} />
