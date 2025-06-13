@@ -6,18 +6,20 @@ const createCustomTheme = (mode: 'light' | 'dark' = 'light') => {
     palette: {
       mode,
       primary: {
-        main: '#3f51b5',
+        main: '#2D2E2A',
       },
       secondary: {
-        main: '#f50057',
+        light: '#FFFBDD',
+        main: '#C1C1AC',
       },
       background: {
-        default: mode === 'light' ? '#f5f5f5' : '#121212',
-        paper: mode === 'light' ? '#ffffff' : '#1e1e1e',
+        default: mode === 'light' ? '#FFFBDD' : '#FFFBDD',
+        paper: mode === 'light' ? '#2D2E2A': '#2D2E2A',
       },
     },
     typography: {
-      fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+      //fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+      fontFamily: '"Erbaum"',
       h1: {
         fontSize: '2.5rem',
         fontWeight: 700,

@@ -10,14 +10,17 @@ interface SquareButtonData {
 }
 
 // Styled button component to ensure square shape
-const SquareButton = styled(Button)({
+const SquareButton = styled(Button)(({ theme }) => ({
   aspectRatio: '1/1',
   display: 'flex',
   flexDirection: 'column',
   padding: '16px',
   borderRadius: '8px',
   textTransform: 'none',
-});
+
+  backgroundColor: theme.palette.background.paper,
+  color: theme.palette.secondary.main,
+}));
 
 const CenteredButtons: React.FC = () => {
   // Sample data for the buttons
