@@ -1,7 +1,7 @@
 import CenteredButtons from '../components/CenteredButtons';
 import MouseTrackingSeahorse from '../components/MouseTrackingSeahorse';
 
-export const Home = () => {
+export const Portfolio = () => {
 	return (
 		<>
 			<CenteredButtons/>

@@ -8,7 +8,7 @@ import { ThemeProviderWrapper, ThemeContext } from './ThemeProviderWrapper';
 import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
 import { About } from './pages/About';
-import { Home } from './pages/Home';
+import { Portfolio } from './pages/Portfolio';
 import { AboutMe } from './pages/AboutMe';
 import { Contact } from './pages/Contact';
 
@@ -42,7 +42,8 @@ const App: React.FC = () => {
 								<Route path="/contact" element={<Contact />} />
 								<Route path="/about-me" element={<AboutMe />} />
 								<Route path="/about" element={<About />} />
-								<Route path="/" element={<Home />} />
+								<Route path="/portfolio" element={<Portfolio />} />
+								<Route path="/" element={<Portfolio />} />
 							</Routes>
 						</Router>
 						{/* End main content */}
