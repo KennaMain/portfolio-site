@@ -2,6 +2,7 @@ import React from 'react';
 import { Box, Grid, Typography, Paper, useTheme } from '@mui/material';
 import Carousel from 'react-material-ui-carousel';
 import { styled } from '@mui/system';
+import { DarkBox } from '../components/DarkBox';
 
 // Sample carousel items
 const carouselItems = [
@@ -22,17 +23,6 @@ const carouselItems = [
   }
 ];
 
-// Styled carousel container
-const DarkCarouselContainer = styled(Box)(({ theme }) => ({
-  backgroundColor: theme.palette.grey[900],
-  height: '100%',
-  minHeight: '500px',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  padding: theme.spacing(4)
-}));
-
 export const About = () => {
   const theme = useTheme();
 
@@ -41,7 +31,7 @@ export const About = () => {
       <Grid container spacing={0}>
         {/* Left Column - Carousel */}
         <Grid item xs={12} md={6}>
-          <DarkCarouselContainer>
+          <DarkBox>
             <Carousel
               animation="fade"
               navButtonsAlwaysVisible
@@ -80,7 +70,7 @@ export const About = () => {
                 </Box>
               ))}
             </Carousel>
-          </DarkCarouselContainer>
+          </DarkBox>
         </Grid>
 
         {/* Right Column - Text Content */}
