@@ -37,7 +37,7 @@ function ResponsiveAppBar(props: Props) {
 
   const logo = (
     <Box sx={{ display: { xs: 'none', md: 'flex' }, mr: 1, mt: 5 }}>
-      <img src="./site-assets/navbar_logo.png" height={'100px'}/>
+      <img alt="My Logo!" src="./site-assets/navbar_logo.png" height={'100px'}/>
     </Box>
   )
           // {/* <Typography
@@ -104,12 +104,12 @@ function ResponsiveAppBar(props: Props) {
 
           {/* Mobile logo */}
           <Box sx={{ display: { xs: 'flex', md: 'none' }, mr: 1, mt: 5 }}>
-            <img src="./site-assets/navbar_logo.png" height={'100px'}/>
+            <img alt="My Logo!" src="./site-assets/navbar_logo.png" height={'100px'}/>
           </Box>
 
           {/* Desktop logo */}
           <Box sx={{ display: { xs: 'none', md: 'flex' }, mr: 1, mt: 5 }}>
-            <img src="./site-assets/navbar_logo.png" height={'100px'}/>
+            <img alt="My Logo!" src="./site-assets/navbar_logo.png" height={'100px'}/>
           </Box>
 
           {/* Desktop menu */}

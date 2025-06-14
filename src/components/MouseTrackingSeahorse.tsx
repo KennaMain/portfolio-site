@@ -51,7 +51,7 @@ const MouseTrackingSeahorse: React.FC = () => {
       >
         <img 
           src="site-assets/seahorse.png"
-          alt="Fixed decoration"
+          alt="Seahorse Friend :)"
           style={{ width: '100%', height: '100%', objectFit: 'contain' }}
         />
       </Box>
@@ -72,7 +72,7 @@ const MouseTrackingSeahorse: React.FC = () => {
       >
         <img 
           src="site-assets/seahorse_eye.png"
-          alt="Rotating element"
+          alt="Seahorse Eye"
           style={{ width: '100%', height: '100%', objectFit: 'contain' }}
         />
       </Box>
