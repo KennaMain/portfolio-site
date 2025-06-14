@@ -28,8 +28,10 @@ export const About = () => {
   const theme = useTheme();
 
 
-  const leftArrowImage = <img alt="Show Previous Image" src="./site-assets/left_arrow.png"/>//<ArrowBackIosIcon fontSize="large" />
-  const rightArrowImage = <img alt="Show Next Image" src="./site-assets/right_arrow.png"/>//<ArrowForwardIosIcon fontSize="large" />
+  {/* eslint-disable-next-line jsx-a11y/img-redundant-alt */}
+  const leftArrowImage = <img alt="Show Previous Image" src="./site-assets/left_arrow.png"/>
+  {/* eslint-disable-next-line jsx-a11y/img-redundant-alt */}
+  const rightArrowImage = <img alt="Show Next Image" src="./site-assets/right_arrow.png"/>
 
   // Custom arrow button component
   const CustomArrowButton = ({
