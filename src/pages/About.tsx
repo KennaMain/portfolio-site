@@ -64,7 +64,7 @@ export const About = () => {
       <Grid container spacing={0}>
         {/* Left Column - Carousel */}
         <Grid item xs={12} md={6}>
-          <DarkBox>
+          <DarkBox sx={{ height: '100%', display: 'flex' }}>
             <Carousel
               animation="fade"
               navButtonsAlwaysVisible
@@ -84,17 +84,31 @@ export const About = () => {
               }}
               sx={{
                 width: '100%',
-                maxWidth: '600px'
+                maxWidth: '600px',
+                height: '100%',
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'center', // This centers vertically
               }}
             >
               {carouselItems.map((item) => (
-                <Box key={item.id}>
+                <Box 
+                  key={item.id}
+                  sx={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    height: '100%'
+                  }}
+                >
                   <Paper
                     elevation={0}
                     sx={{
                       backgroundColor: 'transparent',
                       display: 'flex',
-                      justifyContent: 'center'
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                      height: '100%'
                     }}
                   >
                     <img
