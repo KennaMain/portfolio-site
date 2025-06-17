@@ -1,3 +1,5 @@
+'use client'
+
 import * as React from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -9,9 +11,8 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
-import AdbIcon from '@mui/icons-material/Adb';
-import { useNavigate } from 'react-router-dom';
-import { useTheme } from '@mui/material/styles';
+import { useRouter } from 'next/navigation';
+import { theme } from '@/theme';
 
 interface Props {
   pages: string[];
@@ -19,8 +20,7 @@ interface Props {
 
 function ResponsiveAppBar(props: Props) {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
-  const navigate = useNavigate();
-  const theme = useTheme();
+  const router = useRouter();
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
@@ -32,7 +32,7 @@ function ResponsiveAppBar(props: Props) {
 
   const handleNavigation = (page: string) => {
     handleCloseNavMenu();
-    navigate(`/${page.toLowerCase().replace(" ", "-")}`);
+    router.push(`/${page.toLowerCase().replace(" ", "-")}`);
   };
 
   const logo = (
@@ -58,7 +58,7 @@ function ResponsiveAppBar(props: Props) {
           // </Typography> */}
 
   return (
-    <AppBar>
+    <AppBar sx={{bgcolor: theme.palette.background.paper}}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>        
           {/* Mobile menu */}

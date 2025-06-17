@@ -1,17 +1,22 @@
 import React from 'react';
-import { Box, Grid, Typography, useTheme } from '@mui/material';
-import { DarkBackgroundLeftOffsetBox } from '../components/DarkBackgroundLeftOffsetBox';
+import { Box, GridLegacy as Grid, Typography } from '@mui/material';
+import { DarkBackgroundLeftOffsetBox } from '../../components/DarkBackgroundLeftOffsetBox';
+import { theme } from '@/theme';
+import "../globals.css";
 
-export const Contact = () => {
-  const theme = useTheme();
-
+export default () => {
   return (
     <DarkBackgroundLeftOffsetBox>
       <Grid container spacing={0}>
-        {/* Left Column - Contact Info */}
+        {/* Left Column - Image */}
+        <Grid item xs={12} md={5}>
+          <img alt="Two happy nautliuses! :)" style={{width: "100%", height: "auto"}} src='./site-assets/about_nautiluses.png' />
+        </Grid>
+
+        {/* Right Column - Text */}
         <Grid item xs={12} md={6}>
-          <Typography variant="h3" component="h1" gutterBottom sx={{ fontWeight: 700 }}>
-            Discover Our World
+          <Typography variant="h1" component="h1" gutterBottom sx={{ fontWeight: 700, color: theme.palette.secondary.light, transform: "rotate(-13deg)", fontSize: 60 }}>
+            Who I am
           </Typography>
 
           <Typography variant="body1" paragraph sx={{ mb: 3, fontSize: '1.1rem' }}>
@@ -37,15 +42,6 @@ export const Contact = () => {
               Easy navigation
             </Typography>
           </Box>
-
-          <Typography variant="body1" sx={{ fontStyle: 'italic', color: theme.palette.text.secondary }}>
-            &quot;The beauty of nature is that it&apos;s always changing, yet always constant.&quot;
-          </Typography>
-        </Grid>
-
-        {/* Right Column - Image */}
-        <Grid item xs={12} md={6}>
-          <img alt="Seahorse calling to invite you over for a boardgame party with all their friends" style={{width: "100%", height: "auto"}} src='./site-assets/contact_seahorse.png' />
         </Grid>
       </Grid>
     </DarkBackgroundLeftOffsetBox>

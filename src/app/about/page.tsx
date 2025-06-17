@@ -1,9 +1,10 @@
+'use client'
+
 import React from 'react';
-import { Box, Grid, Typography, Paper, useTheme, IconButton } from '@mui/material';
+import { Box, GridLegacy as Grid, Typography, Paper, IconButton } from '@mui/material';
 import Carousel from 'react-material-ui-carousel';
-import { DarkBox } from '../components/DarkBox';
-import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
-import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import { DarkBox } from '../../components/DarkBox';
+import { theme } from '@/theme';
 
 // Sample carousel items
 const carouselItems = [
@@ -24,10 +25,7 @@ const carouselItems = [
   }
 ];
 
-export const About = () => {
-  const theme = useTheme();
-
-
+export default () => {
   {/* eslint-disable-next-line jsx-a11y/img-redundant-alt */}
   const leftArrowImage = <img alt="Show Previous Image" src="./site-assets/left_arrow.png"/>
   {/* eslint-disable-next-line jsx-a11y/img-redundant-alt */}
@@ -160,10 +158,6 @@ export const About = () => {
                 Easy navigation
               </Typography>
             </Box>
-            
-            <Typography variant="body1" sx={{ fontStyle: 'italic', color: theme.palette.text.secondary }}>
-              &quot;The beauty of nature is that it&apos;s always changing, yet always constant.&quot;
-            </Typography>
           </Box>
         </Grid>
       </Grid>

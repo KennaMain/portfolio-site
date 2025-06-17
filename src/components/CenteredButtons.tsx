@@ -1,6 +1,7 @@
 import React from 'react';
-import { Box, Button, Grid, Typography } from '@mui/material';
+import { Box, Button, GridLegacy as Grid, Typography } from '@mui/material';
 import { styled } from '@mui/system';
+import { theme } from '@/theme';
 
 // Define the type for button data
 interface SquareButtonData {
@@ -10,20 +11,26 @@ interface SquareButtonData {
 }
 
 // Styled button component to ensure square shape
-const SquareButton = styled(Button)(({ theme }) => ({
-  aspectRatio: '1/1',
-  display: 'flex',
-  flexDirection: 'column',
-  padding: '16px',
-  borderRadius: '8px',
-  textTransform: 'none',
+const SquareButton = ({children, ...props}: any) => {
+  return (
+    <Button {...props} style={{
+      aspectRatio: '1/1',
+      display: 'flex',
+      flexDirection: 'column',
+      padding: '16px',
+      borderRadius: '8px',
+      textTransform: 'none',
 
-  backgroundColor: theme.palette.background.paper,
-  color: theme.palette.secondary.light,
-  "&:hover": {
-    color: theme.palette.primary.main,
-  }
-}));
+      backgroundColor: theme.palette.background.paper,
+      color: theme.palette.secondary.light,
+      // "&:hover": {
+      //   color: theme.palette.primary.main,
+      // }
+    }}>
+      {children}
+    </Button>
+  )
+}
 
 const CenteredButtons: React.FC = () => {
   // Sample data for the buttons

@@ -1,22 +1,19 @@
 import React from 'react';
-import { Box, Grid, Typography, useTheme } from '@mui/material';
-import { DarkBackgroundLeftOffsetBox } from '../components/DarkBackgroundLeftOffsetBox';
+import { Box, GridLegacy as Grid, Typography } from '@mui/material';
+import { DarkBackgroundLeftOffsetBox } from '../../components/DarkBackgroundLeftOffsetBox';
+import { theme } from '@/theme';
+import "../globals.css";
 
-export const AboutMe = () => {
-  const theme = useTheme();
-
+export default () => {
+  console.log(theme)
+  
   return (
     <DarkBackgroundLeftOffsetBox>
       <Grid container spacing={0}>
-        {/* Left Column - Image */}
-        <Grid item xs={12} md={5}>
-          <img alt="Two happy nautliuses! :)" style={{width: "100%", height: "auto"}} src='./site-assets/about_nautiluses.png' />
-        </Grid>
-
-        {/* Right Column - Text */}
+        {/* Left Column - Contact Info */}
         <Grid item xs={12} md={6}>
-          <Typography variant="h1" component="h1" gutterBottom sx={{ fontWeight: 700, color: theme.palette.secondary.light, transform: "rotate(-13deg)", fontSize: 60 }}>
-            Who I am
+          <Typography variant="h2" component="h1" gutterBottom sx={{ fontWeight: 700, color: theme.palette.secondary.light }}>
+            Contact Me
           </Typography>
 
           <Typography variant="body1" paragraph sx={{ mb: 3, fontSize: '1.1rem' }}>
@@ -42,10 +39,11 @@ export const AboutMe = () => {
               Easy navigation
             </Typography>
           </Box>
+        </Grid>
 
-          <Typography variant="body1" sx={{ fontStyle: 'italic', color: theme.palette.text.secondary }}>
-            &quot;The beauty of nature is that it&apos;s always changing, yet always constant.&quot;
-          </Typography>
+        {/* Right Column - Image */}
+        <Grid item xs={12} md={6}>
+          <img alt="Seahorse calling to invite you over for a boardgame party with all their friends" style={{width: "100%", height: "auto"}} src='./site-assets/contact_seahorse.png' />
         </Grid>
       </Grid>
     </DarkBackgroundLeftOffsetBox>
