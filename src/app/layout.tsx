@@ -1,11 +1,9 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v13-appRouter';
-import { ThemeProvider } from '@mui/material';
 import "./globals.css";
 import ResponsiveAppBar from "@/components/ResponsiveAppBar";
-import { theme } from "@/theme";
-import { createTheme } from '@mui/material/styles';
+import { CustomThemeProvider } from "@/components/CustomThemeProvider";
 
 
 const geistSans = Geist({
@@ -33,10 +31,10 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <AppRouterCacheProvider>
-          {/* <ThemeProvider theme={createTheme(theme)}> */}
+          <CustomThemeProvider>
             <ResponsiveAppBar pages={['About', 'Portfolio', 'Contact', 'About Me']} />
             {children}
-          {/* </ThemeProvider> */}
+          </CustomThemeProvider>
         </AppRouterCacheProvider>
       </body>
     </html>
