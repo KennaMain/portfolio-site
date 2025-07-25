@@ -4,7 +4,7 @@ import { DarkBackgroundLeftOffsetBox } from '../../components/DarkBackgroundLeft
 import { theme } from '@/theme';
 import "../globals.css";
 
-export default () => {
+export default function AboutMe() {
   return (
     <DarkBackgroundLeftOffsetBox>
       <Grid container spacing={0}>

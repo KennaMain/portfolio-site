@@ -1,6 +1,5 @@
 import React from 'react';
 import { Box, Button, GridLegacy as Grid, Typography } from '@mui/material';
-import { styled } from '@mui/system';
 import { theme } from '@/theme';
 
 // Define the type for button data
@@ -11,6 +10,7 @@ interface SquareButtonData {
 }
 
 // Styled button component to ensure square shape
+{/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
 const SquareButton = ({children, ...props}: any) => {
   return (
     <Button {...props} style={{

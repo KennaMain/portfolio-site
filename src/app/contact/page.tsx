@@ -4,9 +4,9 @@ import { DarkBackgroundLeftOffsetBox } from '../../components/DarkBackgroundLeft
 import { theme } from '@/theme';
 import "../globals.css";
 
-export default () => {
+export default function Contact() {
   console.log(theme)
-  
+
   return (
     <DarkBackgroundLeftOffsetBox>
       <Grid container spacing={0}>

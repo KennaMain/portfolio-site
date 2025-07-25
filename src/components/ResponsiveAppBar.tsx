@@ -35,28 +35,6 @@ function ResponsiveAppBar(props: Props) {
     router.push(`/${page.toLowerCase().replace(" ", "-")}`);
   };
 
-  const logo = (
-    <Box sx={{ display: { xs: 'none', md: 'flex' }, mr: 1, mt: 5 }}>
-      <img alt="My Logo!" src="./site-assets/navbar_logo.png" height={'100px'}/>
-    </Box>
-  )
-          // {/* <Typography
-          //   variant="h6"
-          //   noWrap
-          //   component="a"
-          //   href="/"  // Changed to root path
-          //   sx={{
-          //     mr: 2,
-          //     display: { xs: 'none', md: 'flex' },
-          //     fontWeight: 700,
-          //     letterSpacing: '.3rem',
-          //     color: 'inherit',
-          //     textDecoration: 'none',
-          //   }}
-          // >
-          //   LOGO
-          // </Typography> */}
-
   return (
     <AppBar sx={{bgcolor: theme.palette.background.paper}}>
       <Container maxWidth="xl">

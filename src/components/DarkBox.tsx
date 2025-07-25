@@ -2,6 +2,7 @@ import React from 'react';
 import { Box } from '@mui/material';
 import { theme } from '@/theme';
 
+{/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
 export const DarkBox = ({children, ...props}: any) => {
   return (
     <Box {...props} style={{

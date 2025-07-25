@@ -2,11 +2,9 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { Box } from '@mui/material';
-import { styled } from '@mui/system';
 
 const MouseTrackingSeahorse: React.FC = () => {
   const [angle, setAngle] = useState(0);
-  const [position, setPosition] = useState({ x: 0, y: 0 });
   const prevAngleRef = useRef(0);
 
   // Handle mouse movement to rotate the image
@@ -31,7 +29,6 @@ const MouseTrackingSeahorse: React.FC = () => {
       
       prevAngleRef.current = newAngle;
       setAngle(newAngle);
-      setPosition({ x: e.clientX, y: e.clientY });
     };
 
     window.addEventListener('mousemove', handleMouseMove);

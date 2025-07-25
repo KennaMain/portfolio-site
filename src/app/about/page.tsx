@@ -25,7 +25,10 @@ const carouselItems = [
   }
 ];
 
-export default () => {
+{/* eslint-disable-next-line @typescript-eslint/no-unsafe-function-type */}
+type FunctionType = Function
+
+export default function About() {
   {/* eslint-disable-next-line jsx-a11y/img-redundant-alt */}
   const leftArrowImage = <img alt="Show Previous Image" src="./site-assets/left_arrow.png"/>
   {/* eslint-disable-next-line jsx-a11y/img-redundant-alt */}
@@ -38,7 +41,7 @@ export default () => {
     children,
   }: {
     direction: 'left' | 'right';
-    onClick: Function;
+    onClick: FunctionType;
     children: React.ReactNode;
   }) => (
     <IconButton
@@ -68,7 +71,7 @@ export default () => {
             <Carousel
               animation="fade"
               navButtonsAlwaysVisible
-              NavButton={({ onClick, next, prev }) => {
+              NavButton={({ onClick, next }) => {
                 const direction = next ? 'right' : 'left';
                 return (
                   <CustomArrowButton direction={direction} onClick={onClick}>
