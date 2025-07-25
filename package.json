@@ -10,7 +10,8 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "npx serve@latest out",
-    "lint": "next lint"
+    "lint": "next lint",
+    "deploy": "heroku login && git push heroku main"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
