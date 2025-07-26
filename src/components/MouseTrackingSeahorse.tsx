@@ -41,11 +41,11 @@ const MouseTrackingSeahorse: React.FC = () => {
       <Box
         sx={{
           position: 'fixed',
-          bottom: 20,
+          bottom: -2,
           right: 20,
           zIndex: 1000,
-          width: 100*3,
-          height: 100*3,
+          width: 320,
+          height: 320,
         }}
       >
         <img 
@@ -59,11 +59,11 @@ const MouseTrackingSeahorse: React.FC = () => {
       <Box
         sx={{
           position: 'fixed',
-          bottom: 210,
-          right: 170,
+          bottom: 219,
+          right: 185,
           zIndex: 1001,
-          width: 30,
-          height: 30,
+          width: 21,
+          height: 21,
           transform: `rotate(${angle}deg)`,
           transition: 'transform 0.1s ease-out',
           pointerEvents: 'none',

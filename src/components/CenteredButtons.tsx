@@ -68,22 +68,24 @@ const CenteredButtons: React.FC = () => {
       }}
     >
       <Grid container spacing={4} justifyContent="center" maxWidth="md">
-        {buttons.map((button) => (
+        {buttons.map((button, index) => (
           <Grid item key={button.id} xs={6} sm={3}>
             <SquareButton variant="outlined" fullWidth>
-              <Typography variant="body1" gutterBottom>
-                {button.text}
-              </Typography>
               <Box
                 component="img"
                 src={button.imageUrl}
                 alt={button.text}
                 sx={{
-                  width: '60%',
-                  height: 'auto',
+                  width: 'auto',
+                  height: index === 2 ? '65%' : '50%',
+                  paddingBottom: '10px',
+                  paddingTop: index === 2 ? '2px' : '10px',
                   objectFit: 'contain',
                 }}
               />
+              <Typography sx={{paddingTop: '15px'}} variant="body1" gutterBottom>
+                {button.text}
+              </Typography>
             </SquareButton>
           </Grid>
         ))}
