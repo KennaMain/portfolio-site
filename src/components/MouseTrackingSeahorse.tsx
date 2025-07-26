@@ -46,6 +46,7 @@ const MouseTrackingSeahorse: React.FC = () => {
           zIndex: 1000,
           width: 320,
           height: 320,
+          pointerEvents: "none"
         }}
       >
         <img 
