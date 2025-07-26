@@ -36,7 +36,7 @@ function ResponsiveAppBar(props: Props) {
   };
 
   return (
-    <AppBar sx={{bgcolor: theme.palette.background.paper}}>
+    <AppBar sx={{bgcolor: theme.palette.background.paper, zIndex: 200}}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>        
           {/* Mobile menu */}
