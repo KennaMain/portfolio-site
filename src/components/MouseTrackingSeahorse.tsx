@@ -49,7 +49,7 @@ const MouseTrackingSeahorse: React.FC = () => {
         }}
       >
         <img 
-          src="site-assets/seahorse.png"
+          src="site-assets/seahorse.svg"
           alt="Seahorse Friend :)"
           style={{ width: '100%', height: '100%', objectFit: 'contain' }}
         />
@@ -70,7 +70,7 @@ const MouseTrackingSeahorse: React.FC = () => {
         }}
       >
         <img 
-          src="site-assets/seahorse_eye.png"
+          src="site-assets/seahorse_eye.svg"
           alt="Seahorse Eye"
           style={{ width: '100%', height: '100%', objectFit: 'contain' }}
         />

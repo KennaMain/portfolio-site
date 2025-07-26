@@ -38,22 +38,22 @@ const CenteredButtons: React.FC = () => {
     {
       id: '1',
       text: 'Layouts',
-      imageUrl: 'site-assets/home_button_layouts.png',
+      imageUrl: 'site-assets/home_button_layouts.svg',
     },
     {
       id: '2',
       text: 'Illustrations',
-      imageUrl: 'site-assets/home_button_illustrations.png',
+      imageUrl: 'site-assets/home_button_illustrations.svg',
     },
     {
       id: '3',
       text: 'Photography',
-      imageUrl: 'site-assets/home_button_photography.png',
+      imageUrl: 'site-assets/home_button_photography.svg',
     },
     {
       id: '4',
       text: 'Other',
-      imageUrl: 'site-assets/home_button_other.png',
+      imageUrl: 'site-assets/home_button_other.svg',
     },
   ];
 

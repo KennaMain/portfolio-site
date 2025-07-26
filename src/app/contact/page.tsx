@@ -43,7 +43,7 @@ export default function Contact() {
 
         {/* Right Column - Image */}
         <Grid item xs={12} md={6}>
-          <img alt="Seahorse calling to invite you over for a boardgame party with all their friends" style={{width: "100%", height: "auto"}} src='./site-assets/contact_seahorse.png' />
+          <img alt="Seahorse calling to invite you over for a boardgame party with all their friends" style={{width: "100%", height: "auto"}} src='./site-assets/contact_seahorse.svg' />
         </Grid>
       </Grid>
     </DarkBackgroundLeftOffsetBox>

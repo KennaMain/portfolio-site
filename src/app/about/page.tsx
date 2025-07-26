@@ -30,9 +30,9 @@ type FunctionType = Function
 
 export default function About() {
   {/* eslint-disable-next-line jsx-a11y/img-redundant-alt */}
-  const leftArrowImage = <img alt="Show Previous Image" src="./site-assets/left_arrow.png"/>
+  const leftArrowImage = <img alt="Show Previous Image" src="./site-assets/left_arrow.svg"/>
   {/* eslint-disable-next-line jsx-a11y/img-redundant-alt */}
-  const rightArrowImage = <img alt="Show Next Image" src="./site-assets/right_arrow.png"/>
+  const rightArrowImage = <img alt="Show Next Image" src="./site-assets/right_arrow.svg"/>
 
   // Custom arrow button component
   const CustomArrowButton = ({
