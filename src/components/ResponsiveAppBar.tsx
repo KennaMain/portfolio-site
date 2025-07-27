@@ -13,8 +13,8 @@ import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 import { useRouter } from 'next/navigation';
 import { theme } from '@/theme';
-import { useMouseAngleTracking } from '@/hooks/UseMouseAngleTracking';
 import { useRef } from 'react';
+import { useMouseAngleTracking } from '../hooks/UseMouseAngleTracking';
 
 interface Props {
   pages: string[];
@@ -120,7 +120,7 @@ function ResponsiveAppBar(props: Props) {
               sx={{
                 position: 'absolute',
                 bottom: 7,
-                left: 45,
+                left: 65,
                 zIndex: 2001,
                 width: 21,
                 height: 21,
