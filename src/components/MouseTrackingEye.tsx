@@ -1,0 +1,50 @@
+'use client'
+
+import React, { useRef } from 'react';
+import { Box } from '@mui/material';
+import { useMouseAngleTracking } from '../hooks/UseMouseAngleTracking';
+
+type Props = {
+  bottom?: number|undefined
+  right?: number|undefined
+  top?: number|undefined
+  left?: number|undefined
+  zIndex?: number|undefined
+  width?: number|undefined
+  height?: number|undefined
+  src: string
+  alt: string
+  position: "absolute"|"fixed"
+}
+
+const MouseTrackingEye = ({bottom, right, top, left, zIndex, width, height, src, alt, position}: Props) => {
+  const eyeElementRef = useRef<HTMLImageElement>(null) || undefined
+  const { angle } = useMouseAngleTracking({ref: eyeElementRef})
+
+  return (
+    <Box
+      sx={{
+        position,
+        bottom,
+        right,
+        top,
+        left,
+        zIndex,
+        width,
+        height,
+        transform: `rotate(${angle}deg)`,
+        transition: 'transform 0.1s ease-out',
+        pointerEvents: 'none',
+      }}
+    >
+      <img 
+        ref={eyeElementRef}
+        src={src}
+        alt={alt}
+        style={{ width: '100%', height: '100%', objectFit: 'contain' }}
+      />
+    </Box>
+  );
+};
+
+export default MouseTrackingEye;

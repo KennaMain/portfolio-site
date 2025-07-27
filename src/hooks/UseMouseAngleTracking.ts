@@ -10,19 +10,11 @@ export const useMouseAngleTracking = ({ref}: Props) => {
   const [angle, setAngle] = useState(0);
   const prevAngleRef = useRef(0);
 
-  const dxFromPageRight = 
-
   // Handle mouse movement to rotate the image
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       if (!ref.current) return
       const rect = ref.current.getBoundingClientRect()
-      // const dxFromPageRight = rect.right + rect.width/2
-      // const dxFromPageBottom = rect.bottom + rect.width/2
-      // 
-      // // Get center position of the rotating image
-      // const centerX = window.innerWidth - dxFromPageRight; // 100px from right
-      // const centerY = window.innerHeight - dyFromPageBottom; // 200px from bottom (stacked)
       const centerX = rect.left + rect.width/2
       const centerY = rect.top + rect.height/2
 

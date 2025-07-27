@@ -3,6 +3,7 @@
 import React, { useRef } from 'react';
 import { Box } from '@mui/material';
 import { useMouseAngleTracking } from '../hooks/UseMouseAngleTracking';
+import MouseTrackingEye from './MouseTrackingEye';
 
 const MouseTrackingSeahorse: React.FC = () => {
   const eyeElementRef = useRef<HTMLImageElement>(null) || undefined
@@ -29,27 +30,16 @@ const MouseTrackingSeahorse: React.FC = () => {
         />
       </Box>
 
-      {/* Rotating image that follows cursor */}
-      <Box
-        sx={{
-          position: 'fixed',
-          bottom: 219,
-          right: 185,
-          zIndex: 1001,
-          width: 21,
-          height: 21,
-          transform: `rotate(${angle}deg)`,
-          transition: 'transform 0.1s ease-out',
-          pointerEvents: 'none',
-        }}
-      >
-        <img 
-          ref={eyeElementRef}
-          src="site-assets/seahorse_eye.svg"
-          alt="Seahorse Eye"
-          style={{ width: '100%', height: '100%', objectFit: 'contain' }}
-        />
-      </Box>
+      <MouseTrackingEye 
+        src="site-assets/seahorse_eye.svg"
+        alt="Seahorse Eye"
+        bottom={219}
+        right={185}
+        position="fixed"
+        zIndex={1001}
+        width={21}
+        height={21}
+      />
     </>
   );
 };
