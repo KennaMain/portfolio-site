@@ -52,7 +52,6 @@ export default function Contact() {
               alt="Seahorse Eye"
               top={53}
               left={190}
-              position="absolute"
               zIndex={2001}
               width={21}
               height={21}

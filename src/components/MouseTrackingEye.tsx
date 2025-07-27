@@ -14,17 +14,16 @@ type Props = {
   height?: number|undefined
   src: string
   alt: string
-  position: "absolute"|"fixed"
 }
 
-const MouseTrackingEye = ({bottom, right, top, left, zIndex, width, height, src, alt, position}: Props) => {
+const MouseTrackingEye = ({bottom, right, top, left, zIndex, width, height, src, alt}: Props) => {
   const eyeElementRef = useRef<HTMLImageElement>(null) || undefined
   const { angle } = useMouseAngleTracking({ref: eyeElementRef})
 
   return (
     <Box
       sx={{
-        position,
+        position: "absolute",
         bottom,
         right,
         top,

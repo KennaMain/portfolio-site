@@ -13,8 +13,6 @@ import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 import { useRouter } from 'next/navigation';
 import { theme } from '@/theme';
-import { useRef } from 'react';
-import { useMouseAngleTracking } from '../hooks/UseMouseAngleTracking';
 import MouseTrackingEye from './MouseTrackingEye';
 
 interface Props {
@@ -37,11 +35,6 @@ function ResponsiveAppBar(props: Props) {
     handleCloseNavMenu();
     router.push(`/${page.toLowerCase().replace(" ", "-")}`);
   };
-
-  const leftEyeElementRef = useRef<HTMLImageElement>(null) || undefined
-  const { angle: leftEyeAngle } = useMouseAngleTracking({ref: leftEyeElementRef})
-  const rightEyeElementRef = useRef<HTMLImageElement>(null) || undefined
-  const { angle: rightEyeAngle } = useMouseAngleTracking({ref: rightEyeElementRef})
 
   return (
     <AppBar sx={{bgcolor: theme.palette.background.paper, zIndex: 200}}>
@@ -98,7 +91,6 @@ function ResponsiveAppBar(props: Props) {
               alt="Squid Eye"
               bottom={7}
               left={15}
-              position="absolute"
               zIndex={2001}
               width={21}
               height={21}
@@ -109,7 +101,6 @@ function ResponsiveAppBar(props: Props) {
               alt="Squid Eye"
               bottom={7}
               left={65}
-              position="absolute"
               zIndex={2001}
               width={21}
               height={21}
