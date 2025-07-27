@@ -6,7 +6,10 @@ import { CustomThemeProvider } from "@/components/CustomThemeProvider";
 
 export const metadata: Metadata = {
   title: "Kenna Main's Portfolio",
-  description: "A site displaying all my favorite work!"
+  description: "A site displaying all my favorite work!",
+  icons: {
+    icon: '/site-assets/favicon.svg',
+  },
 };
 
 export default function RootLayout({
@@ -14,6 +17,7 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+
   return (
     // <html lang="en" className={erbaumFont.className}>
     <html lang="en">
