@@ -87,12 +87,7 @@ function ResponsiveAppBar(props: Props) {
             </Menu>
           </Box>
 
-          {/* Mobile logo */}
-          <Box sx={{ display: { xs: 'flex', md: 'none' }, mr: 1, mt: 5 }}>
-            <img alt="My Logo!" src="./site-assets/navbar_logo.svg" height={'100px'}/>
-          </Box>
-
-          {/* Desktop logo */}
+          {/* Logo */}
           <Box sx={{ position: "relative", display: { xs: 'none', md: 'flex' }, mr: 1, mt: 5 }}>
             <img alt="My Logo!" src="./site-assets/navbar_logo.svg" height={'100px'}/>
 
