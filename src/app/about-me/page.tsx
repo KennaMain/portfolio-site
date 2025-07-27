@@ -9,8 +9,8 @@ export default function AboutMe() {
     <DarkBackgroundLeftOffsetBox>
       <Grid container spacing={0}>
         {/* Left Column - Image */}
-        <Grid item xs={12} md={5}>
-          <img alt="Two happy nautliuses! :)" style={{width: "100%", height: "auto"}} src='./site-assets/about_nautiluses.png' />
+        <Grid item xs={12} md={4}>
+          <img alt="Two happy nautliuses! :)" style={{width: "100%", height: "auto"}} src='./site-assets/about_nautiluses.svg' />
         </Grid>
 
         {/* Right Column - Text */}

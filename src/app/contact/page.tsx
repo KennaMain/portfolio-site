@@ -11,7 +11,7 @@ export default function Contact() {
     <DarkBackgroundLeftOffsetBox>
       <Grid container spacing={0}>
         {/* Left Column - Contact Info */}
-        <Grid item xs={12} md={6}>
+        <Grid item xs={12} md={7}>
           <Typography variant="h2" component="h1" gutterBottom sx={{ fontWeight: 700, color: theme.palette.secondary.light }}>
             Contact Me
           </Typography>
@@ -42,8 +42,9 @@ export default function Contact() {
         </Grid>
 
         {/* Right Column - Image */}
-        <Grid item xs={12} md={6}>
-          <img alt="Seahorse calling to invite you over for a boardgame party with all their friends" style={{width: "100%", height: "auto"}} src='./site-assets/contact_seahorse.png' />
+        <Grid item xs={12} md={5}>
+          <Box sx={{height: '20px'}}></Box>
+          <img alt="Seahorse calling to invite you over for a boardgame party with all their friends" style={{width: "100%", height: "auto"}} src='./site-assets/contact_seahorse.svg' />
         </Grid>
       </Grid>
     </DarkBackgroundLeftOffsetBox>
