@@ -3,6 +3,7 @@ import { Box, GridLegacy as Grid, Typography } from '@mui/material';
 import { DarkBackgroundLeftOffsetBox } from '../../components/DarkBackgroundLeftOffsetBox';
 import { theme } from '@/theme';
 import "../globals.css";
+import MouseTrackingEye from '@/components/MouseTrackingEye';
 
 export default function Contact() {
   console.log(theme)
@@ -44,7 +45,19 @@ export default function Contact() {
         {/* Right Column - Image */}
         <Grid item xs={12} md={5}>
           <Box sx={{height: '20px'}}></Box>
-          <img alt="Seahorse calling to invite you over for a boardgame party with all their friends" style={{width: "100%", height: "auto"}} src='./site-assets/contact_seahorse.svg' />
+          <Box sx={{position: 'relative'}}>
+            <img alt="Seahorse calling to invite you over for a boardgame party with all their friends" style={{width: "100%", height: "auto"}} src='./site-assets/contact_seahorse.svg' />
+            <MouseTrackingEye 
+              src="site-assets/seahorse_eye.svg"
+              alt="Seahorse Eye"
+              top={53}
+              left={190}
+              position="absolute"
+              zIndex={2001}
+              width={21}
+              height={21}
+            />
+          </Box>
         </Grid>
       </Grid>
     </DarkBackgroundLeftOffsetBox>
