@@ -27,7 +27,7 @@ const MouseTrackingSeahorse: React.FC = () => {
         src="site-assets/seahorse_eye.svg"
         alt="Seahorse Eye"
         bottom={219}
-        right={185}
+        right={165}
         zIndex={1001}
         width={21}
         height={21}
