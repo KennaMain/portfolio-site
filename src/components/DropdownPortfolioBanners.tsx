@@ -5,14 +5,21 @@ import { Box, GridLegacy as Grid, Slide, Typography } from '@mui/material';
 import Image from "next/image";
 import { theme } from '@/theme';
 
+type BannerItem = {
+  id: number
+  title: string
+  imageUrl: string
+  href: string
+}
+
 export const DropdownPortfolioBanners = () => {
   const [openBanner, setOpenBanner] = React.useState(true);
 
-  const openPortfolio = (bannerItem: any) => {
+  const openPortfolio = (bannerItem: BannerItem) => {
     console.log(bannerItem.title)
   }
   
-  const bannerItems = [
+  const bannerItems: BannerItem[] = [
     {
       id: 1,
       title: 'Illustrations',
