@@ -17,7 +17,10 @@ export const theme = {
     },
     background: {
       default: '#FFFBDD',
-      paper: '#2D2E2A'
+      defaultDark: '#e6e2c8',
+      paper: '#2D2E2A',
+      paperLight: '#464741',
+      paperExtraLight: '#606159',
     },
   },
   typography: {

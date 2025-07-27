@@ -14,9 +14,26 @@ import MenuItem from '@mui/material/MenuItem';
 import { useRouter } from 'next/navigation';
 import { theme } from '@/theme';
 import MouseTrackingEye from './MouseTrackingEye';
+import { CustomEvents } from '@/app/enums';
+
+type Page = {
+  title: string,
+  href: string
+}
 
 interface Props {
-  pages: string[];
+  pages: Page[];
+}
+
+type NavigationEventParams = {
+  href: string
+}
+
+export class NavigationEvent extends CustomEvent<NavigationEventParams> {
+  public href?: string
+  constructor(type: string, eventInitDict?: CustomEventInit<NavigationEventParams>) {
+    super(type, eventInitDict)
+  }
 }
 
 function ResponsiveAppBar(props: Props) {
@@ -31,9 +48,13 @@ function ResponsiveAppBar(props: Props) {
     setAnchorElNav(null);
   };
 
-  const handleNavigation = (page: string) => {
+  const handleNavigation = (href: string) => {
+    const myCustomEvent = new NavigationEvent(CustomEvents.NAVBAR_NAVIGATION)
+    myCustomEvent.href = href
+    document.dispatchEvent(myCustomEvent)
+
     handleCloseNavMenu();
-    router.push(`/${page.toLowerCase().replace(" ", "-")}`);
+    router.push(href);
   };
 
   return (
@@ -72,10 +93,10 @@ function ResponsiveAppBar(props: Props) {
             >
               {props.pages.map((page) => (
                 <MenuItem 
-                  key={page} 
-                  onClick={() => handleNavigation(page)}
+                  key={page.title} 
+                  onClick={() => handleNavigation(page.href)}
                 >
-                  <Typography textAlign="center">{page}</Typography>
+                  <Typography textAlign="center">{page.title}</Typography>
                 </MenuItem>
               ))}
             </Menu>
@@ -84,7 +105,6 @@ function ResponsiveAppBar(props: Props) {
           {/* Logo */}
           <Box sx={{ position: "relative", display: { xs: 'none', md: 'flex' }, mr: 1, mt: 5 }}>
             <img alt="My Logo!" src="./site-assets/navbar_logo.svg" height={'100px'}/>
-
 
             <MouseTrackingEye 
               src="site-assets/squid_eye.svg"
@@ -105,7 +125,6 @@ function ResponsiveAppBar(props: Props) {
               width={21}
               height={21}
             />
-
           </Box>
 
           {/* Desktop menu */}
@@ -113,10 +132,11 @@ function ResponsiveAppBar(props: Props) {
             {props.pages.map((page) => (
               <Button
                 key={page}
-                onClick={() => handleNavigation(page)}  // Fixed: Added navigation
+                onClick={() => handleNavigation(page.href)}
                 sx={{ my: 2, display: 'block', fontSize: 24, color: theme.palette.secondary.light, textTransform: 'none' }}
+                id={`navbar-${page.href}-button`}
               >
-                {page}
+                {page.title}
               </Button>
             ))}
           </Box>

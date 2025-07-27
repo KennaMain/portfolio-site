@@ -12,11 +12,25 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({children}: {children: React.ReactNode}) {
+  const pages = [
+    {
+      title: "About",
+      href: "about"
+    },
+    {
+      title: "Portfolio",
+      href: "portfolio"
+    },
+    {
+      title: "Contact",
+      href: "contact"
+    },
+    {
+      title: "About Me",
+      href: "about-me"
+    },
+  ]
 
   return (
     // <html lang="en" className={erbaumFont.className}>
@@ -24,7 +38,7 @@ export default function RootLayout({
       <body>
         <AppRouterCacheProvider>
           <CustomThemeProvider>
-            <ResponsiveAppBar pages={['About', 'Portfolio', 'Contact', 'About Me']} />
+            <ResponsiveAppBar pages={pages}/>
             {children}
           </CustomThemeProvider>
         </AppRouterCacheProvider>
