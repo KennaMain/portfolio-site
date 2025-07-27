@@ -8,6 +8,10 @@ import { theme } from '@/theme';
 export const DropdownPortfolioBanners = () => {
   const [openBanner, setOpenBanner] = React.useState(true);
 
+  const openPortfolio = (bannerItem: any) => {
+    console.log(bannerItem.title)
+  }
+  
   const bannerItems = [
     {
       id: 1,
@@ -63,7 +67,7 @@ export const DropdownPortfolioBanners = () => {
                   onClick={() => {
                     // Handle navigation
                     setOpenBanner(false)
-                    handleNavigation(item.href)
+                    openPortfolio(item)
                   }}
                 >
                   <Box sx={{ 
