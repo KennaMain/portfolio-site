@@ -39,8 +39,13 @@ const ImageGrid = ({ imagePaths: rawImagePaths, hidden, spacerImagePaths }: Prop
     }
     setImagePaths(tempImagePaths)
     setIsSpacerImage(tempIsSpacerImage)
-  }, [rawImagePaths])
+  }, [rawImagePaths, spacerImagePaths])
 
+  const onClick = (index: number, imgSrc: string) => { 
+    if (isSpacerImage[index]) return
+    
+    setModalImage({href: imgSrc, alt: "Portfolio image " + index})
+  }
 
   const gridItemBackgroundStyling = (index: number) => {
     const sx = {
@@ -125,7 +130,7 @@ const ImageGrid = ({ imagePaths: rawImagePaths, hidden, spacerImagePaths }: Prop
                   transition: 'transform 0.3s ease-in-out',
                   padding: "10px"
                 }}
-                onClick={() => { !isSpacerImage[index] && setModalImage({href: imgSrc, alt: "Portfolio image " + index}) }}
+                onClick={() => onClick(index, imgSrc)}
               />
             </Box>
           </Grid>

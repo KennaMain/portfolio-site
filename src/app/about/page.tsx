@@ -6,16 +6,16 @@ import Carousel from 'react-material-ui-carousel';
 import { DarkBox } from '../../components/DarkBox';
 import { theme } from '@/theme';
 import { filesList } from './carouselFilesList';
-// import Image from "next/image"
+import Image from "next/image"
 
 {/* eslint-disable-next-line @typescript-eslint/no-unsafe-function-type */}
 type FunctionType = Function
 
 export default function About() {
   {/* eslint-disable-next-line jsx-a11y/img-redundant-alt */}
-  const leftArrowImage = <img width={50} height={50} alt="Show Previous Image" src="./site-assets/left_arrow.svg"/>
+  const leftArrowImage = <Image width={50} height={50} alt="Show Previous Image" src="./site-assets/left_arrow.svg"/>
   {/* eslint-disable-next-line jsx-a11y/img-redundant-alt */}
-  const rightArrowImage = <img width={50} height={50} alt="Show Next Image" src="./site-assets/right_arrow.svg"/>
+  const rightArrowImage = <Image width={50} height={50} alt="Show Next Image" src="./site-assets/right_arrow.svg"/>
 
   // Custom arrow button component
   const CustomArrowButton = ({
