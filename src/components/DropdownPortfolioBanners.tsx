@@ -56,7 +56,7 @@ export const DropdownPortfolioBanners = ({onClick, openBanner}: Props) => {
           borderRadius: 0
         }}
       >
-        <Grid container spacing={2} justifyContent="center">
+        <Grid container spacing={2} justifyContent="center" wrap="nowrap">
           {bannerItems.map((item) => (
             <Grid item key={item.id} xs={12} sm={6} md={4} lg={3}>
               <Box 
