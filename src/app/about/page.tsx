@@ -5,25 +5,8 @@ import { Box, GridLegacy as Grid, Typography, Paper, IconButton } from '@mui/mat
 import Carousel from 'react-material-ui-carousel';
 import { DarkBox } from '../../components/DarkBox';
 import { theme } from '@/theme';
-
-// Sample carousel items
-const carouselItems = [
-  {
-    id: 1,
-    imageUrl: 'https://source.unsplash.com/random/800x600?nature',
-    altText: 'Nature 1'
-  },
-  {
-    id: 2,
-    imageUrl: 'https://source.unsplash.com/random/800x600?mountain',
-    altText: 'Nature 2'
-  },
-  {
-    id: 3,
-    imageUrl: 'https://source.unsplash.com/random/800x600?water',
-    altText: 'Nature 3'
-  }
-];
+import { filesList } from './carouselFilesList';
+// import Image from "next/image"
 
 {/* eslint-disable-next-line @typescript-eslint/no-unsafe-function-type */}
 type FunctionType = Function
@@ -94,9 +77,9 @@ export default function About() {
                 justifyContent: 'center', // This centers vertically
               }}
             >
-              {carouselItems.map((item) => (
+              {filesList.map((item, index) => (
                 <Box 
-                  key={item.id}
+                  key={index}
                   sx={{
                     display: 'flex',
                     alignItems: 'center',
