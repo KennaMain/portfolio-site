@@ -22,7 +22,7 @@ const ImageGrid = ({ imagePaths: rawImagePaths, hidden, spacerImagePaths }: Prop
   // insert spacer images
   useEffect(() => {
     const realImageRunLength = 6
-    const tempImagePaths = [spacerImagePaths[0]]
+    const tempImagePaths = [spacerImagePaths[1]]
     const tempIsSpacerImage = [true]
     let j = 0
     for (let i = 1; j < rawImagePaths.length; i++) {
