@@ -14,7 +14,7 @@ import { CustomEvents } from '../enums';
 import { useCustomEventListener } from '@/hooks/UseCustomEventListener';
 import { NavigationEvent } from '@/components/ResponsiveAppBar';
 
-export const PAGE_HREF = "portfolio"
+const PAGE_HREF = "portfolio"
 
 export default function Portfolio() {
   const [tab, setTab] = useState(-1)
@@ -31,7 +31,7 @@ export default function Portfolio() {
   
 	return (
 		<>
-			<DropdownPortfolioBanners onClick={setTab}/>
+			<DropdownPortfolioBanners onClick={setTab} openBanner={tab === -1}/>
       <MouseTrackingSeahorse hide={tab !== -1}/>
 
 			<Box sx={{height: "100px"}}></Box>

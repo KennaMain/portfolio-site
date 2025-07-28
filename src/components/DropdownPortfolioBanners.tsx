@@ -4,13 +4,10 @@ import React from 'react';
 import { Box, GridLegacy as Grid, Slide, Typography } from '@mui/material';
 import Image from "next/image";
 import { theme } from '@/theme';
-import { CustomEvents } from '@/app/enums';
-import { NavigationEvent } from './ResponsiveAppBar';
-import { useCustomEventListener } from '@/hooks/UseCustomEventListener';
-import { PAGE_HREF } from '@/app/portfolio/page';
 
 type Props = {
-  onClick: (index: number) => void
+  onClick: (index: number) => void,
+  openBanner: boolean
 }
 
 type BannerItem = {
@@ -20,19 +17,7 @@ type BannerItem = {
   href: string
 }
 
-export const DropdownPortfolioBanners = ({onClick}: Props) => {
-  const [openBanner, setOpenBanner] = React.useState(true);
-
-  useCustomEventListener(
-    document,
-    CustomEvents.NAVBAR_NAVIGATION, 
-    (event) => {
-      if ((event as NavigationEvent).href === PAGE_HREF) {
-        setOpenBanner(true)
-      }
-    }
-  )
-
+export const DropdownPortfolioBanners = ({onClick, openBanner}: Props) => {
   const bannerItems: BannerItem[] = [
     {
       id: 0,
@@ -86,7 +71,6 @@ export const DropdownPortfolioBanners = ({onClick}: Props) => {
                   borderRadius: '10px'
                 }}
                 onClick={() => {
-                  setOpenBanner(false)
                   onClick(item.id)
                 }}
               >
