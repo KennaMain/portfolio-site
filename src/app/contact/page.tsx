@@ -6,8 +6,6 @@ import "../globals.css";
 import MouseTrackingEye from '@/components/MouseTrackingEye';
 
 export default function Contact() {
-  console.log(theme)
-
   return (
     <DarkBackgroundLeftOffsetBox>
       <Grid container spacing={0}>
@@ -52,7 +50,7 @@ export default function Contact() {
               alt="Seahorse Eye"
               top={53}
               left={190}
-              zIndex={2001}
+              zIndex={100}
               width={21}
               height={21}
             />

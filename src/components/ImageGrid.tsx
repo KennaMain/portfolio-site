@@ -6,6 +6,7 @@ import {theme} from '@/theme'
 import ReactDom from 'react-dom';
 import "../special-css/fadeOnHide.css"
 import FadeInFadeOut from './FadeInFadeOut';
+import "../special-css/backgroundBlur.css"
 
 type Props = {
     imagePaths: string[]
@@ -72,6 +73,7 @@ const ImageGrid = ({ imagePaths: rawImagePaths, hidden, spacerImagePaths }: Prop
         ReactDom.createPortal(
           <Box 
             onClick={() => { setModalImage(undefined) }}
+            className="backgroundBlur"
             style={{
               zIndex: 999999, 
               position:"fixed", 
