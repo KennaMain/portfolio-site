@@ -50,10 +50,6 @@ interface Props {
   pages: Page[];
 }
 
-type NavigationEventParams = {
-  href: string
-}
-
 export class NavigationEvent extends Event {
   public href?: string
   constructor(type: string, eventInitDict?: EventInit) {
