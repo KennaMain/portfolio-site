@@ -30,10 +30,10 @@ export default function Portfolio() {
 			<MouseTrackingSeahorse/>
 			<Box sx={{height: "100px"}}></Box>
 
-			<ImageGrid hidden={tab !== 0} imagePaths={tab1FilesList}/>
-			<ImageGrid hidden={tab !== 1} imagePaths={tab2FilesList}/>
-			<ImageGrid hidden={tab !== 2} imagePaths={tab3FilesList}/>
-			<ImageGrid hidden={tab !== 3} imagePaths={tab4FilesList}/>
+			<ImageGrid hidden={tab !== 0} imagePaths={tab1FilesList} spacerImagePaths={["site-assets/nautilus_left.svg", "site-assets/nautilus_right.svg"]}/>
+			<ImageGrid hidden={tab !== 1} imagePaths={tab2FilesList} spacerImagePaths={["site-assets/copepod_left.svg", "site-assets/copepod_right.svg"]}/>
+			<ImageGrid hidden={tab !== 2} imagePaths={tab3FilesList} spacerImagePaths={["site-assets/seahorse_left.svg", "site-assets/seahorse_right.svg"]}/>
+			<ImageGrid hidden={tab !== 3} imagePaths={tab4FilesList} spacerImagePaths={["site-assets/squid_left.svg", "site-assets/squid_left.svg"]}/>
 		</>
 	)
 };

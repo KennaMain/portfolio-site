@@ -6,28 +6,63 @@ import {theme} from '@/theme'
 import "../special-css/fadeOnHide.css"
 import FadeInFadeOut from './FadeInFadeOut';
 
-type Props =
- {
+type Props = {
     imagePaths: string[]
     hidden: boolean
+    spacerImagePaths: string[]
 }
 
-const ImageGrid = ({ imagePaths: rawImagePaths, hidden }: Props) => {
+const ImageGrid = ({ imagePaths: rawImagePaths, hidden, spacerImagePaths }: Props) => {
   const [imagePaths, setImagePaths] = useState(rawImagePaths)
+  const [isSpacerImage, setIsSpacerImage] = useState([false])
 
+  // insert spacer images
   useEffect(() => {
-    const nautilusSpacing = 6
-
-    const tempImagePaths = [... rawImagePaths]
-    let loopLength = Math.floor(rawImagePaths.length / nautilusSpacing)
-    for (let i = loopLength; i >= 0; i--) {
-      tempImagePaths.splice(i*nautilusSpacing, 0, i%2 == 0 ? "site-assets/nautilus_left.svg" : "site-assets/nautilus_right.svg")
+    const realImageRunLength = 6
+    const tempImagePaths = [spacerImagePaths[0]]
+    const tempIsSpacerImage = [true]
+    let j = 0
+    for (let i = 1; j < rawImagePaths.length; i++) {
+      if (i % (realImageRunLength+1) === 0) {
+        tempImagePaths.push(spacerImagePaths[0])
+        tempImagePaths.push(spacerImagePaths[1])
+        tempIsSpacerImage.push(true)
+        tempIsSpacerImage.push(true)
+      } else {
+        tempImagePaths.push(rawImagePaths[j])
+        j++
+        tempIsSpacerImage.push(false)
+      }
     }
     setImagePaths(tempImagePaths)
-
-    console.log(tempImagePaths)
-    console.log(loopLength + "+1 nautiluses to insert")
+    setIsSpacerImage(tempIsSpacerImage)
   }, [rawImagePaths])
+
+
+  const gridItemBackgroundStyling = (index: number) => {
+    const sx = {
+      position: 'relative',
+      width: '100%',
+      height: 0,
+      paddingTop: '100%', // Creates a square container
+      overflow: 'hidden',
+    }
+
+    if (!isSpacerImage[index])
+    {
+      return {
+        ...sx,
+        '&:hover img': {
+          transform: 'scale(1.05)',
+        },
+        border: "3px solid " + theme.palette.background.defaultDark,
+        borderRadius: "10px",
+        background: theme.palette.background.paperLight
+      }
+    }
+
+    return sx
+  }
 
   return (
     <FadeInFadeOut hidden={hidden}>
@@ -37,21 +72,7 @@ const ImageGrid = ({ imagePaths: rawImagePaths, hidden }: Props) => {
       }}>
         {imagePaths.map((imgSrc, index) => (
           <Grid item xs={12} sm={6} md={3} key={index}>
-            <Box
-              sx={{
-                position: 'relative',
-                width: '100%',
-                height: 0,
-                paddingTop: '100%', // Creates a square container
-                overflow: 'hidden',
-                '&:hover img': {
-                  transform: 'scale(1.05)',
-                },
-                border: "3px solid " + theme.palette.background.defaultDark,
-                borderRadius: "10px",
-                background: theme.palette.background.paperLight
-              }}
-            >
+            <Box sx={gridItemBackgroundStyling(index)}>
               <Image
                 src={imgSrc}
                 alt={`Image ${index + 1}`}
@@ -61,8 +82,6 @@ const ImageGrid = ({ imagePaths: rawImagePaths, hidden }: Props) => {
                   transition: 'transform 0.3s ease-in-out',
                   padding: "10px"
                 }}
-                // Calculate the intrinsic aspect ratio
-                // sizes="(max-width: 600px) 100vw, (max-width: 900px) 50vw, 25vw"
               />
             </Box>
           </Grid>
