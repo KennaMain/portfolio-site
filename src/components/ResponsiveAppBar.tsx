@@ -16,6 +16,29 @@ import { theme } from '@/theme';
 import MouseTrackingEye from './MouseTrackingEye';
 import { CustomEvents } from '@/app/enums';
 
+/*
+ * Polyfill for adding CustomEvent
+ * This is a fix for the build environment not knowing what CustomEvent is
+ * see : https://developer.mozilla.org/fr/docs/Web/API/CustomEvent
+ */
+if (!window.CustomEvent) { // Create only if it doesn't exist
+    (function () {
+        // @ts-ignore
+        function CustomEvent ( event, params ) {
+            params = params || { bubbles: false, cancelable: false, detail: undefined };
+            var evt = document.createEvent( 'CustomEvent' );
+            evt.initCustomEvent( event, params.bubbles, params.cancelable, params.detail );
+            return evt;
+        };
+
+        CustomEvent.prototype = window.Event.prototype;
+
+        // @ts-ignore
+        window.CustomEvent = CustomEvent;
+    })();
+}
+
+
 type Page = {
   title: string,
   href: string
