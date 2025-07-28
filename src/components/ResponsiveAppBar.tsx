@@ -129,13 +129,13 @@ function ResponsiveAppBar(props: Props) {
 
           {/* Desktop menu */}
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, justifyContent: "center", marginTop: 6 }}>
-            {props.pages.map((page) => (
+            {props.pages.map((page, index) => (
               <Button
-                key={page}
+                key={index}
                 onClick={() => handleNavigation(page.href)}
                 sx={{ my: 2, display: 'block', fontSize: 24, color: theme.palette.secondary.light, textTransform: 'none' }}
                 id={`navbar-${page.href}-button`}
-              >
+                >
                 {page.title}
               </Button>
             ))}
