@@ -10,12 +10,12 @@ export default function AboutMe() {
       <Grid container spacing={0}>
         {/* Left Column - Image */}
         <Grid item xs={12} md={4}>
-          <img alt="Two happy nautliuses! :)" style={{width: "100%", height: "auto"}} src='./site-assets/about_nautiluses.svg' />
+          <img alt="Two happy nautliuses! :)" style={{width: "100%", height: "auto", paddingTop:"30px", paddingRight: "20px"}} src='./site-assets/about_nautiluses.svg' />
         </Grid>
 
         {/* Right Column - Text */}
         <Grid item xs={12} md={6}>
-          <Typography variant="h1" component="h1" gutterBottom sx={{ fontWeight: 700, color: theme.palette.secondary.light, transform: "rotate(-13deg)", fontSize: 60 }}>
+          <Typography variant="h1" component="h1" gutterBottom sx={{ fontWeight: 700, color: theme.palette.secondary.light, transform: "rotate(-13deg)", fontSize: 60, paddingTop: "10px", paddingBottom: "50px" }}>
             Who I am
           </Typography>
 
