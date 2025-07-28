@@ -23,17 +23,17 @@ import { CustomEvents } from '@/app/enums';
  */
 if (!window.CustomEvent) { // Create only if it doesn't exist
     (function () {
-        // @ts-ignore
+        // @ts-expect-error
         function CustomEvent ( event, params ) {
             params = params || { bubbles: false, cancelable: false, detail: undefined };
-            var evt = document.createEvent( 'CustomEvent' );
+            let evt = document.createEvent( 'CustomEvent' );
             evt.initCustomEvent( event, params.bubbles, params.cancelable, params.detail );
             return evt;
         };
 
         CustomEvent.prototype = window.Event.prototype;
 
-        // @ts-ignore
+        // @ts-expect-error
         window.CustomEvent = CustomEvent;
     })();
 }
