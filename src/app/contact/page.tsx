@@ -44,16 +44,18 @@ export default function Contact() {
         <Grid item xs={12} md={5}>
           <Box sx={{height: '20px'}}></Box>
           <Box sx={{position: 'relative'}}>
-            <img alt="Seahorse calling to invite you over for a boardgame party with all their friends" style={{width: "100%", height: "auto"}} src='./site-assets/contact_seahorse.svg' />
-            <MouseTrackingEye 
-              src="site-assets/seahorse_eye.svg"
-              alt="Seahorse Eye"
-              top={53}
-              left={190}
-              zIndex={100}
-              width={21}
-              height={21}
-            />
+            <Box sx={{width:"100%", height:"100%"}}> {/* This box exists to size the eye relative to the seahorse - it will have the same dimensions as the seahorse, so it's like the eye is parented to the seahorse image instead. */}
+              <img alt="Seahorse calling to invite you over for a boardgame party with all their friends" style={{width: "100%", height: "auto"}} src='./site-assets/contact_seahorse.svg'/>
+              <MouseTrackingEye 
+                src="site-assets/seahorse_eye.svg"
+                alt="Seahorse Eye"
+                top={"7.5%"}
+                left={"41.4%"}
+                zIndex={100}
+                width={"5.1799%"}
+                height={"3.347%"}
+              />
+            </Box>
           </Box>
         </Grid>
       </Grid>

@@ -5,13 +5,13 @@ import { Box } from '@mui/material';
 import { useMouseAngleTracking } from '../hooks/UseMouseAngleTracking';
 
 type Props = {
-  bottom?: number|undefined
-  right?: number|undefined
-  top?: number|undefined
-  left?: number|undefined
+  bottom?: string|number|undefined
+  right?: string|number|undefined
+  top?: string|number|undefined
+  left?: string|number|undefined
   zIndex?: number|undefined
-  width?: number|undefined
-  height?: number|undefined
+  width?: string|number|undefined
+  height?: string|number|undefined
   src: string
   alt: string
 }
