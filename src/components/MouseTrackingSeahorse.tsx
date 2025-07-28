@@ -4,7 +4,11 @@ import React from 'react';
 import { Box } from '@mui/material';
 import MouseTrackingEye from './MouseTrackingEye';
 
-const MouseTrackingSeahorse: React.FC = () => {
+type Props = {
+  hide: boolean
+}
+
+const MouseTrackingSeahorse = ({ hide }: Props) => {
   return (
     <Box
       sx={{
@@ -14,7 +18,9 @@ const MouseTrackingSeahorse: React.FC = () => {
         zIndex: 1000,
         width: 320,
         height: 320,
-        pointerEvents: "none"
+        pointerEvents: "none",
+        transition: "transform 1s ease-in-out",
+        transform: hide ? "translateX(500px)" : "translateX(0)"
       }}
     >
       <img 

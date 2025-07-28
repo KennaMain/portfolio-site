@@ -4,7 +4,7 @@ import { DropdownPortfolioBanners } from '@/components/DropdownPortfolioBanners'
 import MouseTrackingSeahorse from '../../components/MouseTrackingSeahorse';
 import "../globals.css";
 import ImageGrid from '../../components/ImageGrid';
-import { Box } from '@mui/material';
+import { Box, Slide } from '@mui/material';
 import { imagePaths as tab1FilesList } from "./tab1FilesList"
 import { imagePaths as tab2FilesList } from "./tab2FilesList"
 import { imagePaths as tab3FilesList } from "./tab3FilesList"
@@ -27,7 +27,8 @@ export default function Portfolio() {
 	return (
 		<>
 			<DropdownPortfolioBanners onClick={setTab}/>
-			<MouseTrackingSeahorse/>
+      <MouseTrackingSeahorse hide={tab !== -1}/>
+
 			<Box sx={{height: "100px"}}></Box>
 
 			<ImageGrid hidden={tab !== 0} imagePaths={tab1FilesList} spacerImagePaths={["site-assets/nautilus_left.svg", "site-assets/nautilus_right.svg"]}/>
