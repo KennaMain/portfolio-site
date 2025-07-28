@@ -21,7 +21,7 @@ import { CustomEvents } from '@/app/enums';
  * This is a fix for the build environment not knowing what CustomEvent is
  * see : https://developer.mozilla.org/fr/docs/Web/API/CustomEvent
  */
-class CustomEvent<T> extends Event {
+class CustomEvent extends Event {
   // @ts-expect-error idk what these types are, I'm just providing the definition for custom event
   constructor ( event, params ) {
     params = params || { bubbles: false, cancelable: false, detail: undefined };
@@ -45,7 +45,7 @@ type NavigationEventParams = {
   href: string
 }
 
-export class NavigationEvent extends CustomEvent<NavigationEventParams> {
+export class NavigationEvent extends CustomEvent {
   public href?: string
   constructor(type: string, eventInitDict?: CustomEventInit<NavigationEventParams>) {
     super(type, eventInitDict)
