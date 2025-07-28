@@ -1,8 +1,9 @@
 // components/ImageGrid.js
 import React, { useEffect, useState } from 'react';
-import { GridLegacy as Grid, Box } from '@mui/material';
+import { GridLegacy as Grid, Box, Backdrop } from '@mui/material';
 import Image from 'next/image';
 import {theme} from '@/theme'
+import ReactDom from 'react-dom';
 import "../special-css/fadeOnHide.css"
 import FadeInFadeOut from './FadeInFadeOut';
 
@@ -15,6 +16,7 @@ type Props = {
 const ImageGrid = ({ imagePaths: rawImagePaths, hidden, spacerImagePaths }: Props) => {
   const [imagePaths, setImagePaths] = useState(rawImagePaths)
   const [isSpacerImage, setIsSpacerImage] = useState([false])
+  const [modalImage, setModalImage] = useState<{href: string, alt: string} | undefined>(undefined)
 
   // insert spacer images
   useEffect(() => {
@@ -66,6 +68,45 @@ const ImageGrid = ({ imagePaths: rawImagePaths, hidden, spacerImagePaths }: Prop
 
   return (
     <FadeInFadeOut hidden={hidden}>
+      {modalImage && (
+        ReactDom.createPortal(
+          <Box 
+            onClick={() => { setModalImage(undefined) }}
+            style={{
+              zIndex: 999999, 
+              position:"fixed", 
+              left:0, 
+              top:0, 
+              bottom:0, 
+              right:0,  
+            }
+          }>
+            <Backdrop
+              sx={{ color: '#fff', zIndex: 5000, position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }}
+              open={Boolean(modalImage)}
+            >
+              <Box
+                className="FadeModal"
+                sx={{
+                  position: "absolute",
+                  top: "50%",
+                  left: "50%",
+                  transform: "translate(-50%, -50%)",
+                  width: 400,
+                  // bgcolor: "background.paper",
+                  border: "none",
+                  borderRadius: "8px",
+                  boxShadow: 24,
+                  padding: "20px"
+                }}
+              >
+                <Image style={{width: "100%"}} width={90000} height={90000} src={modalImage.href} alt={modalImage.alt}/>
+              </Box>
+            </Backdrop>
+          </Box>,
+          document.body
+        )
+      )}
 
       <Grid container spacing={2} sx={{
         padding: "80px",
@@ -82,6 +123,7 @@ const ImageGrid = ({ imagePaths: rawImagePaths, hidden, spacerImagePaths }: Prop
                   transition: 'transform 0.3s ease-in-out',
                   padding: "10px"
                 }}
+                onClick={() => { !isSpacerImage[index] && setModalImage({href: imgSrc, alt: "Portfolio image " + index}) }}
               />
             </Box>
           </Grid>
