@@ -11,25 +11,34 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
-// import { useRouter } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import { theme } from '@/theme';
 import MouseTrackingEye from './MouseTrackingEye';
 import { CustomEvents } from '@/app/enums';
 
-// /*
-//  * Polyfill for adding CustomEvent
-//  * This is a fix for the build environment not knowing what CustomEvent is
-//  * see : https://developer.mozilla.org/fr/docs/Web/API/CustomEvent
-//  */
-// class CustomEvent extends Event {
-//   // @ts-expect-error idk what these types are, I'm just providing the definition for custom event
-//   constructor ( event, params ) {
-//     params = params || { bubbles: false, cancelable: false, detail: undefined };
-//     const evt = document.createEvent( 'CustomEvent' );
-//     evt.initCustomEvent( event, params.bubbles, params.cancelable, params.detail );
-//     return evt;
-//   }
-// }
+/*
+ * Polyfill for adding CustomEvent
+ * This is a fix for the build environment not knowing what CustomEvent is
+ * see : https://developer.mozilla.org/fr/docs/Web/API/CustomEvent
+ */
+if (typeof window !== 'undefined') {
+  if (!window.CustomEvent) { // Create only if it doesn't exist
+      (function () {
+          // @ts-expect-error leave me alone compiler
+          function CustomEvent ( event, params ) {
+              params = params || { bubbles: false, cancelable: false, detail: undefined };
+              const evt = document.createEvent( 'CustomEvent' );
+              evt.initCustomEvent( event, params.bubbles, params.cancelable, params.detail );
+              return evt;
+          };
+
+          CustomEvent.prototype = window.Event.prototype;
+
+          // @ts-expect-error this is not an error, it's literally what we're trying
+          window.CustomEvent = CustomEvent;
+      })();
+  }
+}
 
 
 type Page = {
@@ -41,20 +50,20 @@ interface Props {
   pages: Page[];
 }
 
-// type NavigationEventParams = {
-//   href: string
-// }
+type NavigationEventParams = {
+  href: string
+}
 
-// export class NavigationEvent extends CustomEvent {
-//   public href?: string
-//   constructor(type: string, eventInitDict?: CustomEventInit<NavigationEventParams>) {
-//     super(type, eventInitDict)
-//   }
-// }
+export class NavigationEvent extends CustomEvent<NavigationEventParams> {
+  public href?: string
+  constructor(type: string, eventInitDict?: CustomEventInit<NavigationEventParams>) {
+    super(type, eventInitDict)
+  }
+}
 
 function ResponsiveAppBar(props: Props) {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
-  // const router = useRouter();
+  const router = useRouter();
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
@@ -64,18 +73,14 @@ function ResponsiveAppBar(props: Props) {
     setAnchorElNav(null);
   };
 
-  // const handleNavigation = (href: string) => {
-  //   const myCustomEvent = new NavigationEvent(CustomEvents.NAVBAR_NAVIGATION)
-  //   myCustomEvent.href = href
-  //   document.dispatchEvent(myCustomEvent)
+  const handleNavigation = (href: string) => {
+    const myCustomEvent = new NavigationEvent(CustomEvents.NAVBAR_NAVIGATION)
+    myCustomEvent.href = href
+    document.dispatchEvent(myCustomEvent)
 
-  //   handleCloseNavMenu();
-  //   router.push(href);
-  // };
-  const handleNavigation = (href:string) => {
-    console.log(href)
-    console.log(CustomEvents.NAVBAR_NAVIGATION)
-  }
+    handleCloseNavMenu();
+    router.push(href);
+  };
 
   return (
     <AppBar sx={{bgcolor: theme.palette.background.paper, zIndex: 200}}>
