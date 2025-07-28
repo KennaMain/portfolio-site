@@ -23,17 +23,17 @@ import { CustomEvents } from '@/app/enums';
  */
 if (!window.CustomEvent) { // Create only if it doesn't exist
     (function () {
-        // @ts-expect-error
+        // @ts-expect-error leave me alone compiler
         function CustomEvent ( event, params ) {
             params = params || { bubbles: false, cancelable: false, detail: undefined };
-            let evt = document.createEvent( 'CustomEvent' );
+            const evt = document.createEvent( 'CustomEvent' );
             evt.initCustomEvent( event, params.bubbles, params.cancelable, params.detail );
             return evt;
         };
 
         CustomEvent.prototype = window.Event.prototype;
 
-        // @ts-expect-error
+        // @ts-expect-error this is not an error, it's literally what we're trying to patch
         window.CustomEvent = CustomEvent;
     })();
 }
