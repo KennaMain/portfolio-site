@@ -54,9 +54,9 @@ type NavigationEventParams = {
   href: string
 }
 
-export class NavigationEvent extends CustomEvent<NavigationEventParams> {
+export class NavigationEvent extends Event {
   public href?: string
-  constructor(type: string, eventInitDict?: CustomEventInit<NavigationEventParams>) {
+  constructor(type: string, eventInitDict?: EventInit) {
     super(type, eventInitDict)
   }
 }
@@ -74,9 +74,9 @@ function ResponsiveAppBar(props: Props) {
   };
 
   const handleNavigation = (href: string) => {
-    const myCustomEvent = new NavigationEvent(CustomEvents.NAVBAR_NAVIGATION)
-    myCustomEvent.href = href
-    document.dispatchEvent(myCustomEvent)
+    const navEvent = new NavigationEvent(CustomEvents.NAVBAR_NAVIGATION)
+    navEvent.href = href
+    document.dispatchEvent(navEvent)
 
     handleCloseNavMenu();
     router.push(href);
