@@ -21,21 +21,14 @@ import { CustomEvents } from '@/app/enums';
  * This is a fix for the build environment not knowing what CustomEvent is
  * see : https://developer.mozilla.org/fr/docs/Web/API/CustomEvent
  */
-if (!window.CustomEvent) { // Create only if it doesn't exist
-    (function () {
-        // @ts-expect-error leave me alone compiler
-        function CustomEvent ( event, params ) {
-            params = params || { bubbles: false, cancelable: false, detail: undefined };
-            const evt = document.createEvent( 'CustomEvent' );
-            evt.initCustomEvent( event, params.bubbles, params.cancelable, params.detail );
-            return evt;
-        };
-
-        CustomEvent.prototype = window.Event.prototype;
-
-        // @ts-expect-error this is not an error, it's literally what we're trying to patch
-        window.CustomEvent = CustomEvent;
-    })();
+class CustomEvent<T> extends Event {
+  // @ts-expect-error idk what these types are, I'm just providing the definition for custom event
+  constructor ( event, params ) {
+    params = params || { bubbles: false, cancelable: false, detail: undefined };
+    const evt = document.createEvent( 'CustomEvent' );
+    evt.initCustomEvent( event, params.bubbles, params.cancelable, params.detail );
+    return evt;
+  }
 }
 
 
