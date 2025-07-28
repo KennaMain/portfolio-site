@@ -12,6 +12,9 @@ import { imagePaths as tab4FilesList } from "./tab4FilesList"
 import { useState } from 'react';
 import { CustomEvents } from '../enums';
 import { useCustomEventListener } from '@/hooks/UseCustomEventListener';
+import { NavigationEvent } from '@/components/ResponsiveAppBar';
+
+export const PAGE_HREF = "portfolio"
 
 export default function Portfolio() {
   const [tab, setTab] = useState(-1)
@@ -19,8 +22,10 @@ export default function Portfolio() {
   useCustomEventListener(
     document,
     CustomEvents.NAVBAR_NAVIGATION, 
-    () => {
-      setTab(-1)
+    (event) => {
+      if ((event as NavigationEvent).href === PAGE_HREF) {
+        setTab(-1)
+      }
     }
   )
   

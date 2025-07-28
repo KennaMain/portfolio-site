@@ -7,6 +7,7 @@ import { theme } from '@/theme';
 import { CustomEvents } from '@/app/enums';
 import { NavigationEvent } from './ResponsiveAppBar';
 import { useCustomEventListener } from '@/hooks/UseCustomEventListener';
+import { PAGE_HREF } from '@/app/portfolio/page';
 
 type Props = {
   onClick: (index: number) => void
@@ -25,8 +26,10 @@ export const DropdownPortfolioBanners = ({onClick}: Props) => {
   useCustomEventListener(
     document,
     CustomEvents.NAVBAR_NAVIGATION, 
-    () => {
-      setOpenBanner(true)
+    (event) => {
+      if ((event as NavigationEvent).href === PAGE_HREF) {
+        setOpenBanner(true)
+      }
     }
   )
 
