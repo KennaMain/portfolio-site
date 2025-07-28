@@ -57,3 +57,7 @@ a {
     color-scheme: dark;
   }
 }
+
+html, body {
+  overscroll-behavior: none;
+}
