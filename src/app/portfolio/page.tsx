@@ -20,7 +20,7 @@ export default function Portfolio() {
   const [tab, setTab] = useState(-1)
 
   useCustomEventListener(
-    document,
+    typeof document === "undefined" ? undefined : document,
     CustomEvents.NAVBAR_NAVIGATION, 
     (event) => {
       if ((event as NavigationEvent).href === PAGE_HREF) {
