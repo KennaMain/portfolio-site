@@ -71,7 +71,7 @@ const ImageGrid = ({ imagePaths: rawImagePaths, hidden, spacerImagePaths }: Prop
         padding: "80px",
       }}>
         {imagePaths.map((imgSrc, index) => (
-          <Grid item xs={12} sm={6} md={3} key={index}>
+          <Grid item xs={12} sm={3} md={3} lg={3} xl={3} key={index}>
             <Box sx={gridItemBackgroundStyling(index)}>
               <Image
                 src={imgSrc}
