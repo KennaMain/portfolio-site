@@ -45,12 +45,12 @@ type NavigationEventParams = {
   href: string
 }
 
-export class NavigationEvent extends CustomEvent {
-  public href?: string
-  constructor(type: string, eventInitDict?: CustomEventInit<NavigationEventParams>) {
-    super(type, eventInitDict)
-  }
-}
+// export class NavigationEvent extends CustomEvent {
+//   public href?: string
+//   constructor(type: string, eventInitDict?: CustomEventInit<NavigationEventParams>) {
+//     super(type, eventInitDict)
+//   }
+// }
 
 function ResponsiveAppBar(props: Props) {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
@@ -64,14 +64,17 @@ function ResponsiveAppBar(props: Props) {
     setAnchorElNav(null);
   };
 
-  const handleNavigation = (href: string) => {
-    const myCustomEvent = new NavigationEvent(CustomEvents.NAVBAR_NAVIGATION)
-    myCustomEvent.href = href
-    document.dispatchEvent(myCustomEvent)
+  // const handleNavigation = (href: string) => {
+  //   const myCustomEvent = new NavigationEvent(CustomEvents.NAVBAR_NAVIGATION)
+  //   myCustomEvent.href = href
+  //   document.dispatchEvent(myCustomEvent)
 
-    handleCloseNavMenu();
-    router.push(href);
-  };
+  //   handleCloseNavMenu();
+  //   router.push(href);
+  // };
+  const handleNavigation = (href:string) => {
+    console.log(href)
+  }
 
   return (
     <AppBar sx={{bgcolor: theme.palette.background.paper, zIndex: 200}}>
