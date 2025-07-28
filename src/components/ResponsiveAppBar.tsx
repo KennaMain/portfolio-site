@@ -11,25 +11,25 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
-import { useRouter } from 'next/navigation';
+// import { useRouter } from 'next/navigation';
 import { theme } from '@/theme';
 import MouseTrackingEye from './MouseTrackingEye';
 import { CustomEvents } from '@/app/enums';
 
-/*
- * Polyfill for adding CustomEvent
- * This is a fix for the build environment not knowing what CustomEvent is
- * see : https://developer.mozilla.org/fr/docs/Web/API/CustomEvent
- */
-class CustomEvent extends Event {
-  // @ts-expect-error idk what these types are, I'm just providing the definition for custom event
-  constructor ( event, params ) {
-    params = params || { bubbles: false, cancelable: false, detail: undefined };
-    const evt = document.createEvent( 'CustomEvent' );
-    evt.initCustomEvent( event, params.bubbles, params.cancelable, params.detail );
-    return evt;
-  }
-}
+// /*
+//  * Polyfill for adding CustomEvent
+//  * This is a fix for the build environment not knowing what CustomEvent is
+//  * see : https://developer.mozilla.org/fr/docs/Web/API/CustomEvent
+//  */
+// class CustomEvent extends Event {
+//   // @ts-expect-error idk what these types are, I'm just providing the definition for custom event
+//   constructor ( event, params ) {
+//     params = params || { bubbles: false, cancelable: false, detail: undefined };
+//     const evt = document.createEvent( 'CustomEvent' );
+//     evt.initCustomEvent( event, params.bubbles, params.cancelable, params.detail );
+//     return evt;
+//   }
+// }
 
 
 type Page = {
@@ -41,9 +41,9 @@ interface Props {
   pages: Page[];
 }
 
-type NavigationEventParams = {
-  href: string
-}
+// type NavigationEventParams = {
+//   href: string
+// }
 
 // export class NavigationEvent extends CustomEvent {
 //   public href?: string
@@ -54,7 +54,7 @@ type NavigationEventParams = {
 
 function ResponsiveAppBar(props: Props) {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
-  const router = useRouter();
+  // const router = useRouter();
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
@@ -74,6 +74,7 @@ function ResponsiveAppBar(props: Props) {
   // };
   const handleNavigation = (href:string) => {
     console.log(href)
+    console.log(CustomEvents.NAVBAR_NAVIGATION)
   }
 
   return (
