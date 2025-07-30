@@ -3,45 +3,38 @@
 import React from 'react';
 import { Box, GridLegacy as Grid, Slide, Typography } from '@mui/material';
 import Image from "next/image";
-import { useRouter } from 'next/router';
 import { theme } from '@/theme';
 
 export const DropdownPortfolioBanners = () => {
   const [openBanner, setOpenBanner] = React.useState(true);
-  // const router = useRouter();
 
-  const handleNavigation = (page: string) => {
-    // if (!router.isReady) {
-    //   return
-    // }
-
-    // router.push(`/${page.toLowerCase().replace(" ", "-")}`);
-  };
-
-  // Sample banner data
+  const openPortfolio = (bannerItem: any) => {
+    console.log(bannerItem.title)
+  }
+  
   const bannerItems = [
     {
       id: 1,
       title: 'Illustrations',
-      imageUrl: '/public/home_button_illustrations.svg',
+      imageUrl: '/site-assets/home_button_illustrations.svg',
       href: '/portfolio/illustrations'
     },
     {
       id: 2,
       title: 'Layouts',
-      imageUrl: '/home_button_illustrations.svg',
+      imageUrl: '/site-assets/home_button_layouts.svg',
       href: '/portfolio/layouts'
     },
     {
       id: 3,
       title: 'Photography',
-      imageUrl: '/home_button_photography.svg',
+      imageUrl: '/site-assets/home_button_photography.svg',
       href: '/portfolio/photography'
     },
     {
       id: 4,
       title: 'Other',
-      imageUrl: '/home_button_other.svg',
+      imageUrl: '/site-assets/home_button_other.svg',
       href: '/portfolio/other'
     },
   ];
@@ -49,7 +42,6 @@ export const DropdownPortfolioBanners = () => {
     return (
       <Slide direction="down" timeout={1000} in={openBanner} mountOnEnter unmountOnExit>
         <Box 
-          elevation={3} 
           sx={{
             position: 'absolute',
             width: '100%',
@@ -65,23 +57,26 @@ export const DropdownPortfolioBanners = () => {
                   sx={{ 
                     cursor: 'pointer',
                     '&:hover': {
-                      transform: 'scale(1.02)',
-                      transition: 'transform 0.3s'
+                      transform: 'translateY(40px)',
                     },
+                    transition: 'transform 0.5s ease',
                     background: theme.palette.background.paper,
-                    color: theme.palette.primary
+                    color: theme.palette.secondary,
+                    borderRadius: '10px'
                   }}
                   onClick={() => {
                     // Handle navigation
                     setOpenBanner(false)
-                    handleNavigation(item.href)
+                    openPortfolio(item)
                   }}
                 >
                   <Box sx={{ 
                     position: 'relative', 
                     width: '100%',
                     paddingTop: '50%', // 1:2 ratio (height is half of width)
-                    mb: 1
+                    mb: 1,
+                    display: "flex",
+                    justifyContent: "center",
                   }}>
                     <Image 
                       src={item.imageUrl}
@@ -89,10 +84,10 @@ export const DropdownPortfolioBanners = () => {
                       width={100}
                       height={100}
                       // fill
-                      style={{ objectFit: 'cover', borderRadius: '4px' }}
+                      style={{ objectFit: 'fill', borderRadius: '4px' }}
                     />
                   </Box>
-                  <Typography variant="h6" align="center">
+                  <Typography sx={{color: theme.palette.secondary.light}} variant="h6" align="center">
                     {item.title}
                   </Typography>
                 </Box>

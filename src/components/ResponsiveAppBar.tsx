@@ -13,6 +13,8 @@ import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 import { useRouter } from 'next/navigation';
 import { theme } from '@/theme';
+import { useRef } from 'react';
+import { useMouseAngleTracking } from '../hooks/UseMouseAngleTracking';
 
 interface Props {
   pages: string[];
@@ -34,6 +36,11 @@ function ResponsiveAppBar(props: Props) {
     handleCloseNavMenu();
     router.push(`/${page.toLowerCase().replace(" ", "-")}`);
   };
+
+  const leftEyeElementRef = useRef<HTMLImageElement>(null) || undefined
+  const { angle: leftEyeAngle } = useMouseAngleTracking({ref: leftEyeElementRef})
+  const rightEyeElementRef = useRef<HTMLImageElement>(null) || undefined
+  const { angle: rightEyeAngle } = useMouseAngleTracking({ref: rightEyeElementRef})
 
   return (
     <AppBar sx={{bgcolor: theme.palette.background.paper, zIndex: 200}}>
@@ -80,14 +87,51 @@ function ResponsiveAppBar(props: Props) {
             </Menu>
           </Box>
 
-          {/* Mobile logo */}
-          <Box sx={{ display: { xs: 'flex', md: 'none' }, mr: 1, mt: 5 }}>
+          {/* Logo */}
+          <Box sx={{ position: "relative", display: { xs: 'none', md: 'flex' }, mr: 1, mt: 5 }}>
             <img alt="My Logo!" src="./site-assets/navbar_logo.svg" height={'100px'}/>
-          </Box>
 
-          {/* Desktop logo */}
-          <Box sx={{ display: { xs: 'none', md: 'flex' }, mr: 1, mt: 5 }}>
-            <img alt="My Logo!" src="./site-assets/navbar_logo.svg" height={'100px'}/>
+            <Box
+              sx={{
+                position: 'absolute',
+                bottom: 7,
+                left: 15,
+                zIndex: 2001,
+                width: 21,
+                height: 21,
+                transform: `rotate(${leftEyeAngle}deg)`,
+                transition: 'transform 0.1s ease-out',
+                pointerEvents: 'none',
+              }}
+            >
+              <img 
+                ref={leftEyeElementRef}
+                src="site-assets/squid_eye.svg"
+                alt="Squid Left Eye"
+                style={{ width: '100%', height: '100%', objectFit: 'contain' }}
+              />
+            </Box>
+            <Box
+              sx={{
+                position: 'absolute',
+                bottom: 7,
+                left: 65,
+                zIndex: 2001,
+                width: 21,
+                height: 21,
+                transform: `rotate(${rightEyeAngle}deg)`,
+                transition: 'transform 0.1s ease-out',
+                pointerEvents: 'none',
+              }}
+            >
+              <img 
+                ref={rightEyeElementRef}
+                src="site-assets/squid_eye.svg"
+                alt="Squid Left Eye"
+                style={{ width: '100%', height: '100%', objectFit: 'contain' }}
+              />
+            </Box>
+
           </Box>
 
           {/* Desktop menu */}
