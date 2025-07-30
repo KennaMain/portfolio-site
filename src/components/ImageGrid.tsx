@@ -56,16 +56,16 @@ const ImageGrid = ({ imagePaths: rawImagePaths, hidden, spacerImagePaths }: Prop
       overflow: 'hidden',
     }
 
-    if (false && !isSpacerImage[index])
+    if (!isSpacerImage[index])
     {
       return {
         ...sx,
         '&:hover img': {
           transform: 'scale(1.05)',
         },
-        border: "3px solid " + theme.palette.background.defaultDark,
-        borderRadius: "10px",
-        background: theme.palette.background.paperLight
+        // border: "3px solid " + theme.palette.background.defaultDark,
+        // borderRadius: "10px",
+        // background: theme.palette.background.paperLight
       }
     }
 
