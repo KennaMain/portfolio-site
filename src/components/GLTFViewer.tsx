@@ -2,7 +2,7 @@
 
 import { useState, useRef, Suspense } from 'react';
 import { Canvas } from '@react-three/fiber';
-import { OrbitControls, useGLTF, Environment, PerspectiveCamera, RenderTexture, View } from '@react-three/drei';
+import { OrbitControls, useGLTF, Environment, PerspectiveCamera, RenderTexture, View, Preload } from '@react-three/drei';
 
 function Model({url}: {url: string}) {
   const { scene } = useGLTF(url);
@@ -86,6 +86,12 @@ function GLTFViewer() {
           <p>No model loaded. Please select a GLTF/GLB file.</p>
         </div>
       )}
+
+      <Canvas
+        style={{ position: 'fixed', top: 0, bottom: 0, left: 0, right: 0, overflow: 'hidden' }}>
+        <View.Port />
+        <Preload all />
+      </Canvas>
     </div>
   );
 }
