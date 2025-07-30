@@ -56,7 +56,7 @@ const ImageGrid = ({ imagePaths: rawImagePaths, hidden, spacerImagePaths }: Prop
       overflow: 'hidden',
     }
 
-    if (!isSpacerImage[index])
+    if (false && !isSpacerImage[index])
     {
       return {
         ...sx,
