@@ -1,8 +1,8 @@
 'use client'
 
 import { Canvas } from '@react-three/fiber'
-import { Clone, Environment, OrbitControls, PerspectiveCamera, Preload, useGLTF, View } from '@react-three/drei'
-import { useEffect, useRef } from 'react'
+import { Environment, OrbitControls, PerspectiveCamera, Preload, useGLTF, View } from '@react-three/drei'
+import { useRef } from 'react'
 
 function Model({ url }: { url: string }) {
   const { scene } = useGLTF(url)
@@ -35,7 +35,7 @@ function Scene({ color }: { color?: string }) {
   )
 }
 
-function SingleGLTFViewer({ url, index }: { url: string, index: number }) {
+function SingleGLTFViewer({ url }: { url: string }) {
   return (
     <View
       style={{
@@ -50,6 +50,27 @@ function SingleGLTFViewer({ url, index }: { url: string, index: number }) {
       <Scene color="lightblue" />
       <Model url={url} />
     </View>
+  )
+}
+
+export const GLTFViewerMouseProvider = () => {
+  return (
+      <Canvas
+        style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          width: '100vw',
+          height: '100vh',
+          pointerEvents: 'none',
+          zIndex: 0,
+        }}
+        eventSource={document.getElementById('root')!}
+        gl={{ antialias: true }}
+      >
+        <View.Port />
+        <Preload all />
+      </Canvas>
   )
 }
 
@@ -72,26 +93,11 @@ export default function GLTFViewer() {
         zIndex: 1
       }}>
         {modelUrls.map((url, index) => (
-          <SingleGLTFViewer key={index} url={url} index={index} />
+          <SingleGLTFViewer key={index} url={url} />
         ))}
       </div>
-
-      <Canvas
-        style={{
-          position: 'fixed',
-          top: 0,
-          left: 0,
-          width: '100vw',
-          height: '100vh',
-          pointerEvents: 'none',
-          zIndex: 0,
-        }}
-        eventSource={document.getElementById('root')!}
-        gl={{ antialias: true }}
-      >
-        <View.Port />
-        <Preload all />
-      </Canvas>
+      
+      <GLTFViewerMouseProvider/>
     </div>
   )
 }
