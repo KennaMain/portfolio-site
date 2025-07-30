@@ -35,7 +35,7 @@ function Scene({ color }: { color?: string }) {
   )
 }
 
-function SingleGLTFViewer({ url }: { url: string }) {
+export const SingleGLTFViewer = ({ url }: { url: string }) => {
   return (
     <View
       style={{

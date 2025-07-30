@@ -7,6 +7,7 @@ import ReactDom from 'react-dom';
 import "../special-css/fadeOnHide.css"
 import FadeInFadeOut from './FadeInFadeOut';
 import "../special-css/backgroundBlur.css"
+import { GLTFViewerMouseProvider, SingleGLTFViewer } from './GLTFViewer';
 
 type Props = {
     imagePaths: string[]
@@ -131,26 +132,33 @@ const ImageGrid = ({ imagePaths: rawImagePaths, hidden, spacerImagePaths }: Prop
       <Grid container spacing={2} sx={{
         padding: "80px",
       }}>
-        {imagePaths.map((imgSrc, index) => (
+        {imagePaths.map((imgSrc: string, index: number) => (
           <Grid item xs={12} sm={3} md={3} lg={3} xl={3} key={index}>
             <Box sx={gridItemBackgroundStyling(index)}>
-              <Image
-                src={imgSrc}
-                alt={`Image ${index + 1}`}
-                fill
-                style={{
-                  objectFit: 'contain', // Maintains aspect ratio
-                  transition: 'transform 0.3s ease-in-out',
-                  padding: "10px"
-                }}
-                onClick={() => onClick(index, imgSrc)}
-              />
+              {
+                imgSrc.endsWith(".glb") || imgSrc.endsWith(".gltf") 
+                ? (
+                  <SingleGLTFViewer url={imgSrc}/>
+                ) : (
+                  <Image
+                    src={imgSrc}
+                    alt={`Image ${index + 1}`}
+                    fill
+                    style={{
+                      objectFit: 'contain', // Maintains aspect ratio
+                      transition: 'transform 0.3s ease-in-out',
+                      padding: "10px"
+                    }}
+                    onClick={() => onClick(index, imgSrc)}
+                  />
+                )
+              }
             </Box>
           </Grid>
         ))}
       </Grid>
 
-
+      <GLTFViewerMouseProvider/>
     </FadeInFadeOut>
   );
 };
