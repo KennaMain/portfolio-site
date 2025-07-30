@@ -47,7 +47,10 @@ function CenteredModel({ url }: { url: string }) {
   }, [scene])
 
   // return <primitive object={scene} scale={5.75/maxDimension} position={boundingBoxCenter.multiplyScalar(-1)} />
-  return <primitive object={scene} scale={1/maxDimension} />
+
+  // NOTE to Kenna: the rat book looks really good with a baked-in rotation of `rotation={[-Math.PI/8, Math.PI / 8, Math.PI / 16]}`
+  // maybe we should re-export it like that
+  return <primitive object={scene} scale={1/maxDimension}/> // rotation={[-Math.PI/8, Math.PI / 8, Math.PI / 16]}/>
 }
 
 function SimpleModel({ url }: { url: string }) {
@@ -58,7 +61,10 @@ function SimpleModel({ url }: { url: string }) {
 function Scene({ color }: { color?: string }) {
   const cameraRef = useRef<any>(null)
   const controlsRef = useRef<any>(null)
-  
+  const r = 6         // distance the camera is from the object
+  const t = Math.PI/4 // elevation rotation (x rotation)
+  const T = Math.PI/4 // z rotation
+
   return (
     <>
       {color && <color attach="background" args={[color]} />}
@@ -69,7 +75,8 @@ function Scene({ color }: { color?: string }) {
       <PerspectiveCamera 
         ref={cameraRef}
         fov={40} 
-        position={[0, 0, 6]} 
+        position={[r*Math.sin(t)*Math.cos(T), r*Math.sin(t)*Math.sin(T), r*Math.cos(t)]} 
+        rotation={[-T, 0, -t]}
         makeDefault
       />
       <OrbitControls 
@@ -85,12 +92,12 @@ export const SingleGLTFViewer = ({ url, style }: { url: string, style?: object }
   return (
     <View
       style={{
-        height: '300px',
-        width: '400px',
-        display: 'inline-block',
-        margin: '0.2em',
-        overflow: 'hidden',
-        position: 'relative',
+        // // height: '300px',
+        // // width: '400px',
+        // display: 'inline-block',
+        // margin: '0.2em',
+        // overflow: 'hidden',
+        // position: 'relative',
         ...(style ?? {})
       }}
     >
@@ -140,7 +147,14 @@ export default function GLTFViewer() {
         zIndex: 1
       }}>
         {modelUrls.map((url, index) => (
-          <SingleGLTFViewer key={index} url={url} />
+          <SingleGLTFViewer key={index} url={url} style={{
+            height: '300px',
+            width: '400px',
+            display: 'inline-block',
+            margin: '0.2em',
+            overflow: 'hidden',
+            position: 'relative',
+          }}/>
         ))}
       </div>
       

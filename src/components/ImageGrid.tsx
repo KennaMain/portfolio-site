@@ -142,6 +142,7 @@ const ImageGrid = ({ imagePaths: rawImagePaths, hidden, spacerImagePaths }: Prop
                       transition: 'transform 0.3s ease-in-out',
                       padding: "10px",
                       width: "100%",
+                      aspectRatio: "1 / 1"
                   }}/>
                 ) : (
                   <Image
