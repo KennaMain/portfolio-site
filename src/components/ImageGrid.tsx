@@ -2,12 +2,11 @@
 import React, { useEffect, useState } from 'react';
 import { GridLegacy as Grid, Box, Backdrop } from '@mui/material';
 import Image from 'next/image';
-import {theme} from '@/theme'
 import ReactDom from 'react-dom';
 import "../special-css/fadeOnHide.css"
 import FadeInFadeOut from './FadeInFadeOut';
 import "../special-css/backgroundBlur.css"
-import { GLTFViewerMouseProvider, SingleGLTFViewer } from './GLTFViewer';
+import { GLTFViewerRenderProvider, SingleGLTFViewer } from './GLTFViewer';
 
 type Props = {
     imagePaths: string[]
@@ -138,7 +137,11 @@ const ImageGrid = ({ imagePaths: rawImagePaths, hidden, spacerImagePaths }: Prop
               {
                 imgSrc.endsWith(".glb") || imgSrc.endsWith(".gltf") 
                 ? (
-                  <SingleGLTFViewer url={imgSrc}/>
+                  <SingleGLTFViewer url={imgSrc} style={{
+                      objectFit: 'contain',
+                      transition: 'transform 0.3s ease-in-out',
+                      padding: "10px"
+                  }}/>
                 ) : (
                   <Image
                     src={imgSrc}
@@ -158,7 +161,7 @@ const ImageGrid = ({ imagePaths: rawImagePaths, hidden, spacerImagePaths }: Prop
         ))}
       </Grid>
 
-      <GLTFViewerMouseProvider/>
+      <GLTFViewerRenderProvider/>
     </FadeInFadeOut>
   );
 };

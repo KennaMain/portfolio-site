@@ -35,7 +35,7 @@ function Scene({ color }: { color?: string }) {
   )
 }
 
-export const SingleGLTFViewer = ({ url }: { url: string }) => {
+export const SingleGLTFViewer = ({ url, style }: { url: string, style?: object }) => {
   return (
     <View
       style={{
@@ -45,6 +45,7 @@ export const SingleGLTFViewer = ({ url }: { url: string }) => {
         margin: '0.2em',
         overflow: 'hidden',
         position: 'relative',
+        ...(style ?? {})
       }}
     >
       <Scene color="lightblue" />
@@ -53,7 +54,7 @@ export const SingleGLTFViewer = ({ url }: { url: string }) => {
   )
 }
 
-export const GLTFViewerMouseProvider = () => {
+export const GLTFViewerRenderProvider = () => {
   return (
       <Canvas
         style={{
@@ -97,7 +98,7 @@ export default function GLTFViewer() {
         ))}
       </div>
       
-      <GLTFViewerMouseProvider/>
+      <GLTFViewerRenderProvider/>
     </div>
   )
 }
