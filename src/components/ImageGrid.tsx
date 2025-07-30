@@ -54,7 +54,7 @@ const ImageGrid = ({ imagePaths: rawImagePaths, hidden, spacerImagePaths }: Prop
       position: 'relative',
       width: '100%',
       height: 0,
-      paddingTop: '100%', // Creates a square container
+      paddingBottom: '100%', // Creates a square container
       overflow: 'hidden',
     }
 
@@ -140,7 +140,8 @@ const ImageGrid = ({ imagePaths: rawImagePaths, hidden, spacerImagePaths }: Prop
                   <SingleGLTFViewer url={imgSrc} style={{
                       objectFit: 'contain',
                       transition: 'transform 0.3s ease-in-out',
-                      padding: "10px"
+                      padding: "10px",
+                      width: "100%",
                   }}/>
                 ) : (
                   <Image
