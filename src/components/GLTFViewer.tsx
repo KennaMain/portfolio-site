@@ -2,12 +2,33 @@
 
 import { useState, useRef, Suspense } from 'react';
 import { Canvas } from '@react-three/fiber';
-import { OrbitControls, useGLTF, Environment, PerspectiveCamera, RenderTexture } from '@react-three/drei';
+import { OrbitControls, useGLTF, Environment, PerspectiveCamera, RenderTexture, View } from '@react-three/drei';
 
 function Model({url}: {url: string}) {
   const { scene } = useGLTF(url);
   return <primitive object={scene} />;
 }
+
+
+// code borrowed from https://codesandbox.io/p/sandbox/bp6tmc?file=%2Fsrc%2FApp.js%3A68%2C1-80%2C2
+function Common({ color }: {color: string}) {
+  return (
+    <>
+      {color && <color attach="background" args={[color]} />}
+      <ambientLight intensity={0.5} />
+      <pointLight position={[20, 30, 10]} intensity={1} />
+      <pointLight position={[-10, -10, -10]} color="blue" />
+      <Environment preset="dawn" />
+      <PerspectiveCamera makeDefault fov={40} position={[0, 0, 6]} />
+    </>
+  )
+}
+
+// export function Apple(props) {
+  // const { scene } = useGLTF('https://vazxmixjsiawhamofees.supabase.co/storage/v1/object/public/models/apple-half/model.gltf')
+  // useFrame((state, delta) => (scene.rotation.y += delta))
+  // return <primitive object={scene} {...props} />
+// }
 
 function GLTFViewer() {
   const [modelUrl, setModelUrl] = useState<string | null>(null);
@@ -44,41 +65,15 @@ function GLTFViewer() {
           Load GLTF/GLB File
         </button>
         <button onClick={handleLoadDemo}>Load Demo Model</button>
-
-        {modelUrl ? (
-          <Canvas>
-            <color attach="background" args={['#222']} />
-            <PerspectiveCamera makeDefault position={[0, 0, 5]} />
-            {/* <OrbitControls /> */}
-
-            {/* This is the object that will display the thumbnail */}
-            <mesh position={[0, 0, -2]}>
-              <planeGeometry args={[2, 2]} />
-              <meshBasicMaterial>
-                <RenderTexture attach="map">
-                  {/* Content to be rendered in the thumbnail */}
-                  <color attach="background" args={['hotpink']} />
-                  <ambientLight intensity={0.5} />
-                  <directionalLight position={[10, 10, 5]} intensity={1} />
-                  <Model url={modelUrl} />
-                </RenderTexture>
-              </meshBasicMaterial>
-            </mesh>
-          </Canvas>
-        ) : (<></>)}
       </div>
 
       {modelUrl ? (
         <>
-          <Canvas camera={{ position: [5, 5, 5], fov: 50 }}>
-            <ambientLight intensity={0.5} />
-            <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} />
-            <Suspense fallback={null}>
-              <Model url={modelUrl} />
-              <Environment preset="city" />
-            </Suspense>
-            <OrbitControls />
-          </Canvas>
+          <View className="view scale" style={{ height: 300 }}>
+            <Common color="lightblue" />
+            <Model url={modelUrl}/>
+            <OrbitControls makeDefault />
+          </View>
         </>
       ) : (
         <div style={{
