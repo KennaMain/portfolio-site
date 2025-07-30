@@ -1,17 +1,18 @@
 'use client'
 
-import { useState, useRef, Suspense } from 'react';
-import { Canvas } from '@react-three/fiber';
-import { OrbitControls, useGLTF, Environment, PerspectiveCamera, RenderTexture, View, Preload } from '@react-three/drei';
+import { Canvas } from '@react-three/fiber'
+import { Clone, Environment, OrbitControls, PerspectiveCamera, Preload, useGLTF, View } from '@react-three/drei'
+import { useEffect, useRef } from 'react'
 
-function Model({url}: {url: string}) {
-  const { scene } = useGLTF(url);
-  return <primitive object={scene} />;
+function Model({ url }: { url: string }) {
+  const { scene } = useGLTF(url)
+  return <primitive object={scene} />
 }
 
-
-// code borrowed from https://codesandbox.io/p/sandbox/bp6tmc?file=%2Fsrc%2FApp.js%3A68%2C1-80%2C2
-function Common({ color }: {color: string}) {
+function Scene({ color }: { color?: string }) {
+  const cameraRef = useRef<any>(null)
+  const controlsRef = useRef<any>(null)
+  
   return (
     <>
       {color && <color attach="background" args={[color]} />}
@@ -19,81 +20,78 @@ function Common({ color }: {color: string}) {
       <pointLight position={[20, 30, 10]} intensity={1} />
       <pointLight position={[-10, -10, -10]} color="blue" />
       <Environment preset="dawn" />
-      <PerspectiveCamera makeDefault fov={40} position={[0, 0, 6]} />
+      <PerspectiveCamera 
+        ref={cameraRef}
+        fov={40} 
+        position={[0, 0, 6]} 
+        makeDefault
+      />
+      <OrbitControls 
+        ref={controlsRef}
+        makeDefault
+        camera={cameraRef.current}
+      />
     </>
   )
 }
 
-// export function Apple(props) {
-  // const { scene } = useGLTF('https://vazxmixjsiawhamofees.supabase.co/storage/v1/object/public/models/apple-half/model.gltf')
-  // useFrame((state, delta) => (scene.rotation.y += delta))
-  // return <primitive object={scene} {...props} />
-// }
+function SingleGLTFViewer({ url, index }: { url: string, index: number }) {
+  return (
+    <View
+      style={{
+        height: '300px',
+        width: '400px',
+        display: 'inline-block',
+        margin: '0.2em',
+        overflow: 'hidden',
+        position: 'relative',
+      }}
+    >
+      <Scene color="lightblue" />
+      <Model url={url} />
+    </View>
+  )
+}
 
-function GLTFViewer() {
-  const [modelUrl, setModelUrl] = useState<string | null>(null);
-  const fileInputRef = useRef(null);
+export default function GLTFViewer() {
+  const modelUrls = [
+    '/spongebob.glb',
+    '/spongebob copy.glb', 
+    '/spongebob.glb',
+  ]
 
-  const handleFileChange = (event: any) => {
-    const file = event.target.files[0];
-    if (!file) return;
-
-    const reader = new FileReader();
-    reader.onload = (e) => {
-      const url = e?.target?.result;
-      if (url) setModelUrl(url.toString());
-    };
-    reader.readAsDataURL(file);
-  };
-
-  const handleLoadDemo = () => {
-    // You can replace this with a URL to a demo GLTF model
-    setModelUrl('https://example.com/path/to/demo-model.gltf');
-  };
+  if (typeof document === "undefined") return null
 
   return (
-    <div style={{ width: '100%', height: '500px', border: '1px solid #ccc' }}>
-      <div style={{ padding: '10px', display: 'flex', gap: '10px' }}>
-        <input
-          type="file"
-          accept=".gltf,.glb"
-          onChange={handleFileChange}
-          ref={fileInputRef}
-          style={{ display: 'none' }}
-        />
-        <button onClick={() => (fileInputRef?.current as any)?.click()}>
-          Load GLTF/GLB File
-        </button>
-        <button onClick={handleLoadDemo}>Load Demo Model</button>
+    <div style={{ position: 'relative', width: '100%', minHeight: '100vh' }}>
+      <div onClick={() => {console.log("Ive been clicked!")}} style={{ 
+        padding: '20px', 
+        display: 'flex', 
+        flexWrap: 'wrap',
+        position: 'relative',
+        zIndex: 1
+      }}>
+        {modelUrls.map((url, index) => (
+          <SingleGLTFViewer key={index} url={url} index={index} />
+        ))}
       </div>
 
-      {modelUrl ? (
-        <>
-          <View className="view scale" style={{ height: 300 }}>
-            <Common color="lightblue" />
-            <Model url={modelUrl}/>
-            <OrbitControls makeDefault />
-          </View>
-        </>
-      ) : (
-        <div style={{
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          height: '100%',
-          color: '#666'
-        }}>
-          <p>No model loaded. Please select a GLTF/GLB file.</p>
-        </div>
-      )}
-
       <Canvas
-        style={{ position: 'fixed', top: 0, bottom: 0, left: 0, right: 0, overflow: 'hidden' }}>
+        style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          width: '100vw',
+          height: '100vh',
+          pointerEvents: 'none',
+          zIndex: 0,
+        }}
+        eventSource={document.getElementById('root')!}
+        gl={{ antialias: true }}
+      >
         <View.Port />
         <Preload all />
       </Canvas>
     </div>
-  );
+  )
 }
-
-export default GLTFViewer;
