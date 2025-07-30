@@ -18,6 +18,7 @@ const ImageGrid = ({ imagePaths: rawImagePaths, hidden, spacerImagePaths }: Prop
   const [imagePaths, setImagePaths] = useState(rawImagePaths)
   const [isSpacerImage, setIsSpacerImage] = useState([false])
   const [modalImage, setModalImage] = useState<{href: string, alt: string} | undefined>(undefined)
+  const [hideModal, setHideModal] = useState(true)
 
   // insert spacer images
   useEffect(() => {
@@ -45,6 +46,7 @@ const ImageGrid = ({ imagePaths: rawImagePaths, hidden, spacerImagePaths }: Prop
     if (isSpacerImage[index]) return
     
     setModalImage({href: imgSrc, alt: "Portfolio image " + index})
+    setHideModal(false)
   }
 
   const gridItemBackgroundStyling = (index: number) => {
@@ -77,7 +79,7 @@ const ImageGrid = ({ imagePaths: rawImagePaths, hidden, spacerImagePaths }: Prop
       {modalImage && (
         ReactDom.createPortal(
           <Box 
-            onClick={() => { setModalImage(undefined) }}
+            onClick={() => { setHideModal(true) }}
             className="backgroundBlur"
             style={{
               zIndex: 999999, 
@@ -88,28 +90,30 @@ const ImageGrid = ({ imagePaths: rawImagePaths, hidden, spacerImagePaths }: Prop
               right:0,  
             }
           }>
-            <Backdrop
-              sx={{ color: '#fff', zIndex: 5000, position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }}
-              open={Boolean(modalImage)}
-            >
-              <Box
-                className="FadeModal"
-                sx={{
-                  position: "absolute",
-                  top: "50%",
-                  left: "50%",
-                  transform: "translate(-50%, -50%)",
-                  width: 400,
-                  // bgcolor: "background.paper",
-                  border: "none",
-                  borderRadius: "8px",
-                  boxShadow: 24,
-                  padding: "20px"
-                }}
+            <FadeInFadeOut hidden={hideModal} onFadeOutAnimationEnd={() => setModalImage(undefined)}>
+              <Backdrop
+                sx={{ color: '#fff', zIndex: 5000, position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }}
+                open={Boolean(modalImage)}
               >
-                <Image style={{width: "100%"}} width={90000} height={90000} src={modalImage.href} alt={modalImage.alt}/>
-              </Box>
-            </Backdrop>
+                <Box
+                  className="FadeModal"
+                  sx={{
+                    position: "absolute",
+                    top: "50%",
+                    left: "50%",
+                    transform: "translate(-50%, -50%)",
+                    width: 400,
+                    // bgcolor: "background.paper",
+                    border: "none",
+                    borderRadius: "8px",
+                    boxShadow: 24,
+                    padding: "20px"
+                  }}
+                >
+                  <Image style={{width: "100%"}} width={90000} height={90000} src={modalImage.href} alt={modalImage.alt}/>
+                </Box>
+              </Backdrop>
+            </FadeInFadeOut>
           </Box>,
           document.body
         )

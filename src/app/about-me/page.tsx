@@ -1,12 +1,16 @@
+'use client'
+
 import React from 'react';
 import { Box, GridLegacy as Grid, Typography } from '@mui/material';
 import { DarkBackgroundLeftOffsetBox } from '../../components/DarkBackgroundLeftOffsetBox';
 import { theme } from '@/theme';
 import "../globals.css";
+import GLTFViewer from '@/components/GLTFViewer';
 
 export default function AboutMe() {
   return (
     <DarkBackgroundLeftOffsetBox>
+      <GLTFViewer/>
       <Grid container spacing={0}>
         {/* Left Column - Image */}
         <Grid item xs={12} md={4}>

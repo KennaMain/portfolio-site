@@ -2,7 +2,9 @@
   "name": "kenna-portfolio-site",
   "version": "0.1.0",
   "private": true,
-  "cacheDirectories": [".next/cache"],
+  "cacheDirectories": [
+    ".next/cache"
+  ],
   "engines": {
     "node": "18.x",
     "npm": "8.x"
@@ -20,10 +22,14 @@
     "@mui/icons-material": "^7.1.1",
     "@mui/material": "^7.1.1",
     "@mui/material-nextjs": "^7.1.1",
+    "@react-three/drei": "^10.6.1",
+    "@react-three/fiber": "^9.3.0",
+    "@types/three": "^0.178.1",
     "next": "15.3.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-material-ui-carousel": "^3.4.2"
+    "react-material-ui-carousel": "^3.4.2",
+    "three": "^0.178.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
