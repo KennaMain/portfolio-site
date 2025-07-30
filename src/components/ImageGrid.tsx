@@ -107,7 +107,7 @@ const ImageGrid = ({ imagePaths: rawImagePaths, hidden, spacerImagePaths }: Prop
                   padding: "20px"
                 }}
               >
-                <Image style={{width: "100%"}} width={90000} height={90000} src={modalImage.href} alt={modalImage.alt}/>
+                <img style={{width: "100%"}} src={modalImage.href} alt={modalImage.alt}/>
               </Box>
             </Backdrop>
           </Box>,
