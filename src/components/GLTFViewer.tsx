@@ -2,9 +2,55 @@
 
 import { Canvas } from '@react-three/fiber'
 import { Environment, OrbitControls, PerspectiveCamera, Preload, useGLTF, View } from '@react-three/drei'
-import { useRef } from 'react'
+import { useRef, useMemo, useState } from 'react'
+import * as THREE from 'three'
 
-function Model({ url }: { url: string }) {
+function CenteredModel({ url }: { url: string }) {
+  const { scene } = useGLTF(url)
+  const [boundingBoxCenter, setBoundingBoxCenter] = useState<THREE.Vector3>(new THREE.Vector3())
+  const [maxDimension, setMaxDimension] = useState(1)
+  
+  // Compute the bounding box and center the model
+  useMemo(() => {
+    // Create a bounding box that will contain all objects in the scene
+    const boundingBox = new THREE.Box3()
+    
+    // Expand the bounding box to contain all children
+    scene.traverse((child) => {
+      if (child instanceof THREE.Mesh) {
+        const childBoundingBox = new THREE.Box3().setFromObject(child)
+        boundingBox.union(childBoundingBox)
+      }
+    })
+    
+    // // Calculate the center of the bounding box
+    // const center = new THREE.Vector3()
+    // boundingBox.getCenter(center)
+    
+    // // Move all children to center them at the origin
+    // scene.traverse((child) => {
+    //   if (child.position) {
+    //     child.position.sub(center)
+    //   }
+    // })
+    
+    // // Update the bounding box after centering
+    // boundingBox.setFromObject(scene)
+
+    setBoundingBoxCenter(boundingBox.getCenter(boundingBoxCenter))
+
+    const size = new THREE.Vector3()
+    boundingBox.getSize(size)
+    setMaxDimension(Math.max(size.x, size.z) || 1)
+    console.log("max dimension: " + maxDimension)
+
+  }, [scene])
+
+  // return <primitive object={scene} scale={5.75/maxDimension} position={boundingBoxCenter.multiplyScalar(-1)} />
+  return <primitive object={scene} scale={1/maxDimension} />
+}
+
+function SimpleModel({ url }: { url: string }) {
   const { scene } = useGLTF(url)
   return <primitive object={scene} scale={0.5} position={[0, -1, 0]}/>
 }
@@ -49,7 +95,7 @@ export const SingleGLTFViewer = ({ url, style }: { url: string, style?: object }
       }}
     >
       <Scene color="lightblue" />
-      <Model url={url} />
+      <CenteredModel url={url} />
     </View>
   )
 }
