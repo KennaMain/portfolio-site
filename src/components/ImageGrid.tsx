@@ -18,6 +18,7 @@ const ImageGrid = ({ imagePaths: rawImagePaths, hidden, spacerImagePaths }: Prop
   const [imagePaths, setImagePaths] = useState(rawImagePaths)
   const [isSpacerImage, setIsSpacerImage] = useState([false])
   const [modalImage, setModalImage] = useState<{href: string, alt: string} | undefined>(undefined)
+  const [hideModal, setHideModal] = useState(true)
 
   // insert spacer images
   useEffect(() => {
@@ -45,6 +46,7 @@ const ImageGrid = ({ imagePaths: rawImagePaths, hidden, spacerImagePaths }: Prop
     if (isSpacerImage[index]) return
     
     setModalImage({href: imgSrc, alt: "Portfolio image " + index})
+    setHideModal(false)
   }
 
   const gridItemBackgroundStyling = (index: number) => {
@@ -77,7 +79,7 @@ const ImageGrid = ({ imagePaths: rawImagePaths, hidden, spacerImagePaths }: Prop
       {modalImage && (
         ReactDom.createPortal(
           <Box 
-            onClick={() => { setModalImage(undefined) }}
+            onClick={() => { setHideModal(true) }}
             className="backgroundBlur"
             style={{
               zIndex: 999999, 

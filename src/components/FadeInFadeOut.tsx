@@ -3,10 +3,13 @@ import '../special-css/fadeOnHide.css'
 
 type Props = {
   hidden: boolean,
-  children: React.ReactNode
+  children: React.ReactNode,
+  onAnimationEnd?: () => void,
+  onFadeOutAnimationEnd?: () => void,
+  onFadeInAnimationEnd?: () => void,
 }
 
-const FadeInFadeOut = ({ hidden, children }: Props) => {
+const FadeInFadeOut = ({ hidden, children, onAnimationEnd, onFadeOutAnimationEnd, onFadeInAnimationEnd }: Props) => {
   const [isFirst, setIsFirst] = useState(true)
   const [isFading, setIsFading] = useState(false);
   const [animation, setAnimation] = useState(hidden ? "fadeOut" : "fadeIn");
@@ -25,8 +28,15 @@ const FadeInFadeOut = ({ hidden, children }: Props) => {
     return null;
   }
 
+  const handleAnimationEnd = () => {
+    setIsFading(false)
+    if (onAnimationEnd) onAnimationEnd()
+    if (onFadeInAnimationEnd  && animation === "fadeIn" ) onFadeInAnimationEnd ()
+    if (onFadeOutAnimationEnd && animation === "fadeOut") onFadeOutAnimationEnd()
+  }
+
   return (
-    <div style={{animation: `${animation} 0.5s ease-in-out forwards`}} onAnimationEnd={() => setIsFading(false)}>
+    <div style={{animation: `${animation} 0.5s ease-in-out forwards`}} onAnimationEnd={handleAnimationEnd}>
       {children}
     </div>
   );
