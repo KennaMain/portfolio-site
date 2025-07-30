@@ -6,7 +6,7 @@ import { useEffect, useRef } from 'react'
 
 function Model({ url }: { url: string }) {
   const { scene } = useGLTF(url)
-  return <primitive object={scene} />
+  return <primitive object={scene} scale={0.5} position={[0, -1, 0]}/>
 }
 
 function Scene({ color }: { color?: string }) {
