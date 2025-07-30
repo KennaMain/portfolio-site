@@ -81,13 +81,13 @@ const ImageGrid = ({ imagePaths: rawImagePaths, hidden, spacerImagePaths }: Prop
             className="backgroundBlur"
             style={{
               zIndex: 999999, 
-              position:"fixed", 
-              left:0, 
-              top:0, 
-              bottom:0, 
-              right:0,  
-            }
-          }>
+              position: "fixed", 
+              left: 0, 
+              top: 0, 
+              bottom: 0, 
+              right: 0,  
+            }}
+          >
             <Backdrop
               sx={{ color: '#fff', zIndex: 5000, position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }}
               open={Boolean(modalImage)}
@@ -99,15 +99,24 @@ const ImageGrid = ({ imagePaths: rawImagePaths, hidden, spacerImagePaths }: Prop
                   top: "50%",
                   left: "50%",
                   transform: "translate(-50%, -50%)",
-                  width: 400,
-                  // bgcolor: "background.paper",
-                  border: "none",
-                  borderRadius: "8px",
-                  boxShadow: 24,
-                  padding: "20px"
+                  width: "90vw",
+                  height: "90vh",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center"
                 }}
               >
-                <img style={{width: "100%"}} src={modalImage.href} alt={modalImage.alt}/>
+                <img 
+                  style={{
+                    maxWidth: "100%",
+                    maxHeight: "100%",
+                    width: "auto",
+                    height: "auto",
+                    objectFit: "contain",
+                  }} 
+                  src={modalImage?.href} 
+                  alt={modalImage?.alt}
+                />
               </Box>
             </Backdrop>
           </Box>,
