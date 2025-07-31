@@ -62,7 +62,7 @@ const ImageGrid = ({ imagePaths: rawImagePaths, hidden, spacerImagePaths, onClic
     if (externalOnClick) externalOnClick(imgSrc, index)
     
     if (showModalOnClick ?? true) {
-      setModalImage({href: imgSrc, alt: "Portfolio image " + index})
+      setModalImage({href: imgSrc, alt: "Portfolio image " + (index+1)})
       setHideModal(false)
     }
   }
