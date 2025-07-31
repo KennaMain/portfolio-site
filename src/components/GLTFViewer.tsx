@@ -58,7 +58,7 @@ function SimpleModel({ url }: { url: string }) {
   return <primitive object={scene} scale={0.5} position={[0, -1, 0]}/>
 }
 
-function Scene({ color }: { color?: string }) {
+function Scene({ color, controlsEnabled }: { color?: string, controlsEnabled: boolean }) {
   const cameraRef = useRef<any>(null)
   const controlsRef = useRef<any>(null)
   const r = 6         // distance the camera is from the object
@@ -80,6 +80,7 @@ function Scene({ color }: { color?: string }) {
         makeDefault
       />
       <OrbitControls 
+        enabled={controlsEnabled}
         ref={controlsRef}
         makeDefault
         camera={cameraRef.current}
@@ -88,26 +89,27 @@ function Scene({ color }: { color?: string }) {
   )
 }
 
-export const SingleGLTFViewer = ({ url, style }: { url: string, style?: object }) => {
+type SingleGLTFViewerProps = {
+  url: string
+  style?: object
+  backgroundColor?: string
+  controlsEnabled?: boolean
+}
+
+export const SingleGLTFViewer = ({ url, style, backgroundColor, controlsEnabled }: SingleGLTFViewerProps) => {
+  // const randomColor = `rgb(${Math.random()}) ${Math.random()}) ${Math.random()})`
   return (
-    <View
-      style={{
-        // // height: '300px',
-        // // width: '400px',
-        // display: 'inline-block',
-        // margin: '0.2em',
-        // overflow: 'hidden',
-        // position: 'relative',
-        ...(style ?? {})
-      }}
-    >
-      <Scene color="lightblue" />
+    <View style={style}>
+      <Scene 
+        color={backgroundColor} 
+        controlsEnabled={controlsEnabled ?? true}
+      />
       <CenteredModel url={url} />
     </View>
   )
 }
 
-export const GLTFViewerRenderProvider = () => {
+export const GLTFViewerRenderProvider = ({style} : {style?: object}) => {
   return (
       <Canvas
         style={{
@@ -118,6 +120,7 @@ export const GLTFViewerRenderProvider = () => {
           height: '100vh',
           pointerEvents: 'none',
           zIndex: 0,
+          ...style
         }}
         eventSource={document.getElementById('root')!}
         gl={{ antialias: true }}
