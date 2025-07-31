@@ -42,8 +42,6 @@ function CenteredModel({ url }: { url: string }) {
     const size = new THREE.Vector3()
     boundingBox.getSize(size)
     setMaxDimension(Math.max(size.x, size.z) || 1)
-    console.log("max dimension: " + maxDimension)
-
   }, [scene])
 
   // return <primitive object={scene} scale={5.75/maxDimension} position={boundingBoxCenter.multiplyScalar(-1)} />

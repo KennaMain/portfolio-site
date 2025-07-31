@@ -191,7 +191,7 @@ const ImageGrid = ({ imagePaths: rawImagePaths, hidden, spacerImagePaths, onClic
   // Image Rendering
   // =============================================
 
-  const modal = ReactDom.createPortal(
+  const modal = typeof document === 'undefined' ? null : ReactDom.createPortal(
     <Box 
       onClick={() => { setHideModal(true) }}
       style={{
@@ -255,7 +255,7 @@ const ImageGrid = ({ imagePaths: rawImagePaths, hidden, spacerImagePaths, onClic
         ))}
       </Grid>
 
-      {/* This is the render provider for the grid. If this component still exists while the modal is active, it will render on top of the modal */}
+      {/* This is the render provider for the grid. If this component still exists while the modal is active, it will render the grid items (the ones that are 3d models I mean) on top of the modal */}
       {modalImage ? null : <GLTFViewerRenderProvider/>}
     </FadeInFadeOut>
   );
