@@ -19,6 +19,7 @@ type Props = {
 const ImageGrid = ({ imagePaths: rawImagePaths, hidden, spacerImagePaths, onClick: externalOnClick, showModalOnClick }: Props) => {
   const [imagePaths, setImagePaths] = useState(rawImagePaths)
   const [isSpacerImage, setIsSpacerImage] = useState([false])
+  const [originalIndexMap, setOriginalIndexMap] = useState([-1]) // maps index_of_element_from(imagePaths) to index_of_same_element_in(rawImagePaths)
   const [modalImage, setModalImage] = useState<{href: string, alt: string} | undefined>(undefined)
   const [hideModal, setHideModal] = useState(true)
 
@@ -31,6 +32,7 @@ const ImageGrid = ({ imagePaths: rawImagePaths, hidden, spacerImagePaths, onClic
 
     const realImageRunLength = 6
     const tempImagePaths = [spacerImagePaths[1]]
+    const tempOriginalIndexMap = [-1]
     const tempIsSpacerImage = [true]
     let j = 0
     for (let i = 1; j < rawImagePaths.length; i++) {
@@ -39,14 +41,18 @@ const ImageGrid = ({ imagePaths: rawImagePaths, hidden, spacerImagePaths, onClic
         tempImagePaths.push(spacerImagePaths[1])
         tempIsSpacerImage.push(true)
         tempIsSpacerImage.push(true)
+        tempOriginalIndexMap.push(-1)
+        tempOriginalIndexMap.push(-1)
       } else {
         tempImagePaths.push(rawImagePaths[j])
+        tempOriginalIndexMap.push(j)
         j++
         tempIsSpacerImage.push(false)
       }
     }
     setImagePaths(tempImagePaths)
     setIsSpacerImage(tempIsSpacerImage)
+    setOriginalIndexMap(tempOriginalIndexMap)
   }, [rawImagePaths, spacerImagePaths])
 
   // ---------------------------------------------
@@ -59,7 +65,7 @@ const ImageGrid = ({ imagePaths: rawImagePaths, hidden, spacerImagePaths, onClic
 
   const onClick = (index: number, imgSrc: string) => { 
     if (isSpacerImage[index]) return
-    if (externalOnClick) externalOnClick(imgSrc, index)
+    if (externalOnClick) externalOnClick(imgSrc, originalIndexMap[index])
     
     if (showModalOnClick ?? true) {
       setModalImage({href: imgSrc, alt: "Portfolio image " + (index+1)})
