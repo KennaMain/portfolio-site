@@ -69,6 +69,7 @@ const ProjectPresentation = ({filesList, spacerImagePaths, hidden}: {filesList: 
   const thumbnails = projectList.map(project => project.thumbnail ?? project.files[0])
   if (projectIndex < 0) {
     return <ImageGrid 
+      backroundImagePath='site-assets/folder_icon.png'
       hidden={hidden} 
       imagePaths={thumbnails} 
       spacerImagePaths={spacerImagePaths} 

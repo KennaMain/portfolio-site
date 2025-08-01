@@ -14,9 +14,10 @@ type Props = {
     spacerImagePaths?: string[]
     onClick?: (imagePath: string, index: number) => void
     showModalOnClick?: boolean
+    backroundImagePath?: string
 }
 
-const ImageGrid = ({ imagePaths: rawImagePaths, hidden, spacerImagePaths, onClick: externalOnClick, showModalOnClick }: Props) => {
+const ImageGrid = ({ imagePaths: rawImagePaths, hidden, spacerImagePaths, onClick: externalOnClick, showModalOnClick, backroundImagePath }: Props) => {
   const [imagePaths, setImagePaths] = useState(rawImagePaths)
   const [isSpacerImage, setIsSpacerImage] = useState([false])
   const [originalIndexMap, setOriginalIndexMap] = useState([-1]) // maps index_of_element_from(imagePaths) to index_of_same_element_in(rawImagePaths)
@@ -79,7 +80,8 @@ const ImageGrid = ({ imagePaths: rawImagePaths, hidden, spacerImagePaths, onClic
       width: '100%',
       height: 0,
       paddingBottom: '100%', // Creates a square container
-      overflow: 'hidden',
+      transition: 'transform 0.3s ease-in-out',
+      // overflow: 'hidden',
     }
 
     if (!isSpacerImage[index])
@@ -120,7 +122,7 @@ const ImageGrid = ({ imagePaths: rawImagePaths, hidden, spacerImagePaths, onClic
             url={modelSrc} 
             style={{
               objectFit: 'contain',
-              transition: 'transform 0.3s ease-in-out',
+              // transition: 'transform 0.3s ease-in-out',
               padding: "10px",
               width: "100%",
               aspectRatio: "1 / 1"
@@ -129,6 +131,7 @@ const ImageGrid = ({ imagePaths: rawImagePaths, hidden, spacerImagePaths, onClic
             backgroundColor="lightblue"
           />
         }
+        <img id="3dmodelframe" src="site-assets/3d_model_frame.png" style={{position: "absolute", width: "100%", top: "-40px", imageRendering: "pixelated"}}/>
       </Box>
     )
   }
@@ -141,7 +144,7 @@ const ImageGrid = ({ imagePaths: rawImagePaths, hidden, spacerImagePaths, onClic
         url={modelSrc} 
         style={{
           objectFit: 'contain',
-          transition: 'transform 0.3s ease-in-out',
+          // transition: 'transform 0.3s ease-in-out',
           padding: "10px",
           width: "100%",
           aspectRatio: "1 / 1",
@@ -251,6 +254,7 @@ const ImageGrid = ({ imagePaths: rawImagePaths, hidden, spacerImagePaths, onClic
         {imagePaths.map((imgSrc: string, index: number) => (
           <Grid item xs={12} sm={3} md={3} lg={3} xl={3} key={index}>
             <Box sx={gridItemBackgroundStyling(index)} onClick={() => onClick(index, imgSrc)}>
+              {backroundImagePath && !isSpacerImage[index] ? <img src={backroundImagePath} style={{position: "absolute", width: "100%", top: "-40px", imageRendering: "pixelated"}}/> : null }
               {
                 resoureceIsModel(imgSrc)
                 ? gridModelViewer(imgSrc) 
