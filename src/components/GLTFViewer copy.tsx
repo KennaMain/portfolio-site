@@ -2,7 +2,7 @@
 
 import { useState, useRef, Suspense } from 'react';
 import { Canvas } from '@react-three/fiber';
-import { OrbitControls, useGLTF, Environment, RenderTexture, PerspectiveCamera } from '@react-three/drei';
+import { OrbitControls, useGLTF, Environment } from '@react-three/drei';
 
 function Model({url}: {url: string}) {
   const { scene } = useGLTF(url);
@@ -13,8 +13,10 @@ function GLTFViewer() {
   const [modelUrl, setModelUrl] = useState<string | null>(null);
   const fileInputRef = useRef(null);
 
+  // This is just a test component, and idk what type this event even is
+  {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
   const handleFileChange = (event: any) => {
-    const file = event.target.files[0];
+    const file = event.target?.files[0];
     if (!file) return;
 
     const reader = new FileReader();
@@ -40,6 +42,7 @@ function GLTFViewer() {
           ref={fileInputRef}
           style={{ display: 'none' }}
         />
+        {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
         <button onClick={() => (fileInputRef?.current as any)?.click()}>
           Load GLTF/GLB File
         </button>

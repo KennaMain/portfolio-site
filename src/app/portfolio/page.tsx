@@ -5,7 +5,7 @@ import MouseTrackingSeahorse from '../../components/MouseTrackingSeahorse';
 import "../globals.css";
 import ImageGrid from '../../components/ImageGrid';
 import { Box, Button } from '@mui/material';
-import { Project, imagePaths as tab1FilesList, projects as tab1Projects } from "./tab1FilesList"
+import { Project, projects as tab1Projects } from "./tab1FilesList"
 import { imagePaths as tab2FilesList } from "./tab2FilesList"
 import { imagePaths as tab3FilesList } from "./tab3FilesList"
 import { imagePaths as tab4FilesList } from "./tab4FilesList"
