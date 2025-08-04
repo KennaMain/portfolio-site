@@ -1,6 +1,6 @@
 // components/ImageGrid.js
 import React, { ReactNode, useEffect, useState } from 'react';
-import { GridLegacy as Grid, Box, Backdrop } from '@mui/material';
+import { GridLegacy as Grid, Box, Backdrop, Typography } from '@mui/material';
 import Image from 'next/image';
 import ReactDom from 'react-dom';
 import "../special-css/fadeOnHide.css"
@@ -163,16 +163,18 @@ const ImageGrid = ({ imagePaths: rawImagePaths, hidden, spacerImagePaths, onClic
   // Image Rendering
   // ---------------------------------------------
 
-  const gridImageViewer = (imgSrc: string, index: number): ReactNode => {
+  const gridImageViewer = (imgSrc: string, index: number, shouldBlur: boolean): ReactNode => {
     return (
       <Image
         src={imgSrc}
         alt={`Image ${index + 1}`}
         fill
+        // className={shouldBlur ? "backgroundBlur" : undefined}
         style={{
           objectFit: 'contain', // Maintains aspect ratio
           transition: 'transform 0.3s ease-in-out',
-          padding: "10px"
+          padding: "10px",
+          opacity: shouldBlur ? '50%' : undefined,
         }}
       />
     )
@@ -254,12 +256,22 @@ const ImageGrid = ({ imagePaths: rawImagePaths, hidden, spacerImagePaths, onClic
         {imagePaths.map((imgSrc: string, index: number) => (
           <Grid item xs={12} sm={3} md={3} lg={3} xl={3} key={index}>
             <Box sx={gridItemBackgroundStyling(index)} onClick={() => onClick(index, imgSrc)}>
-              {backroundImagePath && !isSpacerImage[index] ? <img src={backroundImagePath} style={{position: "absolute", width: "100%", top: "-40px", imageRendering: "pixelated"}}/> : null }
+              {/* {backroundImagePath && !isSpacerImage[index] ? <img src={backroundImagePath} style={{position: "absolute", width: "100%", top: "-40px", imageRendering: "pixelated"}}/> : null } */}
               {
                 resoureceIsModel(imgSrc)
                 ? gridModelViewer(imgSrc) 
-                : gridImageViewer(imgSrc, index)
+                : gridImageViewer(imgSrc, index, Boolean(backroundImagePath && !isSpacerImage[index]))
               }
+              {backroundImagePath && !isSpacerImage[index] ? 
+                <Box sx={{
+                  height: "100%",
+                  width: "100%",
+                  lineHeight: "100%",
+                  display: "flex",
+                  justifyContent: "center", /* Centers content horizontally */
+                  alignItems: "center"    /* Centers content vertically */
+                }}><Typography sx={{paddingTop: "50%", opacity: "100%", color: "white", fontSize: "28px"}}>Project Name</Typography>
+                </Box> : null }
             </Box>
           </Grid>
         ))}
