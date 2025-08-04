@@ -45,7 +45,7 @@ export const imagePaths: string[] = [
   "/portfolio/tab1/lbtp/KennaMain_cardmockup_2.jpg",
   "/portfolio/tab1/lbtp/KennaMain_cardmockup_1.jpg",
   "/portfolio/tab1/lbtp/KennaMain_StickerMockup.1.jpg",
-  "/portfolio/tab1/book/book_illustrations.png",
+  "/portfolio/tab1/book/book_illustrations.jpg",
   "/portfolio/tab1/book/bookcover.glb",
   "/portfolio/tab1/science_illustrations/cicada.png",
   "/portfolio/tab1/science_illustrations/marine_worm.png",
@@ -174,7 +174,7 @@ export const projects: Project[] = [
     description: "",
     thumbnail: undefined,
     files: [
-      "/portfolio/tab1/book/book_illustrations.png",
+      "/portfolio/tab1/book/book_illustrations.jpg",
       "/portfolio/tab1/book/bookcover.glb",
     ]
   },
