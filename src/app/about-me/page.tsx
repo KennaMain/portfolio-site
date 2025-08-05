@@ -24,28 +24,13 @@ export default function AboutMe() {
           </Typography>
 
           <Typography variant="body1" paragraph sx={{ mb: 3, fontSize: '1.1rem' }}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui mauris. Vivamus hendrerit arcu sed erat molestie vehicula.
+          I have a background in both graphic design and biology, and I find that the two influence each other quite a bit. I received my bachelors of science at the University of South Florida In 2023. It was there that I majored in marine biology and minored in studio art. I found so much fulfillment in my studio art courses, that I then decided to pursue a certificate of graphic design, which I received in 2025 from the Rhode Island school of design. 
+
+While taking online courses at RISD, I became proficient in layout design, typography, creating vector designs in Adobe Illustrator, editing and enhancing work in Photoshop, arranging images and text in InDesign, and the design research workflow necessary for design projects. I make careful considerations about composition, how to bring visual interest into designs, the readability of text, how information flows, and how the intended audience will interpret and respond to different designs.
+
+As a graphic designer I look to incorporate observation, research, visual interest, flow, surprise and storytelling. My goal is to inspire conversation, inform, and share with others through design.
           </Typography>
 
-          <Typography variant="body1" paragraph sx={{ mb: 3, fontSize: '1.1rem' }}>
-            Sed auctor neque eu tellus rhoncus ut eleifend nibh porttitor. Ut in nulla enim. Phasellus molestie magna non est bibendum non venenatis nisl tempor.
-          </Typography>
-
-          <Typography variant="h5" component="h2" gutterBottom sx={{ mt: 4, fontWeight: 600 }}>
-            Key Features
-          </Typography>
-
-          <Box component="ul" sx={{ pl: 3, mb: 4 }}>
-            <Typography component="li" paragraph sx={{ fontSize: '1.1rem' }}>
-              High-quality imagery
-            </Typography>
-            <Typography component="li" paragraph sx={{ fontSize: '1.1rem' }}>
-              Responsive design
-            </Typography>
-            <Typography component="li" paragraph sx={{ fontSize: '1.1rem' }}>
-              Easy navigation
-            </Typography>
-          </Box>
         </Grid>
       </Grid>
     </DarkBackgroundLeftOffsetBox>

@@ -118,32 +118,13 @@ export default function About() {
         <Grid item xs={12} md={6}>
           <Box sx={{ paddingRight: 6, paddingLeft: 6, paddingBottom: 6, height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
             <Typography variant="h3" component="h1" gutterBottom sx={{ fontWeight: 700 }}>
-              Discover Our World
+             Design Philosophy
             </Typography>
             
             <Typography variant="body1" paragraph sx={{ mb: 3, fontSize: '1.1rem' }}>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui mauris. Vivamus hendrerit arcu sed erat molestie vehicula.
+            Design allows me to engage in visual problem solving, exercise my creativity, and think about information from multiple perspectives. I take composition of visual elements, readability of text, and the intended audience into consideration so that I can provide the best design outcomes. My goal is to communicate visually and create conversation between the design and the viewer.
             </Typography>
             
-            <Typography variant="body1" paragraph sx={{ mb: 3, fontSize: '1.1rem' }}>
-              Sed auctor neque eu tellus rhoncus ut eleifend nibh porttitor. Ut in nulla enim. Phasellus molestie magna non est bibendum non venenatis nisl tempor.
-            </Typography>
-            
-            <Typography variant="h5" component="h2" gutterBottom sx={{ mt: 4, fontWeight: 600 }}>
-              Key Features
-            </Typography>
-            
-            <Box component="ul" sx={{ pl: 3, mb: 4 }}>
-              <Typography component="li" paragraph sx={{ fontSize: '1.1rem' }}>
-                High-quality imagery
-              </Typography>
-              <Typography component="li" paragraph sx={{ fontSize: '1.1rem' }}>
-                Responsive design
-              </Typography>
-              <Typography component="li" paragraph sx={{ fontSize: '1.1rem' }}>
-                Easy navigation
-              </Typography>
-            </Box>
           </Box>
         </Grid>
       </Grid>

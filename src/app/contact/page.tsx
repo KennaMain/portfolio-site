@@ -16,28 +16,16 @@ export default function Contact() {
           </Typography>
 
           <Typography variant="body1" paragraph sx={{ mb: 3, fontSize: '1.1rem' }}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui mauris. Vivamus hendrerit arcu sed erat molestie vehicula.
+            email
           </Typography>
 
           <Typography variant="body1" paragraph sx={{ mb: 3, fontSize: '1.1rem' }}>
-            Sed auctor neque eu tellus rhoncus ut eleifend nibh porttitor. Ut in nulla enim. Phasellus molestie magna non est bibendum non venenatis nisl tempor.
+            phone
           </Typography>
 
-          <Typography variant="h5" component="h2" gutterBottom sx={{ mt: 4, fontWeight: 600 }}>
-            Key Features
+          <Typography variant="body1" paragraph sx={{ mb: 3, fontSize: '1.1rem' }}>
+            Linkdin
           </Typography>
-
-          <Box component="ul" sx={{ pl: 3, mb: 4 }}>
-            <Typography component="li" paragraph sx={{ fontSize: '1.1rem' }}>
-              High-quality imagery
-            </Typography>
-            <Typography component="li" paragraph sx={{ fontSize: '1.1rem' }}>
-              Responsive design
-            </Typography>
-            <Typography component="li" paragraph sx={{ fontSize: '1.1rem' }}>
-              Easy navigation
-            </Typography>
-          </Box>
         </Grid>
 
         {/* Right Column - Image */}
