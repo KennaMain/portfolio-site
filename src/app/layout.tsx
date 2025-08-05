@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   description: "A site displaying all my favorite work!",
   icons: {
     icon: '/site-assets/favicon.svg',
-  },
+  }, 
 };
 
 export default function RootLayout({children}: {children: React.ReactNode}) {

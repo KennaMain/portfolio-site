@@ -1,6 +1,6 @@
 // components/ImageGrid.js
 import React, { ReactNode, useEffect, useState } from 'react';
-import { GridLegacy as Grid, Box, Backdrop } from '@mui/material';
+import { GridLegacy as Grid, Box, Backdrop, Typography } from '@mui/material';
 import Image from 'next/image';
 import ReactDom from 'react-dom';
 import "../special-css/fadeOnHide.css"
@@ -14,11 +14,13 @@ type Props = {
     spacerImagePaths?: string[]
     onClick?: (imagePath: string, index: number) => void
     showModalOnClick?: boolean
+    backroundImagePath?: string
 }
 
-const ImageGrid = ({ imagePaths: rawImagePaths, hidden, spacerImagePaths, onClick: externalOnClick, showModalOnClick }: Props) => {
+const ImageGrid = ({ imagePaths: rawImagePaths, hidden, spacerImagePaths, onClick: externalOnClick, showModalOnClick, backroundImagePath }: Props) => {
   const [imagePaths, setImagePaths] = useState(rawImagePaths)
   const [isSpacerImage, setIsSpacerImage] = useState([false])
+  const [originalIndexMap, setOriginalIndexMap] = useState([-1]) // maps index_of_element_from(imagePaths) to index_of_same_element_in(rawImagePaths)
   const [modalImage, setModalImage] = useState<{href: string, alt: string} | undefined>(undefined)
   const [hideModal, setHideModal] = useState(true)
 
@@ -31,6 +33,7 @@ const ImageGrid = ({ imagePaths: rawImagePaths, hidden, spacerImagePaths, onClic
 
     const realImageRunLength = 6
     const tempImagePaths = [spacerImagePaths[1]]
+    const tempOriginalIndexMap = [-1]
     const tempIsSpacerImage = [true]
     let j = 0
     for (let i = 1; j < rawImagePaths.length; i++) {
@@ -39,14 +42,18 @@ const ImageGrid = ({ imagePaths: rawImagePaths, hidden, spacerImagePaths, onClic
         tempImagePaths.push(spacerImagePaths[1])
         tempIsSpacerImage.push(true)
         tempIsSpacerImage.push(true)
+        tempOriginalIndexMap.push(-1)
+        tempOriginalIndexMap.push(-1)
       } else {
         tempImagePaths.push(rawImagePaths[j])
+        tempOriginalIndexMap.push(j)
         j++
         tempIsSpacerImage.push(false)
       }
     }
     setImagePaths(tempImagePaths)
     setIsSpacerImage(tempIsSpacerImage)
+    setOriginalIndexMap(tempOriginalIndexMap)
   }, [rawImagePaths, spacerImagePaths])
 
   // ---------------------------------------------
@@ -59,7 +66,7 @@ const ImageGrid = ({ imagePaths: rawImagePaths, hidden, spacerImagePaths, onClic
 
   const onClick = (index: number, imgSrc: string) => { 
     if (isSpacerImage[index]) return
-    if (externalOnClick) externalOnClick(imgSrc, index)
+    if (externalOnClick) externalOnClick(imgSrc, originalIndexMap[index])
     
     if (showModalOnClick ?? true) {
       setModalImage({href: imgSrc, alt: "Portfolio image " + (index+1)})
@@ -73,7 +80,8 @@ const ImageGrid = ({ imagePaths: rawImagePaths, hidden, spacerImagePaths, onClic
       width: '100%',
       height: 0,
       paddingBottom: '100%', // Creates a square container
-      overflow: 'hidden',
+      transition: 'transform 0.3s ease-in-out',
+      // overflow: 'hidden',
     }
 
     if (!isSpacerImage[index])
@@ -114,7 +122,7 @@ const ImageGrid = ({ imagePaths: rawImagePaths, hidden, spacerImagePaths, onClic
             url={modelSrc} 
             style={{
               objectFit: 'contain',
-              transition: 'transform 0.3s ease-in-out',
+              // transition: 'transform 0.3s ease-in-out',
               padding: "10px",
               width: "100%",
               aspectRatio: "1 / 1"
@@ -123,6 +131,7 @@ const ImageGrid = ({ imagePaths: rawImagePaths, hidden, spacerImagePaths, onClic
             backgroundColor="lightblue"
           />
         }
+        <img id="3dmodelframe" src="site-assets/3d_model_frame.png" style={{position: "absolute", width: "100%", top: "-40px", imageRendering: "pixelated"}}/>
       </Box>
     )
   }
@@ -135,7 +144,7 @@ const ImageGrid = ({ imagePaths: rawImagePaths, hidden, spacerImagePaths, onClic
         url={modelSrc} 
         style={{
           objectFit: 'contain',
-          transition: 'transform 0.3s ease-in-out',
+          // transition: 'transform 0.3s ease-in-out',
           padding: "10px",
           width: "100%",
           aspectRatio: "1 / 1",
@@ -154,16 +163,18 @@ const ImageGrid = ({ imagePaths: rawImagePaths, hidden, spacerImagePaths, onClic
   // Image Rendering
   // ---------------------------------------------
 
-  const gridImageViewer = (imgSrc: string, index: number): ReactNode => {
+  const gridImageViewer = (imgSrc: string, index: number, shouldBlur: boolean): ReactNode => {
     return (
       <Image
         src={imgSrc}
         alt={`Image ${index + 1}`}
         fill
+        // className={shouldBlur ? "backgroundBlur" : undefined}
         style={{
           objectFit: 'contain', // Maintains aspect ratio
           transition: 'transform 0.3s ease-in-out',
-          padding: "10px"
+          padding: "10px",
+          opacity: shouldBlur ? '50%' : undefined,
         }}
       />
     )
@@ -245,11 +256,22 @@ const ImageGrid = ({ imagePaths: rawImagePaths, hidden, spacerImagePaths, onClic
         {imagePaths.map((imgSrc: string, index: number) => (
           <Grid item xs={12} sm={3} md={3} lg={3} xl={3} key={index}>
             <Box sx={gridItemBackgroundStyling(index)} onClick={() => onClick(index, imgSrc)}>
+              {/* {backroundImagePath && !isSpacerImage[index] ? <img src={backroundImagePath} style={{position: "absolute", width: "100%", top: "-40px", imageRendering: "pixelated"}}/> : null } */}
               {
                 resoureceIsModel(imgSrc)
                 ? gridModelViewer(imgSrc) 
-                : gridImageViewer(imgSrc, index)
+                : gridImageViewer(imgSrc, index, Boolean(backroundImagePath && !isSpacerImage[index]))
               }
+              {backroundImagePath && !isSpacerImage[index] ? 
+                <Box sx={{
+                  height: "100%",
+                  width: "100%",
+                  lineHeight: "100%",
+                  display: "flex",
+                  justifyContent: "center", /* Centers content horizontally */
+                  alignItems: "center"    /* Centers content vertically */
+                }}><Typography sx={{paddingTop: "50%", opacity: "100%", color: "white", fontSize: "28px"}}>Project Name</Typography>
+                </Box> : null }
             </Box>
           </Grid>
         ))}

@@ -51,13 +51,15 @@ function CenteredModel({ url }: { url: string }) {
   return <primitive object={scene} scale={1/maxDimension}/> // rotation={[-Math.PI/8, Math.PI / 8, Math.PI / 16]}/>
 }
 
-function SimpleModel({ url }: { url: string }) {
+export function SimpleModel({ url }: { url: string }) {
   const { scene } = useGLTF(url)
   return <primitive object={scene} scale={0.5} position={[0, -1, 0]}/>
 }
 
 function Scene({ color, controlsEnabled }: { color?: string, controlsEnabled: boolean }) {
+  {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */} // Three does not provide Camera as a type
   const cameraRef = useRef<any>(null)
+  {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */} // Three does not provide Controls as a type
   const controlsRef = useRef<any>(null)
   const r = 6         // distance the camera is from the object
   const t = Math.PI/4 // elevation rotation (x rotation)
