@@ -14,34 +14,29 @@ type BannerItem = {
   id: number
   title: string
   imageUrl: string
-  href: string
 }
 
 export const DropdownPortfolioBanners = ({onClick, openBanner}: Props) => {
   const bannerItems: BannerItem[] = [
     {
       id: 0,
-      title: 'Illustrations',
+      title: 'Projects',
       imageUrl: '/site-assets/home_button_illustrations.svg',
-      href: '/portfolio/illustrations'
     },
     {
       id: 1,
-      title: 'Layouts',
+      title: 'Photography',
       imageUrl: '/site-assets/home_button_layouts.svg',
-      href: '/portfolio/layouts'
     },
     {
       id: 2,
-      title: 'Photography',
+      title: 'Illustrations',
       imageUrl: '/site-assets/home_button_photography.svg',
-      href: '/portfolio/photography'
     },
     {
       id: 3,
       title: 'Other',
       imageUrl: '/site-assets/home_button_other.svg',
-      href: '/portfolio/other'
     },
   ];
 
