@@ -5,7 +5,7 @@ import MouseTrackingSeahorse from '../../components/MouseTrackingSeahorse';
 import "../globals.css";
 import ImageGrid from '../../components/ImageGrid';
 import { Box, Typography } from '@mui/material';
-import { Directory, fetchPortfolioFiles } from "./tab1FilesList"
+import { Directory, fetchPortfolioFiles } from "../../awsUtils"
 import { useEffect, useState } from 'react';
 import { CustomEvents } from '../enums';
 import { useCustomEventListener } from '@/hooks/UseCustomEventListener';

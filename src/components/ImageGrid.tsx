@@ -7,7 +7,7 @@ import FadeInFadeOut from './FadeInFadeOut';
 import "../special-css/backgroundBlur.css"
 import { GLTFViewerRenderProvider, SingleGLTFViewer } from './GLTFViewer';
 import ImageGridElement from './ImageGridElement';
-import { Directory } from '@/app/portfolio/tab1FilesList';
+import { Directory } from '@/awsUtils';
 
 const S3_BASE_URL = "https://kennamainportfolio.s3.us-east-2.amazonaws.com"
 

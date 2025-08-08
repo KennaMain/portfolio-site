@@ -5,7 +5,7 @@ import Image from 'next/image';
 import "../special-css/fadeOnHide.css"
 import "../special-css/backgroundBlur.css"
 import { SingleGLTFViewer } from './GLTFViewer';
-import { Directory, DirectoryMetadata, fetchJsonFromAWS } from '@/app/portfolio/tab1FilesList';
+import { Directory, DirectoryMetadata, fetchJsonFromAWS } from '@/awsUtils';
 
 const S3_BASE_URL = "https://kennamainportfolio.s3.us-east-2.amazonaws.com"
 
