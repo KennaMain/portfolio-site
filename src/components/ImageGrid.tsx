@@ -1,6 +1,6 @@
 // components/ImageGrid.js
 import React, { useEffect, useState } from 'react';
-import { GridLegacy as Grid, Box, Backdrop } from '@mui/material';
+import { GridLegacy as Grid, Box, Backdrop, Button } from '@mui/material';
 import ReactDom from 'react-dom';
 import "../special-css/fadeOnHide.css"
 import FadeInFadeOut from './FadeInFadeOut';
@@ -25,10 +25,11 @@ type Props = {
     hidden: boolean
     spacerImagePaths?: string[]
     onClick?: (imagePath: string, index: number) => void
+    onClickBackButton?: () => void
     showModalOnClick?: boolean
 }
 
-const ImageGrid = ({ directory, hidden, spacerImagePaths, onClick: externalOnClick, showModalOnClick }: Props) => {
+const ImageGrid = ({ directory, hidden, spacerImagePaths, onClick: externalOnClick, onClickBackButton, showModalOnClick }: Props) => {
   // const [isSpacerImage, setIsSpacerImage] = useState([false])
   // const [originalIndexMap, setOriginalIndexMap] = useState([-1]) // maps index_of_element_from(imagePaths) to index_of_same_element_in(rawImagePaths)
   const [modalImage, setModalImage] = useState<{href: string, alt: string} | undefined>(undefined)
@@ -163,7 +164,6 @@ const ImageGrid = ({ directory, hidden, spacerImagePaths, onClick: externalOnCli
 
   const modal = typeof document === 'undefined' ? null : ReactDom.createPortal(
     <Box 
-      onClick={() => { setHideModal(true) }}
       style={{
         zIndex: 999999, 
         position: "fixed", 
@@ -173,7 +173,8 @@ const ImageGrid = ({ directory, hidden, spacerImagePaths, onClick: externalOnCli
         right: 0,  
       }}
     >
-      <GLTFViewerRenderProvider style={modalImage? {zIndex: 999999} : {}}/>
+      <Button onClick={() => setHideModal(true)} sx={{zIndex: 999999, position:"fixed", top: "30px", left:"30px", borderRadius: "10000px", background: "white", fontStyle: "bold", aspectRatio: "1:1"}}>X</Button>
+      <GLTFViewerRenderProvider style={modalImage? {zIndex: 999998} : {}}/>
       <FadeInFadeOut fadeTime='0.3s' hidden={hideModal} onFadeOutAnimationEnd={() => setModalImage(undefined)}>
         <Backdrop
           sx={{ color: '#fff', zIndex: 5000, position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }}
@@ -213,16 +214,23 @@ const ImageGrid = ({ directory, hidden, spacerImagePaths, onClick: externalOnCli
       spacerImagePaths={spacerImagePaths} 
       onClick={externalOnClick} 
       showModalOnClick={showModalOnClick}
+      onClickBackButton={() => setProjectIndex(undefined)}
     />
   }
+
+  console.log("Back button clicked")
 
   return (
     <FadeInFadeOut hidden={hidden}>
       {modalImage ? modal : null}
 
+
       <Grid container spacing={2} sx={{
         padding: "80px",
       }}>
+        <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
+          {onClickBackButton ? <Button onClick={onClickBackButton} sx={{fontSize:"16px"}}>Back</Button> : null}
+        </Grid>
         {
           Object.keys(directory.folders).map((folderName, index) => {
             const folder = directory.folders[folderName]

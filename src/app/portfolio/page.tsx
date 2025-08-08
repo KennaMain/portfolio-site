@@ -61,10 +61,10 @@ export default function Portfolio() {
         loading
         ? <Typography>Loading...</Typography>
         : <>
-          <ImageGrid hidden={tab !== 0} directory={portfolioFileStructure?.folders["projects"] || emptyDirectory} spacerImagePaths={["site-assets/nautilus_left.svg", "site-assets/nautilus_right.svg"]}/>
-          <ImageGrid hidden={tab !== 1} directory={portfolioFileStructure?.folders["photography"] || emptyDirectory}  spacerImagePaths={["site-assets/copepod_left.svg", "site-assets/copepod_right.svg"]}/>
-          <ImageGrid hidden={tab !== 2} directory={portfolioFileStructure?.folders["illustrations"] || emptyDirectory}  spacerImagePaths={["site-assets/seahorse_left.svg", "site-assets/seahorse_right.svg"]}/>
-          <ImageGrid hidden={tab !== 3} directory={portfolioFileStructure?.folders["others"] || emptyDirectory}  spacerImagePaths={["site-assets/squid_left.svg", "site-assets/squid_left.svg"]}/>
+          <ImageGrid hidden={tab !== 0} onClickBackButton={() => setTab(-1)} directory={portfolioFileStructure?.folders["projects"] || emptyDirectory} spacerImagePaths={["site-assets/nautilus_left.svg", "site-assets/nautilus_right.svg"]}/>
+          <ImageGrid hidden={tab !== 1} onClickBackButton={() => setTab(-1)} directory={portfolioFileStructure?.folders["photography"] || emptyDirectory}  spacerImagePaths={["site-assets/copepod_left.svg", "site-assets/copepod_right.svg"]}/>
+          <ImageGrid hidden={tab !== 2} onClickBackButton={() => setTab(-1)} directory={portfolioFileStructure?.folders["illustrations"] || emptyDirectory}  spacerImagePaths={["site-assets/seahorse_left.svg", "site-assets/seahorse_right.svg"]}/>
+          <ImageGrid hidden={tab !== 3} onClickBackButton={() => setTab(-1)} directory={portfolioFileStructure?.folders["others"] || emptyDirectory}  spacerImagePaths={["site-assets/squid_left.svg", "site-assets/squid_left.svg"]}/>
         </>
       }
 		</>
