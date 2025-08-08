@@ -4,11 +4,8 @@ import { DropdownPortfolioBanners } from '@/components/DropdownPortfolioBanners'
 import MouseTrackingSeahorse from '../../components/MouseTrackingSeahorse';
 import "../globals.css";
 import ImageGrid from '../../components/ImageGrid';
-import { Box, Button, Typography } from '@mui/material';
-import { Directory, fetchPortfolioFiles, Project, projects as tab1Projects } from "./tab1FilesList"
-import { imagePaths as tab2FilesList } from "./tab2FilesList"
-import { imagePaths as tab3FilesList } from "./tab3FilesList"
-import { imagePaths as tab4FilesList } from "./tab4FilesList"
+import { Box, Typography } from '@mui/material';
+import { Directory, fetchPortfolioFiles } from "./tab1FilesList"
 import { useEffect, useState } from 'react';
 import { CustomEvents } from '../enums';
 import { useCustomEventListener } from '@/hooks/UseCustomEventListener';
@@ -37,8 +34,6 @@ export default function Portfolio() {
         const files = await fetchPortfolioFiles()
         setPortfolioFileStructure(files)
         setLoading(false)
-
-        console.log(files)
       } catch (error) {
         console.error('Error fetching data:', error);
       }

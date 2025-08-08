@@ -213,7 +213,6 @@ export const projects: Project[] = [
 
 export const fetchPortfolioFiles = async () => {
   const awsResourcesList = await fetchResourceTextFromAws("")
-  console.log({awsResourcesList})
   const awsFilesList = awsResourcesList?.match(new RegExp("<Key>([^<]*)</Key>", "g"))?.map((key) => key.slice(5, key.length-6))
   if (!awsFilesList) throw new Error("Failed to fetch files list")
 

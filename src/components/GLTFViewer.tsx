@@ -142,7 +142,7 @@ export default function GLTFViewer() {
 
   return (
     <div style={{ position: 'relative', width: '100%', minHeight: '100vh' }}>
-      <div onClick={() => {console.log("Ive been clicked!")}} style={{ 
+      <div style={{ 
         padding: '20px', 
         display: 'flex', 
         flexWrap: 'wrap',

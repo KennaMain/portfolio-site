@@ -1,7 +1,6 @@
 // components/ImageGrid.js
-import React, { ReactNode, useEffect, useState } from 'react';
-import { GridLegacy as Grid, Box, Backdrop, Typography } from '@mui/material';
-import Image from 'next/image';
+import React, { useEffect, useState } from 'react';
+import { GridLegacy as Grid, Box, Backdrop } from '@mui/material';
 import ReactDom from 'react-dom';
 import "../special-css/fadeOnHide.css"
 import FadeInFadeOut from './FadeInFadeOut';
@@ -35,8 +34,6 @@ const ImageGrid = ({ directory, hidden, spacerImagePaths, onClick: externalOnCli
   const [modalImage, setModalImage] = useState<{href: string, alt: string} | undefined>(undefined)
   const [hideModal, setHideModal] = useState(true)
   const [projectIndex, setProjectIndex] = useState<string | undefined>(undefined)
-
-  console.log(directory)
 
   useEffect(() => {
     // whenever hidden is changed, reset the selected project
@@ -91,31 +88,31 @@ const ImageGrid = ({ directory, hidden, spacerImagePaths, onClick: externalOnCli
     }
   }
 
-  const gridItemBackgroundStyling = (index: number, isSpacerImage: boolean = false) => {
-    const sx = {
-      position: 'relative',
-      width: '100%',
-      height: 0,
-      paddingBottom: '100%', // Creates a square container
-      transition: 'transform 0.3s ease-in-out',
-      // overflow: 'hidden',
-    }
+  // const gridItemBackgroundStyling = (index: number, isSpacerImage: boolean = false) => {
+  //   const sx = {
+  //     position: 'relative',
+  //     width: '100%',
+  //     height: 0,
+  //     paddingBottom: '100%', // Creates a square container
+  //     transition: 'transform 0.3s ease-in-out',
+  //     // overflow: 'hidden',
+  //   }
 
-    if (!isSpacerImage)
-    {
-      return {
-        ...sx,
-        '&:hover img': {
-          transform: 'scale(1.05)',
-        },
-        // border: "3px solid " + theme.palette.background.defaultDark,
-        // borderRadius: "10px",
-        // background: theme.palette.background.paperLight
-      }
-    }
+  //   if (!isSpacerImage)
+  //   {
+  //     return {
+  //       ...sx,
+  //       '&:hover img': {
+  //         transform: 'scale(1.05)',
+  //       },
+  //       // border: "3px solid " + theme.palette.background.defaultDark,
+  //       // borderRadius: "10px",
+  //       // background: theme.palette.background.paperLight
+  //     }
+  //   }
 
-    return sx
-  }
+  //   return sx
+  // }
 
   const resoureceIsModel = (href?: string) => {
     if (!href) return null
@@ -218,8 +215,6 @@ const ImageGrid = ({ directory, hidden, spacerImagePaths, onClick: externalOnCli
       showModalOnClick={showModalOnClick}
     />
   }
-
-  console.log(directory.files.map((imagePath, index) => directory.pwd + imagePath))
 
   return (
     <FadeInFadeOut hidden={hidden}>
