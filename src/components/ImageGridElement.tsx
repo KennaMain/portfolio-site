@@ -39,19 +39,20 @@ const ImageGridElement = ({ isSpacerImage, data, index, onClick, isModalOpen, de
 
     const directory = data as Directory
 
-    // try fetch metadata
-    const metadata = directory.files.includes("metadata.json") ? fetchJsonFromAWS<DirectoryMetadata>(directory.pwd + "metadata.json") as any : undefined
-    if (metadata?.title) {
-      setProjectTitle(metadata.title)
-    }
+    (async () => {
+      // try fetch metadata
+      const metadata = directory.files.includes("metadata.json") ? await fetchJsonFromAWS<DirectoryMetadata>(directory.pwd + "metadata.json") : undefined
+      if (metadata?.title) {
+        setProjectTitle(metadata.title)
+      }
 
-    if (metadata?.thumbnail) {
-      setThumbnail(directory.pwd + metadata.thumbnail)
-    } else {
-      setThumbnail(directory.pwd + directory.files[0])
-    }
-
-  }, [data])
+      if (metadata?.thumbnail) {
+        setThumbnail(directory.pwd + metadata.thumbnail)
+      } else {
+        setThumbnail(directory.pwd + directory.files[0])
+      }
+    })()
+  }, [(data as Directory)?.pwd])
 
   const gridItemBackgroundStyling = () => {
     const sx = {
