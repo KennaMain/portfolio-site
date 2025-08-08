@@ -223,7 +223,7 @@ export const fetchPortfolioFiles = async () => {
 }
 
 export async function fetchResourceTextFromAws(resourcePath: string) {
-  const awsListRequest = await fetch("http://kennamainportfolio.s3.us-east-2.amazonaws.com/" + resourcePath)
+  const awsListRequest = await fetch("https://kennamainportfolio.s3.us-east-2.amazonaws.com/" + resourcePath)
   if (!awsListRequest?.body) throw new Error("Cant fetch resource " + resourcePath)
 
   const awsResourceList = await readableStreamToString(awsListRequest.body)
