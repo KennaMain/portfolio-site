@@ -7,54 +7,71 @@ import "../special-css/fadeOnHide.css"
 import FadeInFadeOut from './FadeInFadeOut';
 import "../special-css/backgroundBlur.css"
 import { GLTFViewerRenderProvider, SingleGLTFViewer } from './GLTFViewer';
+import ImageGridElement from './ImageGridElement';
+import { Directory } from '@/app/portfolio/tab1FilesList';
+
+const S3_BASE_URL = "https://kennamainportfolio.s3.us-east-2.amazonaws.com"
+
+const getAssetUrl = (assetName: string) => {
+  // if (!assetName.startsWith("/")) throw new Error(`Asset name (${assetName}) must start with /`)
+  if (!assetName.startsWith("/")) assetName = "/" + assetName
+  if (assetName.startsWith("/site-assets")) return assetName
+
+  if (assetName.startsWith('/portfolio')) assetName = assetName.slice(10)
+  return `${S3_BASE_URL}${assetName}`
+}
 
 type Props = {
-    imagePaths: string[]
+    directory: Directory
     hidden: boolean
     spacerImagePaths?: string[]
     onClick?: (imagePath: string, index: number) => void
     showModalOnClick?: boolean
-    backroundImagePath?: string
 }
 
-const ImageGrid = ({ imagePaths: rawImagePaths, hidden, spacerImagePaths, onClick: externalOnClick, showModalOnClick, backroundImagePath }: Props) => {
-  const [imagePaths, setImagePaths] = useState(rawImagePaths)
-  const [isSpacerImage, setIsSpacerImage] = useState([false])
-  const [originalIndexMap, setOriginalIndexMap] = useState([-1]) // maps index_of_element_from(imagePaths) to index_of_same_element_in(rawImagePaths)
+const ImageGrid = ({ directory, hidden, spacerImagePaths, onClick: externalOnClick, showModalOnClick }: Props) => {
+  // const [isSpacerImage, setIsSpacerImage] = useState([false])
+  // const [originalIndexMap, setOriginalIndexMap] = useState([-1]) // maps index_of_element_from(imagePaths) to index_of_same_element_in(rawImagePaths)
   const [modalImage, setModalImage] = useState<{href: string, alt: string} | undefined>(undefined)
   const [hideModal, setHideModal] = useState(true)
+  const [projectIndex, setProjectIndex] = useState<string | undefined>(undefined)
+
+  console.log(directory)
+
+  useEffect(() => {
+    // whenever hidden is changed, reset the selected project
+    setProjectIndex(undefined) 
+  }, [hidden])
 
   // =============================================
   // Spacer Images
   // ---------------------------------------------
 
-  useEffect(() => {
-    if (!spacerImagePaths) return
+  // useEffect(() => {
+  //   if (!spacerImagePaths) return
 
-    const realImageRunLength = 6
-    const tempImagePaths = [spacerImagePaths[1]]
-    const tempOriginalIndexMap = [-1]
-    const tempIsSpacerImage = [true]
-    let j = 0
-    for (let i = 1; j < rawImagePaths.length; i++) {
-      if (i % (realImageRunLength+1) === 0) {
-        tempImagePaths.push(spacerImagePaths[0])
-        tempImagePaths.push(spacerImagePaths[1])
-        tempIsSpacerImage.push(true)
-        tempIsSpacerImage.push(true)
-        tempOriginalIndexMap.push(-1)
-        tempOriginalIndexMap.push(-1)
-      } else {
-        tempImagePaths.push(rawImagePaths[j])
-        tempOriginalIndexMap.push(j)
-        j++
-        tempIsSpacerImage.push(false)
-      }
-    }
-    setImagePaths(tempImagePaths)
-    setIsSpacerImage(tempIsSpacerImage)
-    setOriginalIndexMap(tempOriginalIndexMap)
-  }, [rawImagePaths, spacerImagePaths])
+  //   const realImageRunLength = 6
+  //   const tempImagePaths = [spacerImagePaths[1]]
+  //   const tempOriginalIndexMap = [-1]
+  //   const tempIsSpacerImage = [true]
+  //   let j = 0
+  //   for (let i = 1; j < imagePaths.length; i++) {
+  //     if (i % (realImageRunLength+1) === 0) {
+  //       tempImagePaths.push(spacerImagePaths[0])
+  //       tempImagePaths.push(spacerImagePaths[1])
+  //       tempIsSpacerImage.push(true)
+  //       tempIsSpacerImage.push(true)
+  //       tempOriginalIndexMap.push(-1)
+  //       tempOriginalIndexMap.push(-1)
+  //     } else {
+  //       tempOriginalIndexMap.push(j)
+  //       j++
+  //       tempIsSpacerImage.push(false)
+  //     }
+  //   }
+  //   setIsSpacerImage(tempIsSpacerImage)
+  //   setOriginalIndexMap(tempOriginalIndexMap)
+  // }, [imagePaths, spacerImagePaths])
 
   // ---------------------------------------------
   // Spacer Images
@@ -65,8 +82,8 @@ const ImageGrid = ({ imagePaths: rawImagePaths, hidden, spacerImagePaths, onClic
   // ---------------------------------------------
 
   const onClick = (index: number, imgSrc: string) => { 
-    if (isSpacerImage[index]) return
-    if (externalOnClick) externalOnClick(imgSrc, originalIndexMap[index])
+    // if (isSpacerImage[index]) return
+    if (externalOnClick) externalOnClick(imgSrc, index)
     
     if (showModalOnClick ?? true) {
       setModalImage({href: imgSrc, alt: "Portfolio image " + (index+1)})
@@ -74,7 +91,7 @@ const ImageGrid = ({ imagePaths: rawImagePaths, hidden, spacerImagePaths, onClic
     }
   }
 
-  const gridItemBackgroundStyling = (index: number) => {
+  const gridItemBackgroundStyling = (index: number, isSpacerImage: boolean = false) => {
     const sx = {
       position: 'relative',
       width: '100%',
@@ -84,7 +101,7 @@ const ImageGrid = ({ imagePaths: rawImagePaths, hidden, spacerImagePaths, onClic
       // overflow: 'hidden',
     }
 
-    if (!isSpacerImage[index])
+    if (!isSpacerImage)
     {
       return {
         ...sx,
@@ -110,38 +127,12 @@ const ImageGrid = ({ imagePaths: rawImagePaths, hidden, spacerImagePaths, onClic
   // Helper Functions and Styling
   // =============================================
 
-  // =============================================
-  // 3D Model Rendering
-  // ---------------------------------------------
-
-  const gridModelViewer = (modelSrc: string): ReactNode => {
-    return (
-      <Box>
-        {modalImage ? null : 
-          <SingleGLTFViewer 
-            url={modelSrc} 
-            style={{
-              objectFit: 'contain',
-              // transition: 'transform 0.3s ease-in-out',
-              padding: "10px",
-              width: "100%",
-              aspectRatio: "1 / 1"
-            }}
-            controlsEnabled={false}
-            backgroundColor="lightblue"
-          />
-        }
-        <img id="3dmodelframe" src="site-assets/3d_model_frame.png" style={{position: "absolute", width: "100%", top: "-40px", imageRendering: "pixelated"}}/>
-      </Box>
-    )
-  }
-
   const modalModelViewer = (modelSrc?: string) => {
     if (!modelSrc) return null
 
     return (
       <SingleGLTFViewer 
-        url={modelSrc} 
+        url={getAssetUrl(modelSrc)} 
         style={{
           objectFit: 'contain',
           // transition: 'transform 0.3s ease-in-out',
@@ -151,31 +142,6 @@ const ImageGrid = ({ imagePaths: rawImagePaths, hidden, spacerImagePaths, onClic
           zIndex: 90000
         }}
         controlsEnabled={true}
-      />
-    )
-  }
-
-  // ---------------------------------------------
-  // 3D Model Rendering
-  // =============================================
-
-  // =============================================
-  // Image Rendering
-  // ---------------------------------------------
-
-  const gridImageViewer = (imgSrc: string, index: number, shouldBlur: boolean): ReactNode => {
-    return (
-      <Image
-        src={imgSrc}
-        alt={`Image ${index + 1}`}
-        fill
-        // className={shouldBlur ? "backgroundBlur" : undefined}
-        style={{
-          objectFit: 'contain', // Maintains aspect ratio
-          transition: 'transform 0.3s ease-in-out',
-          padding: "10px",
-          opacity: shouldBlur ? '50%' : undefined,
-        }}
       />
     )
   }
@@ -192,15 +158,11 @@ const ImageGrid = ({ imagePaths: rawImagePaths, hidden, spacerImagePaths, onClic
           height: "auto",
           objectFit: "contain",
         }} 
-        src={imgSrc} 
+        src={getAssetUrl(imgSrc)} 
         alt={alt}
       />
     )
   }
-
-  // ---------------------------------------------
-  // Image Rendering
-  // =============================================
 
   const modal = typeof document === 'undefined' ? null : ReactDom.createPortal(
     <Box 
@@ -246,6 +208,19 @@ const ImageGrid = ({ imagePaths: rawImagePaths, hidden, spacerImagePaths, onClic
     document.body
   )
 
+  if (projectIndex) {
+    // todo: should I render all projects' image grids and just hide them unless their project index is selected?
+    return <ImageGrid 
+      directory={directory.folders[projectIndex]} 
+      hidden={hidden} 
+      spacerImagePaths={spacerImagePaths} 
+      onClick={externalOnClick} 
+      showModalOnClick={showModalOnClick}
+    />
+  }
+
+  console.log(directory.files.map((imagePath, index) => directory.pwd + imagePath))
+
   return (
     <FadeInFadeOut hidden={hidden}>
       {modalImage ? modal : null}
@@ -253,28 +228,36 @@ const ImageGrid = ({ imagePaths: rawImagePaths, hidden, spacerImagePaths, onClic
       <Grid container spacing={2} sx={{
         padding: "80px",
       }}>
-        {imagePaths.map((imgSrc: string, index: number) => (
-          <Grid item xs={12} sm={3} md={3} lg={3} xl={3} key={index}>
-            <Box sx={gridItemBackgroundStyling(index)} onClick={() => onClick(index, imgSrc)}>
-              {/* {backroundImagePath && !isSpacerImage[index] ? <img src={backroundImagePath} style={{position: "absolute", width: "100%", top: "-40px", imageRendering: "pixelated"}}/> : null } */}
-              {
-                resoureceIsModel(imgSrc)
-                ? gridModelViewer(imgSrc) 
-                : gridImageViewer(imgSrc, index, Boolean(backroundImagePath && !isSpacerImage[index]))
-              }
-              {backroundImagePath && !isSpacerImage[index] ? 
-                <Box sx={{
-                  height: "100%",
-                  width: "100%",
-                  lineHeight: "100%",
-                  display: "flex",
-                  justifyContent: "center", /* Centers content horizontally */
-                  alignItems: "center"    /* Centers content vertically */
-                }}><Typography sx={{paddingTop: "50%", opacity: "100%", color: "white", fontSize: "28px"}}>Project Name</Typography>
-                </Box> : null }
-            </Box>
-          </Grid>
-        ))}
+        {
+          Object.keys(directory.folders).map((folderName, index) => {
+            const folder = directory.folders[folderName]
+
+            return <ImageGridElement 
+              key={"proj"+index} 
+              index={index}
+              isModalOpen={Boolean(modalImage)}
+              isSpacerImage={false}
+              data={folder} 
+              onClick={() => {
+                setProjectIndex(folderName)
+              }}
+            />
+          })
+        }
+        {
+          directory.files.map((imagePath, index) => {
+            return <ImageGridElement 
+              key={"file"+index} 
+              index={index}
+              isModalOpen={Boolean(modalImage)}
+              isSpacerImage={false}
+              data={directory.pwd + imagePath} 
+              onClick={() => {
+                onClick(index, directory.pwd + imagePath)
+              }}
+            />
+          })
+        }
       </Grid>
 
       {/* This is the render provider for the grid. If this component still exists while the modal is active, it will render the grid items (the ones that are 3d models I mean) on top of the modal */}
