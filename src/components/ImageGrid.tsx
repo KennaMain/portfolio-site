@@ -241,6 +241,7 @@ const ImageGrid = ({ directory, hidden, spacerImagePaths, onClick: externalOnCli
               onClick={() => {
                 setProjectIndex(folderName)
               }}
+              defaultProjectName={folderName}
             />
           })
         }

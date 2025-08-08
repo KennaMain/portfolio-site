@@ -23,11 +23,12 @@ type Props = {
     index: number
     onClick?: () => void
     isModalOpen?: boolean
+    defaultProjectName?: string
 }
 
-const ImageGridElement = ({ isSpacerImage, data, index, onClick, isModalOpen }: Props) => {
+const ImageGridElement = ({ isSpacerImage, data, index, onClick, isModalOpen, defaultProjectName }: Props) => {
   const [thumbnail, setThumbnail] = useState("Loading")
-  const [projectTitle, setProjectTitle] = useState("Project")
+  const [projectTitle, setProjectTitle] = useState(defaultProjectName ?? "Project")
   const elementType = typeof data === "string" ? "single file" : "project"
 
   useEffect(() => {
@@ -116,12 +117,13 @@ const ImageGridElement = ({ isSpacerImage, data, index, onClick, isModalOpen }: 
         src={getAssetUrl(imgSrc)}
         alt={`Image ${index + 1}: ${imgSrc}`}
         fill
-        // className={shouldBlur ? "backgroundBlur" : undefined}
+        className={shouldBlur ? "backgroundBlur" : undefined}
         style={{
           objectFit: 'contain', // Maintains aspect ratio
           transition: 'transform 0.3s ease-in-out',
           padding: "10px",
           opacity: shouldBlur ? '50%' : undefined,
+          filter: shouldBlur ? 'brightness(20%)' : undefined,
         }}
       />
     )
@@ -137,7 +139,7 @@ const ImageGridElement = ({ isSpacerImage, data, index, onClick, isModalOpen }: 
         {
           resoureceIsModel(thumbnail)
           ? gridModelViewer(thumbnail) 
-          : gridImageViewer(thumbnail, index, isSpacerImage ?? false)
+          : gridImageViewer(thumbnail, index, elementType === "project")
         }
         {
           elementType === "project" 
@@ -145,6 +147,7 @@ const ImageGridElement = ({ isSpacerImage, data, index, onClick, isModalOpen }: 
               height: "100%",
               width: "100%",
               lineHeight: "100%",
+              position: "absolute",
               display: "flex",
               justifyContent: "center", /* Centers content horizontally */
               alignItems: "center"    /* Centers content vertically */
