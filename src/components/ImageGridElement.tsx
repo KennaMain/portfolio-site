@@ -175,7 +175,7 @@ const ImageGridElement = ({ isSpacerImage, data, index, onClick, isModalOpen, de
                 fontSize: "20px", 
                 width: "100%", 
                 opacity: "90%",
-                backgroundColor:"#191a17"
+                backgroundColor:"#2d2d2e"
               }}>
                 {projectTitle}
               </Typography>
