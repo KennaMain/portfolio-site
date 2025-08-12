@@ -10,6 +10,10 @@ export const fetchPortfolioFiles = async () => {
 }
 
 export async function fetchResourceTextFromAws(resourcePath: string) {
+  if (resourcePath.startsWith("/")) {
+    resourcePath = resourcePath.substring(1)
+  }
+  
   const awsListRequest = await fetch("https://kennamainportfolio.s3.us-east-2.amazonaws.com/" + resourcePath)
   if (!awsListRequest?.body) throw new Error("Cant fetch resource " + resourcePath)
 
