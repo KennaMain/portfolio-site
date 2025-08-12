@@ -117,7 +117,6 @@ const ImageGridElement = ({ isSpacerImage, data, index, onClick, isModalOpen, de
   }
 
   const gridImageViewer = (imgSrc: string, index: number, shouldBlur: boolean): ReactNode => {
-
     return (
       <Image
         src={getAssetUrl(imgSrc)}
@@ -125,53 +124,18 @@ const ImageGridElement = ({ isSpacerImage, data, index, onClick, isModalOpen, de
         fill
         className={shouldBlur ? "backgroundBlur" : undefined}
         style={{
-          // objectFit: 'contain', // Maintains aspect ratio
+          objectFit: shouldBlur ? "cover" : "contain",
           transition: 'transform 0.3s ease-in-out',
           padding: "10px",
-          // opacity: shouldBlur ? '50%' : undefined,
-          // filter: shouldBlur ? 'brightness(20%)' : undefined,
           background: "transparent",
-          objectFit: shouldBlur ? "cover" : "contain",
-
-          filter: "sepia(1) hue-rotate(190deg) brightness(50%) saturate(0.9)"
+          filter: shouldBlur ? "sepia(1) hue-rotate(190deg) brightness(70%) saturate(0.9) contrast(50%)" : undefined
         }}
       />
-    )
-
-    return (
-      <>
-        <Image
-          src={getAssetUrl(imgSrc)}
-          alt={`Image ${index + 1}: ${imgSrc}`}
-          fill
-          className={shouldBlur ? "backgroundBlur" : undefined}
-          style={{
-            // objectFit: 'contain', // Maintains aspect ratio
-            transition: 'transform 0.3s ease-in-out',
-            padding: "10px",
-            opacity: shouldBlur ? '50%' : undefined,
-            filter: shouldBlur ? 'brightness(20%)' : undefined,
-            background: "transparent",
-            objectFit: shouldBlur ? "cover" : "contain",
-
-            mixBlendMode: "luminosity"
-          }}
-        />
-        <Box sx={{
-          position: "absolute", 
-          width: "100%", 
-          height: "100%",
-          backgroundColor: "#919FCD15", 
-          mixBlendMode: "color"
-        }}>
-        </Box>
-      </>
     )
   }
 
   if (thumbnail === "Loading") {
     return <Box
-        fill
         sx={{
           transition: 'transform 0.3s ease-in-out',
           padding: "10px",
@@ -204,7 +168,15 @@ const ImageGridElement = ({ isSpacerImage, data, index, onClick, isModalOpen, de
               alignItems: "center",    /* Centers content vertically */
               padding: "10px"
             }}>
-              <Typography sx={{padding: "10px", textAlign: "center", opacity: "100%", color: "#FEFBE0", fontSize: "20px", width: "100%", backgroundColor:"black"}}>
+              <Typography sx={{
+                padding: "10px",
+                textAlign: "center", 
+                color: "#FEFBE0", 
+                fontSize: "20px", 
+                width: "100%", 
+                opacity: "90%",
+                backgroundColor:"#191a17"
+              }}>
                 {projectTitle}
               </Typography>
             </Box> 
