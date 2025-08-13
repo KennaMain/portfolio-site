@@ -131,12 +131,7 @@ export const GLTFViewerRenderProvider = ({style} : {style?: object}) => {
   )
 }
 
-export default function GLTFViewer() {
-  const modelUrls = [
-    '/spongebob.glb',
-    '/spongebob copy.glb', 
-    '/spongebob.glb',
-  ]
+export default function GLTFViewer({modelUrls} : {modelUrls: string[]}) {
 
   if (typeof document === "undefined") return null
 
