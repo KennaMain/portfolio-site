@@ -1,7 +1,6 @@
 import React from 'react';
 import { Box, GridLegacy as Grid, Typography } from '@mui/material';
 import { DarkBackgroundLeftOffsetBox } from '../../components/DarkBackgroundLeftOffsetBox';
-import { theme } from '@/theme';
 import "../globals.css";
 import MouseTrackingEye from '@/components/MouseTrackingEye';
 

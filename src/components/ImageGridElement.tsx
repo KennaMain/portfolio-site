@@ -27,15 +27,16 @@ type Props = {
 }
 
 const ImageGridElement = ({ isSpacerImage, data, index, onClick, isModalOpen, defaultProjectName }: Props) => {
-  if (typeof data === "string" && data.endsWith(".json")) {
-    return null
-  }
-
   const [thumbnail, setThumbnail] = useState("Loading")
   const [projectTitle, setProjectTitle] = useState(defaultProjectName ?? "Project")
   const elementType = typeof data === "string" ? "single file" : "project"
+  const shouldSkip = typeof data === "string" && data.endsWith(".json")
 
   useEffect(() => {
+    if (shouldSkip) {
+      return
+    }
+
     if (typeof data === "string") {
       setThumbnail(data)
       return
@@ -132,6 +133,10 @@ const ImageGridElement = ({ isSpacerImage, data, index, onClick, isModalOpen, de
         }}
       />
     )
+  }
+
+  if (shouldSkip) {
+    return null
   }
 
   if (thumbnail === "Loading") {
