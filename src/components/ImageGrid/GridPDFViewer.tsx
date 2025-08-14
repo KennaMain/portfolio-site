@@ -26,6 +26,7 @@ export function GridPDFViewer({ src }: Props) {
   }
 
   console.log("Leave me alone react, I am using setPageNumber, just be patient. Please. " + setPageNumber)
+  console.log("file source " + src)
 
   return (
     <div>

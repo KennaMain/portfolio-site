@@ -170,7 +170,8 @@ const ImageGridElement = ({ isSpacerImage, data, index, onClick, isModalOpen, de
     //   </object>
     // )
     // return gridImageViewer(pdfSrc, -27, false)
-    return <GridPDFViewer src={pdfSrc}/>
+    // return <GridPDFViewer src={pdfSrc}/>
+    return null
   }
 
   if (shouldSkip) {
