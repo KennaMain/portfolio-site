@@ -22,24 +22,34 @@ const getAssetUrl = (assetName: string) => {
 
 type Props = {
     directory: Directory
+    selectedSubDirectory?: string[],
     hidden: boolean
     spacerImagePaths?: string[]
-    onClick?: (imagePath: string, index: number) => void
+    onClick?: (imagePath: string, isFolder: boolean) => void
     onClickBackButton?: () => void
+    supremeOverlordOnClickBackButton?: () => void
     showModalOnClick?: boolean
 }
 
-const ImageGrid = ({ directory, hidden, spacerImagePaths, onClick: externalOnClick, onClickBackButton, showModalOnClick }: Props) => {
+const ImageGrid = ({ directory, selectedSubDirectory, hidden, spacerImagePaths, onClick: externalOnClick, onClickBackButton, showModalOnClick, supremeOverlordOnClickBackButton }: Props) => {
   // const [isSpacerImage, setIsSpacerImage] = useState([false])
   // const [originalIndexMap, setOriginalIndexMap] = useState([-1]) // maps index_of_element_from(imagePaths) to index_of_same_element_in(rawImagePaths)
   const [modalImage, setModalImage] = useState<{href: string, alt: string} | undefined>(undefined)
   const [hideModal, setHideModal] = useState(true)
-  const [projectIndex, setProjectIndex] = useState<string | undefined>(undefined)
+  const [projectIndex, setProjectIndex] = useState<string | undefined>(selectedSubDirectory?.at(0))
+
+  console.log(projectIndex)
+  console.log(selectedSubDirectory)
 
   useEffect(() => {
     // whenever hidden is changed, reset the selected project
     setProjectIndex(undefined) 
   }, [hidden])
+
+  useEffect(() => {
+    if(!selectedSubDirectory) return
+    setProjectIndex(selectedSubDirectory.at(0))
+  }, [selectedSubDirectory])
 
   // =============================================
   // Spacer Images
@@ -78,16 +88,6 @@ const ImageGrid = ({ directory, hidden, spacerImagePaths, onClick: externalOnCli
   // =============================================
   // Helper Functions and Styling
   // ---------------------------------------------
-
-  const onClick = (index: number, imgSrc: string) => { 
-    // if (isSpacerImage[index]) return
-    if (externalOnClick) externalOnClick(imgSrc, index)
-    
-    if (showModalOnClick ?? true) {
-      setModalImage({href: imgSrc, alt: "Portfolio image " + (index+1)})
-      setHideModal(false)
-    }
-  }
 
   // const gridItemBackgroundStyling = (index: number, isSpacerImage: boolean = false) => {
   //   const sx = {
@@ -209,16 +209,18 @@ const ImageGrid = ({ directory, hidden, spacerImagePaths, onClick: externalOnCli
   if (projectIndex) {
     // todo: should I render all projects' image grids and just hide them unless their project index is selected?
     return <ImageGrid 
-      directory={directory.folders[projectIndex]} 
+      directory={directory?.folders[projectIndex]} 
+      selectedSubDirectory={selectedSubDirectory?.slice(1)}
       hidden={hidden} 
       spacerImagePaths={spacerImagePaths} 
       onClick={externalOnClick} 
       showModalOnClick={showModalOnClick}
-      onClickBackButton={() => setProjectIndex(undefined)}
+      onClickBackButton={() => {
+        setProjectIndex(undefined)
+      }}
+      supremeOverlordOnClickBackButton={supremeOverlordOnClickBackButton}
     />
   }
-
-  console.log("Back button clicked")
 
   return (
     <FadeInFadeOut hidden={hidden}>
@@ -229,11 +231,22 @@ const ImageGrid = ({ directory, hidden, spacerImagePaths, onClick: externalOnCli
         padding: "80px",
       }}>
         <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
-          {onClickBackButton ? <Button onClick={onClickBackButton} sx={{fontSize:"16px"}}>Back</Button> : null}
+          {onClickBackButton 
+            ? <Button 
+                onClick={() => {
+                  if (supremeOverlordOnClickBackButton) supremeOverlordOnClickBackButton()
+                  onClickBackButton()
+                }} 
+                sx={{fontSize:"16px"}}
+              >
+                Back
+              </Button> 
+            : null
+          }
         </Grid>
         {
-          Object.keys(directory.folders).map((folderName, index) => {
-            const folder = directory.folders[folderName]
+          Object.keys(directory?.folders ?? {}).map((folderName, index) => {
+            const folder = directory?.folders[folderName]
 
             return <ImageGridElement 
               key={"proj"+index} 
@@ -243,13 +256,14 @@ const ImageGrid = ({ directory, hidden, spacerImagePaths, onClick: externalOnCli
               data={folder} 
               onClick={() => {
                 setProjectIndex(folderName)
+                if (externalOnClick) externalOnClick(directory.pwd + folderName, true)
               }}
               defaultProjectName={folderName}
             />
           })
         }
         {
-          directory.files.map((imagePath, index) => {
+          (directory?.files ?? []).map((imagePath, index) => {
             return <ImageGridElement 
               key={"file"+index} 
               index={index}
@@ -257,7 +271,12 @@ const ImageGrid = ({ directory, hidden, spacerImagePaths, onClick: externalOnCli
               isSpacerImage={false}
               data={directory.pwd + imagePath} 
               onClick={() => {
-                onClick(index, directory.pwd + imagePath)
+                if (externalOnClick) externalOnClick(directory.pwd + imagePath, false)
+                
+                if (showModalOnClick ?? true) {
+                  setModalImage({href: directory.pwd + imagePath, alt: "Portfolio image " + directory.pwd + imagePath})
+                  setHideModal(false)
+                }
               }}
             />
           })

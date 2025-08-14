@@ -63,7 +63,7 @@ const ImageGridElement = ({ isSpacerImage, data, index, onClick, isModalOpen, de
 
     (async () => {
       // try fetch metadata
-      const metadata = directory.files.includes("metadata.json") ? await fetchJsonFromAWS<DirectoryMetadata>(directory.pwd + "metadata.json") : undefined
+      const metadata = (directory?.files ?? []).includes("metadata.json") ? await fetchJsonFromAWS<DirectoryMetadata>(directory.pwd + "metadata.json") : undefined
       if (metadata?.title) {
         setProjectTitle(metadata.title)
       }
@@ -71,7 +71,7 @@ const ImageGridElement = ({ isSpacerImage, data, index, onClick, isModalOpen, de
       if (metadata?.thumbnail) {
         setResourceUrl(directory.pwd + metadata.thumbnail.replaceAll(" ", "+"))
       } else {
-        setResourceUrl(directory.pwd + directory.files[0])
+        setResourceUrl(directory.pwd + directory?.files?.at(0))
       }
     })()
   }, [(data as Directory)?.pwd])
