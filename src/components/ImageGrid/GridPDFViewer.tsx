@@ -25,9 +25,7 @@ export function GridPDFViewer({ src }: Props) {
     setNumPages(numPages);
   }
 
-  if (1 === 1) {
-    setPageNumber(1)
-  }
+  console.log("Leave me alone react, I am using setPageNumber, just be patient. Please. " + setPageNumber)
 
   return (
     <div>
