@@ -164,6 +164,7 @@ const ImageGridElement = ({ isSpacerImage, data, index, onClick, isModalOpen, de
   }
 
   const gridPDFViewer = (pdfSrc: string) => {
+    console.log("PDF viewer is broken, go view it yourself: " + pdfSrc)
     // return (
     //   <object data={pdfSrc} type="application/pdf" width="100%" height="100%">
     //     <p>Alternative text - include a link <a href={pdfSrc}>to the PDF!</a></p>
