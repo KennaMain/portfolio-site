@@ -173,7 +173,9 @@ const ImageGridElement = ({ isSpacerImage, data, index, onClick, isModalOpen, de
               alignItems: "center",    /* Centers content vertically */
               padding: "10px"
             }}>
-              <Typography sx={{
+              <Box sx={{
+                display: "flex", 
+                flexDirection:"column",
                 padding: "10px",
                 textAlign: "center", 
                 color: "#FEFBE0", 
@@ -182,8 +184,16 @@ const ImageGridElement = ({ isSpacerImage, data, index, onClick, isModalOpen, de
                 opacity: "90%",
                 backgroundColor:"#2d2d2e"
               }}>
-                {projectTitle}
-              </Typography>
+                {
+                  projectTitle.split('\n').map((titlePhrase, index) => 
+                    <Typography key={index+titlePhrase} sx={{
+                      fontSize: "20px"
+                    }}>
+                      {titlePhrase}
+                    </Typography>
+                  )
+                }
+              </Box>
             </Box> 
           : null 
         }
