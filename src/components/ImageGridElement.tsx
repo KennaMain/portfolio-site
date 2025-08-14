@@ -1,3 +1,5 @@
+'use client'
+
 // components/ImageGrid.js
 import React, { ReactNode, useEffect, useState } from 'react';
 import { GridLegacy as Grid, Box, Typography } from '@mui/material';
@@ -6,6 +8,7 @@ import "../special-css/fadeOnHide.css"
 import "../special-css/backgroundBlur.css"
 import { SingleGLTFViewer } from './GLTFViewer';
 import { Directory, DirectoryMetadata, fetchJsonFromAWS } from '@/awsUtils';
+// import { GridPDFViewer } from './ImageGrid/GridPDFViewer';
 
 const S3_BASE_URL = "https://kennamainportfolio.s3.us-east-2.amazonaws.com"
 
@@ -26,18 +29,33 @@ type Props = {
     defaultProjectName?: string
 }
 
-const ImageGridElement = ({ isSpacerImage, data, index, onClick, isModalOpen, defaultProjectName }: Props) => {
-  if (typeof data === "string" && data.endsWith(".json")) {
-    return null
-  }
+enum ResourceType {
+  NONE = "none",
+  IMAGE = "image",
+  GLB_MODEL = "glb/gltf model",
+  PDF = "pdf",
+  JSON = "json"
+}
 
+const ImageGridElement = ({ isSpacerImage, data, index, onClick, isModalOpen, defaultProjectName }: Props) => {
   const [thumbnail, setThumbnail] = useState("Loading")
+  const [resourceType, setResourceType] = useState(ResourceType.NONE)
   const [projectTitle, setProjectTitle] = useState(defaultProjectName ?? "Project")
   const elementType = typeof data === "string" ? "single file" : "project"
+  const shouldSkip = typeof data === "string" && data.endsWith(".json")
+
+  const setResourceUrl = (url: string) => {
+    setThumbnail(url)
+    setResourceType(parseResourceType(url))
+  }
 
   useEffect(() => {
+    if (shouldSkip) {
+      return
+    }
+
     if (typeof data === "string") {
-      setThumbnail(data)
+      setResourceUrl(data)
       return
     }
 
@@ -51,12 +69,29 @@ const ImageGridElement = ({ isSpacerImage, data, index, onClick, isModalOpen, de
       }
 
       if (metadata?.thumbnail) {
-        setThumbnail(directory.pwd + metadata.thumbnail)
+        setResourceUrl(directory.pwd + metadata.thumbnail.replaceAll(" ", "+"))
       } else {
-        setThumbnail(directory.pwd + directory.files[0])
+        setResourceUrl(directory.pwd + directory.files[0])
       }
     })()
   }, [(data as Directory)?.pwd])
+
+  const parseResourceType = (href?: string): ResourceType => {
+    if (!href) return ResourceType.NONE
+
+    if (href.endsWith(".glb") || href.endsWith(".gltf")) {
+      return ResourceType.GLB_MODEL
+    } else if (href.endsWith(".pdf")) {
+      return ResourceType.PDF
+    } else if (href.endsWith(".png") || href.endsWith(".jpg") || href.endsWith(".jpeg")) {
+      return ResourceType.IMAGE
+    } else if (href.endsWith(".json")) {
+      return ResourceType.JSON
+    }
+
+    // fallback to image viewing
+    return ResourceType.IMAGE
+  }
 
   const gridItemBackgroundStyling = () => {
     const sx = {
@@ -82,12 +117,6 @@ const ImageGridElement = ({ isSpacerImage, data, index, onClick, isModalOpen, de
     }
 
     return sx
-  }
-
-  const resoureceIsModel = (href?: string) => {
-    if (!href) return null
-
-    return href.endsWith(".glb") || href.endsWith(".gltf") 
   }
 
   // ---------------------------------------------
@@ -134,6 +163,22 @@ const ImageGridElement = ({ isSpacerImage, data, index, onClick, isModalOpen, de
     )
   }
 
+  const gridPDFViewer = (pdfSrc: string) => {
+    console.log("PDF viewer is broken, go view it yourself: " + pdfSrc)
+    // return (
+    //   <object data={pdfSrc} type="application/pdf" width="100%" height="100%">
+    //     <p>Alternative text - include a link <a href={pdfSrc}>to the PDF!</a></p>
+    //   </object>
+    // )
+    // return gridImageViewer(pdfSrc, -27, false)
+    // return <GridPDFViewer src={pdfSrc}/>
+    return null
+  }
+
+  if (shouldSkip) {
+    return null
+  }
+
   if (thumbnail === "Loading") {
     return <Box
         sx={{
@@ -148,14 +193,20 @@ const ImageGridElement = ({ isSpacerImage, data, index, onClick, isModalOpen, de
       </Box>
   }
 
+  const createViewer = () => {
+    switch (resourceType) {
+      case ResourceType.NONE: return null
+      case ResourceType.IMAGE: return gridImageViewer(thumbnail, index, elementType === "project")
+      case ResourceType.GLB_MODEL: return gridModelViewer(thumbnail) 
+      case ResourceType.PDF: return gridPDFViewer(thumbnail)
+      default: return null
+    }
+  }
+
   return (
     <Grid item xs={12} sm={3} md={3} lg={3} xl={3} key={index}>
       <Box sx={gridItemBackgroundStyling()} onClick={onClick}>
-        {
-          resoureceIsModel(thumbnail)
-          ? gridModelViewer(thumbnail) 
-          : gridImageViewer(thumbnail, index, elementType === "project")
-        }
+        {createViewer()}
         {
           elementType === "project" 
           ? <Box sx={{
@@ -168,7 +219,9 @@ const ImageGridElement = ({ isSpacerImage, data, index, onClick, isModalOpen, de
               alignItems: "center",    /* Centers content vertically */
               padding: "10px"
             }}>
-              <Typography sx={{
+              <Box sx={{
+                display: "flex", 
+                flexDirection:"column",
                 padding: "10px",
                 textAlign: "center", 
                 color: "#FEFBE0", 
@@ -177,8 +230,16 @@ const ImageGridElement = ({ isSpacerImage, data, index, onClick, isModalOpen, de
                 opacity: "90%",
                 backgroundColor:"#2d2d2e"
               }}>
-                {projectTitle}
-              </Typography>
+                {
+                  projectTitle.split('\n').map((titlePhrase, index) => 
+                    <Typography key={index+titlePhrase} sx={{
+                      fontSize: "20px"
+                    }}>
+                      {titlePhrase}
+                    </Typography>
+                  )
+                }
+              </Box>
             </Box> 
           : null 
         }

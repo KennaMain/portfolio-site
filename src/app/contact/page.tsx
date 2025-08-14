@@ -1,21 +1,16 @@
 import React from 'react';
 import { Box, GridLegacy as Grid, Typography } from '@mui/material';
 import { DarkBackgroundLeftOffsetBox } from '../../components/DarkBackgroundLeftOffsetBox';
-import { theme } from '@/theme';
 import "../globals.css";
 import MouseTrackingEye from '@/components/MouseTrackingEye';
 
 export default function Contact() {
   return (
     <DarkBackgroundLeftOffsetBox>
-      <Grid container spacing={0}>
+      <Grid container spacing={0} sx={{width: "100%"}}>
         {/* Left Column - Contact Info */}
         <Grid item xs={12} md={7}>
-          <Typography variant="h2" component="h1" gutterBottom sx={{ fontWeight: 700, color: theme.palette.secondary.light }}>
-            Contact Me
-          </Typography>
-
-          <Typography variant="body1" paragraph sx={{ mb: 3, fontSize: '1.1rem' }}>
+          <Typography variant="body1" paragraph sx={{ mb: 3, width: "fit-content", fontSize: '1.1rem' }}>
             email
           </Typography>
 
