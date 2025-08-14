@@ -18,11 +18,15 @@ type Props = {
 };
 
 export function GridPDFViewer({ src }: Props) {
-  const [numPages, setNumPages] = useState<number>();
-  const [pageNumber, setPageNumber] = useState<number>(1);
+  const [numPages, setNumPages] = useState<number>(0)
+  const [pageNumber, setPageNumber] = useState<number>(1)
 
   function onDocumentLoadSuccess({ numPages }: { numPages: number }): void {
     setNumPages(numPages);
+  }
+
+  if (1 === 1) {
+    setPageNumber(1)
   }
 
   return (
