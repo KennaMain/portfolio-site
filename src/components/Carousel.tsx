@@ -44,6 +44,7 @@ const Carousel: React.FC<CarouselProps> = ({
   // Touch event handlers
   const touchHandlers = {
     onTouchStart: (e: React.TouchEvent) => {
+      e.preventDefault();
       setTouchEnd(null);
       setTouchStart(e.targetTouches[0].clientX);
       setIsDragging(true);
@@ -74,6 +75,7 @@ const Carousel: React.FC<CarouselProps> = ({
   // Mouse event handlers for desktop dragging
   const mouseHandlers = {
     onMouseDown: (e: React.MouseEvent) => {
+      e.preventDefault();
       setTouchEnd(null);
       setTouchStart(e.clientX);
       setIsDragging(true);
@@ -194,13 +196,6 @@ const Carousel: React.FC<CarouselProps> = ({
               aria-label={`Go to slide ${index + 1}`}
             />
           ))}
-        </div>
-      )}
-
-      {/* Swipe hint for mobile (optional) */}
-      {items.length > 1 && (
-        <div className="carousel-swipe-hint">
-          Swipe to navigate
         </div>
       )}
     </div>
