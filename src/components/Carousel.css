@@ -2,11 +2,13 @@
   position: relative;
   width: 100%;
   overflow: hidden;
+  user-select: none; /* Prevent text selection during drag */
 }
 
 .carousel-container {
   width: 100%;
   overflow: hidden;
+  touch-action: pan-y; /* Enable vertical scroll if needed, but prevent horizontal */
 }
 
 .carousel-track {
@@ -17,6 +19,12 @@
 .carousel-slide {
   flex: 0 0 100%;
   min-width: 100%;
+  /* Prevent image drag */
+  -webkit-user-drag: none;
+  -khtml-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
+  user-drag: none;
 }
 
 .carousel-button {
@@ -35,6 +43,7 @@
   align-items: center;
   justify-content: center;
   transition: background-color 0.3s ease;
+  z-index: 10;
 }
 
 .carousel-button:hover {
@@ -54,6 +63,8 @@
   justify-content: center;
   gap: 8px;
   margin-top: 16px;
+  z-index: 10;
+  position: relative;
 }
 
 .carousel-indicator {
@@ -72,4 +83,25 @@
 
 .carousel-indicator:hover {
   background: #999;
+}
+
+/* Swipe hint for mobile */
+.carousel-swipe-hint {
+  text-align: center;
+  margin-top: 10px;
+  font-size: 0.8rem;
+  color: #666;
+  opacity: 0.7;
+}
+
+/* Hide swipe hint on desktop */
+@media (min-width: 768px) {
+  .carousel-swipe-hint {
+    display: none;
+  }
+}
+
+/* Optional: Add a visual feedback during drag */
+.carousel-track:active {
+  cursor: grabbing;
 }
