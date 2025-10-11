@@ -105,3 +105,16 @@ const parseDirectory = (files: string[][], pwd: string = "/"): Directory => {
     pwd
   }
 }
+
+
+// Etc
+
+export const S3_BASE_URL = "https://kennamainportfolio.s3.us-east-2.amazonaws.com"
+export const getAssetUrl = (assetName: string) => {
+  // if (!assetName.startsWith("/")) throw new Error(`Asset name (${assetName}) must start with /`)
+  if (!assetName.startsWith("/")) assetName = "/" + assetName
+  if (assetName.startsWith("/site-assets")) return assetName
+
+  if (assetName.startsWith('/portfolio')) assetName = assetName.slice(10)
+  return `${S3_BASE_URL}${assetName}`
+}
