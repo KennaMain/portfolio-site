@@ -86,7 +86,6 @@ export default function About() {
           height: '300px'
         }}
       >
-        {/* <ImageGridElement data={getAssetUrl("home page/" + item)} index={index}/> */}
         <img
           src={getAssetUrl("home page/"+item)}
           alt={item}
