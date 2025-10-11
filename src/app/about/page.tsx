@@ -2,22 +2,19 @@
 
 import React, { useEffect, useState } from 'react';
 import { Box, GridLegacy as Grid, Typography, Paper, IconButton } from '@mui/material';
-import Carousel from 'react-material-ui-carousel';
 import { DarkBox } from '../../components/DarkBox';
 import { theme } from '@/theme';
 import Image from "next/image"
 import { fetchPortfolioFiles, getAssetUrl } from '@/awsUtils';
 import ImageGridElement from '@/components/ImageGridElement';
+import Carousel from '@/components/Carousel';
 
 {/* eslint-disable-next-line @typescript-eslint/no-unsafe-function-type */}
 type FunctionType = Function
 
 export default function About() {
-  const [carouselFilesList, setCarouselFilesList] = useState<string[] | undefined>(undefined)
+  const [carouselFilesList, setCarouselFilesList] = useState<string[]>([])
   const [loading, setLoading] = useState(true)
-  
-  console.log("carouselFilesList")
-  console.log(carouselFilesList)
 
   useEffect(() => {
     if (!loading) return
@@ -68,13 +65,59 @@ export default function About() {
     </IconButton>
   );
 
+  const carouselItems = carouselFilesList?.map((item, index) => (
+    <Box 
+      key={index}
+      sx={{
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        height: '100%'
+      }}
+    >
+      <Paper
+        elevation={0}
+        sx={{
+          backgroundColor: 'transparent',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          // height: '100%'
+          height: '300px'
+        }}
+      >
+        <ImageGridElement data={"home page/" + item} index={index}/>
+        <img
+          src={getAssetUrl("home page/"+item)}
+          alt={item}
+          style={{
+            maxHeight: '500px',
+            maxWidth: '100%',
+            objectFit: 'contain',
+            borderRadius: theme.shape.borderRadius
+          }}
+        />
+      </Paper>
+    </Box>
+  ))
+
   return (
     <Box sx={{ flexGrow: 1, minHeight: '100vh' }} paddingTop={27}>
       <Grid container spacing={0}>
         {/* Left Column - Carousel */}
         <Grid item xs={12} md={6}>
           <DarkBox sx={{ height: '100%', display: 'flex' }}>
-            <Carousel
+              <div style={{ maxWidth: '800px', margin: '0 auto', padding: '20px' }}>
+                <Carousel 
+                  items={carouselItems}
+                  autoPlay={true}
+                  autoPlayInterval={4000}
+                  showIndicators={true}
+                  showNavigation={true}
+                />
+              </div>
+
+            {/* <Carousel
               animation="fade"
               navButtonsAlwaysVisible
               NavButton={({ onClick, next }) => {
@@ -135,7 +178,7 @@ export default function About() {
                   </Paper>
                 </Box>
               ))}
-            </Carousel>
+            </Carousel> */}
           </DarkBox>
         </Grid>
 
