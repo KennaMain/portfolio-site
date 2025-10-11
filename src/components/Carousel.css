@@ -85,22 +85,6 @@
   background: #999;
 }
 
-/* Swipe hint for mobile */
-.carousel-swipe-hint {
-  text-align: center;
-  margin-top: 10px;
-  font-size: 0.8rem;
-  color: #666;
-  opacity: 0.7;
-}
-
-/* Hide swipe hint on desktop */
-@media (min-width: 768px) {
-  .carousel-swipe-hint {
-    display: none;
-  }
-}
-
 /* Optional: Add a visual feedback during drag */
 .carousel-track:active {
   cursor: grabbing;
