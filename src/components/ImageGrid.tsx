@@ -7,7 +7,7 @@ import FadeInFadeOut from './FadeInFadeOut';
 import "../special-css/backgroundBlur.css"
 import { GLTFViewerRenderProvider, SingleGLTFViewer } from './GLTFViewer';
 import ImageGridElement from './ImageGridElement';
-import { Directory } from '@/awsUtils';
+import { Directory, getAssetUrl } from '@/awsUtils';
 
 type Props = {
     directory: Directory
