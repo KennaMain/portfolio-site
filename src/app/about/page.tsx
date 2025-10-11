@@ -1,17 +1,40 @@
 'use client'
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Box, GridLegacy as Grid, Typography, Paper, IconButton } from '@mui/material';
 import Carousel from 'react-material-ui-carousel';
 import { DarkBox } from '../../components/DarkBox';
 import { theme } from '@/theme';
-import { filesList } from './carouselFilesList';
 import Image from "next/image"
+import { fetchPortfolioFiles, getAssetUrl } from '@/awsUtils';
+import ImageGridElement from '@/components/ImageGridElement';
 
 {/* eslint-disable-next-line @typescript-eslint/no-unsafe-function-type */}
 type FunctionType = Function
 
 export default function About() {
+  const [carouselFilesList, setCarouselFilesList] = useState<string[] | undefined>(undefined)
+  const [loading, setLoading] = useState(true)
+  
+  console.log("carouselFilesList")
+  console.log(carouselFilesList)
+
+  useEffect(() => {
+    if (!loading) return
+
+    (async () => {
+      if (!loading) return
+
+      try {
+        const dir = await fetchPortfolioFiles()
+        setCarouselFilesList(dir?.folders["home page"]?.files)
+        setLoading(false)
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    })();
+  })
+
   {/* eslint-disable-next-line jsx-a11y/img-redundant-alt */}
   const leftArrowImage = <Image width={50} height={50} alt="Show Previous Image" src="./site-assets/left_arrow.svg"/>
   {/* eslint-disable-next-line jsx-a11y/img-redundant-alt */}
@@ -77,7 +100,7 @@ export default function About() {
                 justifyContent: 'center', // This centers vertically
               }}
             >
-              {filesList.map((item, index) => (
+              {carouselFilesList?.map((item, index) => (
                 <Box 
                   key={index}
                   sx={{
@@ -94,12 +117,14 @@ export default function About() {
                       display: 'flex',
                       justifyContent: 'center',
                       alignItems: 'center',
-                      height: '100%'
+                      // height: '100%'
+                      height: '300px'
                     }}
                   >
+                    <ImageGridElement data={"home page/" + item} index={index}/>
                     <img
-                      src={item.imageUrl}
-                      alt={item.altText}
+                      src={getAssetUrl("home page/"+item)}
+                      alt={item}
                       style={{
                         maxHeight: '500px',
                         maxWidth: '100%',
