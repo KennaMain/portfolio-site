@@ -86,12 +86,12 @@ export default function About() {
           height: '300px'
         }}
       >
-        <ImageGridElement data={"home page/" + item} index={index}/>
+        {/* <ImageGridElement data={getAssetUrl("home page/" + item)} index={index}/> */}
         <img
           src={getAssetUrl("home page/"+item)}
           alt={item}
           style={{
-            maxHeight: '500px',
+            maxHeight: '100%',
             maxWidth: '100%',
             objectFit: 'contain',
             borderRadius: theme.shape.borderRadius
