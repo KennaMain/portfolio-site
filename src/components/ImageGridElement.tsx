@@ -1,14 +1,13 @@
 'use client'
 
 // components/ImageGrid.js
-import React, { ReactNode, useEffect, useState } from 'react';
+import React, { ReactNode, SyntheticEvent, useEffect, useState } from 'react';
 import { GridLegacy as Grid, Box, Typography } from '@mui/material';
 import Image from 'next/image';
 import "../special-css/fadeOnHide.css"
 import "../special-css/backgroundBlur.css"
 import { SingleGLTFViewer } from './GLTFViewer';
 import { Directory, DirectoryMetadata, fetchJsonFromAWS, getAssetUrl } from '@/awsUtils';
-// import { GridPDFViewer } from './ImageGrid/GridPDFViewer';
 
 type Props = {
     isSpacerImage?: boolean
@@ -135,7 +134,7 @@ const ImageGridElement = ({ isSpacerImage, data, index, onClick, isModalOpen, de
     )
   }
 
-  const gridImageViewer = (imgSrc: string, index: number, shouldBlur: boolean): ReactNode => {
+  const gridImageViewer = (imgSrc: string, index: number, shouldBlur: boolean, errorText?: string, extraStyle: object = {}): ReactNode => {
     return (
       <Image
         src={getAssetUrl(imgSrc)}
@@ -147,22 +146,22 @@ const ImageGridElement = ({ isSpacerImage, data, index, onClick, isModalOpen, de
           transition: 'transform 0.3s ease-in-out',
           padding: "10px",
           background: "transparent",
-          filter: shouldBlur ? "sepia(1) hue-rotate(190deg) brightness(70%) saturate(0.9) contrast(50%)" : undefined
+          filter: shouldBlur ? "sepia(1) hue-rotate(190deg) brightness(70%) saturate(0.9) contrast(50%)" : undefined,
+          ...extraStyle
+        }}
+        onError={(event: SyntheticEvent<HTMLImageElement, Event>) => {
+          const element = event.target as HTMLElement & {alt: string}
+          element.className = "styled-broken"
+          element.style.background = "#00000033"
+          element.style.textAlign = "center"
+          element.alt = errorText ?? "Browser error - to view this image, please use a different browser."
         }}
       />
     )
   }
 
-  const gridPDFViewer = (pdfSrc: string) => {
-    console.log("PDF viewer is broken, go view it here: " + pdfSrc)
-    // return (
-    //   <object data={pdfSrc} type="application/pdf" width="100%" height="100%">
-    //     <p>Alternative text - include a link <a href={pdfSrc}>to the PDF!</a></p>
-    //   </object>
-    // )
-    // return gridImageViewer(pdfSrc, -27, false)
-    // return <GridPDFViewer src={pdfSrc}/>
-    return null
+  const gridPDFViewer = (pdfSrc: string, index: number, shouldBlur: boolean) => {
+    return gridImageViewer(pdfSrc, index, shouldBlur, "Browser error - to view this PDF, please click here.")
   }
 
   if (shouldSkip) {
@@ -188,7 +187,7 @@ const ImageGridElement = ({ isSpacerImage, data, index, onClick, isModalOpen, de
       case ResourceType.NONE: return null
       case ResourceType.IMAGE: return gridImageViewer(thumbnail, index, elementType === "project")
       case ResourceType.GLB_MODEL: return gridModelViewer(thumbnail) 
-      case ResourceType.PDF: return gridPDFViewer(thumbnail)
+      case ResourceType.PDF: return gridPDFViewer(thumbnail, index, elementType === "project")
       default: return null
     }
   }

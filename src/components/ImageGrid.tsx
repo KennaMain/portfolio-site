@@ -136,6 +136,22 @@ const ImageGrid = ({ directory, hidden, spacerImagePaths, onClick: externalOnCli
   const modalImageViewer = (imgSrc?: string, alt?: string) => {
     if (!imgSrc) return null
 
+    if (imgSrc.endsWith(".pdf")) {
+      return (
+        <embed 
+          style={{
+            maxWidth: "100%",
+            maxHeight: "100%",
+            width: "auto",
+            height: "100%",
+            objectFit: "contain",
+          }} 
+          src={getAssetUrl(imgSrc)} 
+          type="application/pdf"
+        />
+      )
+    }
+
     return (
       <img 
         style={{
