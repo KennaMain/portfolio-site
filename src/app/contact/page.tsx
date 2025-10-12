@@ -11,15 +11,15 @@ export default function Contact() {
         {/* Left Column - Contact Info */}
         <Grid item xs={12} md={7}>
           <Typography variant="body1" paragraph sx={{ mb: 3, width: "fit-content", fontSize: '1.1rem' }}>
-            email
+            kenna.m@icloud.com
           </Typography>
 
           <Typography variant="body1" paragraph sx={{ mb: 3, fontSize: '1.1rem' }}>
-            phone
+            (727) 457-0390
           </Typography>
 
           <Typography variant="body1" paragraph sx={{ mb: 3, fontSize: '1.1rem' }}>
-            Linkdin
+            https://www.linkedin.com/in/kenna-main-design
           </Typography>
         </Grid>
 
