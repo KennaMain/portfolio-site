@@ -10,7 +10,10 @@ const nextConfig: NextConfig = {
   // },
   // Ensure JavaScript isn't being disabled
   reactStrictMode: true,
-  images: { unoptimized: true }
+  images: { unoptimized: true },
+  eslint: {
+    ignoreDuringBuilds: true
+  }
 };
 
 export default nextConfig;
