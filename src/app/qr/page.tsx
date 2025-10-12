@@ -1,7 +1,7 @@
 'use client'
 
 import React from 'react';
-import { theme } from '@/theme';
+// import { theme } from '@/theme';
 import "../globals.css";
 import CenteredButtonGrid from '@/components/CenteredButtonGrid';
 

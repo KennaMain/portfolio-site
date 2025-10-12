@@ -6,7 +6,6 @@ import { DarkBox } from '../../components/DarkBox';
 import { theme } from '@/theme';
 import Image from "next/image"
 import { fetchPortfolioFiles, getAssetUrl } from '@/awsUtils';
-import ImageGridElement from '@/components/ImageGridElement';
 import Carousel from '@/components/Carousel';
 
 {/* eslint-disable-next-line @typescript-eslint/no-unsafe-function-type */}
@@ -32,10 +31,10 @@ export default function About() {
     })();
   })
 
-  {/* eslint-disable-next-line jsx-a11y/img-redundant-alt */}
-  const leftArrowImage = <Image width={50} height={50} alt="Show Previous Image" src="./site-assets/left_arrow.svg"/>
-  {/* eslint-disable-next-line jsx-a11y/img-redundant-alt */}
-  const rightArrowImage = <Image width={50} height={50} alt="Show Next Image" src="./site-assets/right_arrow.svg"/>
+  // {/* eslint-disable-next-line jsx-a11y/img-redundant-alt */}
+  // const leftArrowImage = <Image width={50} height={50} alt="Show Previous Image" src="./site-assets/left_arrow.svg"/>
+  // {/* eslint-disable-next-line jsx-a11y/img-redundant-alt */}
+  // const rightArrowImage = <Image width={50} height={50} alt="Show Next Image" src="./site-assets/right_arrow.svg"/>
 
   // Custom arrow button component
   const CustomArrowButton = ({
