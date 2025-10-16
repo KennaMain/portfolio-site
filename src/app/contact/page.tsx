@@ -1,3 +1,5 @@
+'use client'
+
 import React from 'react';
 import { Box, GridLegacy as Grid, Typography } from '@mui/material';
 import { DarkBackgroundLeftOffsetBox } from '../../components/DarkBackgroundLeftOffsetBox';
