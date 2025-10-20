@@ -114,75 +114,12 @@ export default function About() {
                   showNavigation={true}
                 />
               </div>
-
-            {/* <Carousel
-              animation="fade"
-              navButtonsAlwaysVisible
-              NavButton={({ onClick, next }) => {
-                const direction = next ? 'right' : 'left';
-                return (
-                  <CustomArrowButton direction={direction} onClick={onClick}>
-                    {direction === 'left' ? leftArrowImage : rightArrowImage}
-                  </CustomArrowButton>
-                );
-              }}
-              indicatorContainerProps={{
-                style: {
-                  marginTop: '20px',
-                  position: 'relative'
-                }
-              }}
-              sx={{
-                width: '100%',
-                maxWidth: '600px',
-                height: '100%',
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'center', // This centers vertically
-              }}
-            >
-              {carouselFilesList?.map((item, index) => (
-                <Box 
-                  key={index}
-                  sx={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    height: '100%'
-                  }}
-                >
-                  <Paper
-                    elevation={0}
-                    sx={{
-                      backgroundColor: 'transparent',
-                      display: 'flex',
-                      justifyContent: 'center',
-                      alignItems: 'center',
-                      // height: '100%'
-                      height: '300px'
-                    }}
-                  >
-                    <ImageGridElement data={"home page/" + item} index={index}/>
-                    <img
-                      src={getAssetUrl("home page/"+item)}
-                      alt={item}
-                      style={{
-                        maxHeight: '500px',
-                        maxWidth: '100%',
-                        objectFit: 'contain',
-                        borderRadius: theme.shape.borderRadius
-                      }}
-                    />
-                  </Paper>
-                </Box>
-              ))}
-            </Carousel> */}
           </DarkBox>
         </Grid>
 
         {/* Right Column - Text Content */}
         <Grid item xs={12} md={6}>
-          <Box sx={{ paddingRight: 6, paddingLeft: 6, paddingBottom: 6, height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+          <Box sx={{ paddingRight: 6, paddingLeft: 6, paddingBottom: 6, height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center', paddingTop: {"xs": "60px", "md": "0px"}}}>
             <Typography variant="h3" component="h1" gutterBottom sx={{ fontWeight: 700 }}>
              Design Philosophy
             </Typography>

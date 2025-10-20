@@ -193,7 +193,7 @@ const ImageGridElement = ({ isSpacerImage, data, index, onClick, isModalOpen, de
   }
 
   return (
-    <Grid item xs={12} sm={3} md={3} lg={3} xl={3} key={index}>
+    <Grid item xs={12} sm={4} md={3} lg={3} xl={3} key={index}>
       <Box sx={gridItemBackgroundStyling()} onClick={onClick}>
         {createViewer()}
         {

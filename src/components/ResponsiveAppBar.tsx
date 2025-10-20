@@ -91,6 +91,7 @@ function ResponsiveAppBar(props: Props) {
                 <MenuItem 
                   key={page.title} 
                   onClick={() => handleNavigation(page.href)}
+                  sx={{ my: 2, display: 'block', fontSize: 24, color: theme.palette.secondary.light, textTransform: 'none' }}
                 >
                   <Typography textAlign="center">{page.title}</Typography>
                 </MenuItem>
@@ -99,7 +100,7 @@ function ResponsiveAppBar(props: Props) {
           </Box>
 
           {/* Logo */}
-          <Box sx={{ position: "relative", display: { xs: 'none', md: 'flex' }, mr: 1, mt: 5 }}>
+          <Box sx={{ position: "relative", display: { xs: 'flex', md: 'flex' }, mr: 1, mt: 5 }}>
             <img alt="My Logo!" src="./site-assets/navbar_logo.svg" height={'100px'}/>
 
             <MouseTrackingEye 

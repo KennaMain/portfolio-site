@@ -6,9 +6,10 @@ import MouseTrackingEye from './MouseTrackingEye';
 
 type Props = {
   hide: boolean
+  doNotHideOnSmall?: boolean
 }
 
-const MouseTrackingSeahorse = ({ hide }: Props) => {
+const MouseTrackingSeahorse = ({ hide, doNotHideOnSmall }: Props) => {
   return (
     <Box
       sx={{
@@ -20,7 +21,8 @@ const MouseTrackingSeahorse = ({ hide }: Props) => {
         height: 320,
         pointerEvents: "none",
         transition: "transform 1s ease-in-out",
-        transform: hide ? "translateX(500px)" : "translateX(0)"
+        transform: hide ? "translateX(500px)" : "translateX(0)",
+        display: {xs: doNotHideOnSmall ? 'block' : 'none', md: 'block'}
       }}
     >
       <img 
