@@ -1,11 +1,11 @@
+// default mui breakpoints: {
+//   sm: "600px",
+//   md: "900px",
+//   lg: "1200px",
+//   xl: "1536px"
+// }
+
 export const theme = {
-  // note: when changing these, don't forget to change them in material ui itself
-  breakpoints: {
-    sm: "600px",
-    md: "900px",
-    lg: "1200px",
-    xl: "1536px"
-  },
   shape: {
     borderRadius: 2
   },
