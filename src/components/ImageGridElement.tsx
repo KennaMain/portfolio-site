@@ -7,7 +7,7 @@ import Image from 'next/image';
 import "../special-css/fadeOnHide.css"
 import "../special-css/backgroundBlur.css"
 import { SingleGLTFViewer } from './GLTFViewer';
-import { Directory, DirectoryMetadata, fetchJsonFromAWS, getAssetUrl } from '@/awsUtils';
+import { Directory, DirectoryMetadata, fetchJsonFromGoogleCloud, getAssetUrl } from '@/googleCloudUtils';
 
 type Props = {
     isSpacerImage?: boolean
@@ -52,7 +52,7 @@ const ImageGridElement = ({ isSpacerImage, data, index, onClick, isModalOpen, de
 
     (async () => {
       // try fetch metadata
-      const metadata = directory.files.includes("metadata.json") ? await fetchJsonFromAWS<DirectoryMetadata>(directory.pwd + "metadata.json") : undefined
+      const metadata = directory.files.includes("metadata.json") ? await fetchJsonFromGoogleCloud<DirectoryMetadata>(directory.pwd + "metadata.json") : undefined
       if (metadata?.title) {
         setProjectTitle(metadata.title)
       }

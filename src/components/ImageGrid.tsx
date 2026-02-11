@@ -7,7 +7,7 @@ import FadeInFadeOut from './FadeInFadeOut';
 import "../special-css/backgroundBlur.css"
 import { GLTFViewerRenderProvider, SingleGLTFViewer } from './GLTFViewer';
 import ImageGridElement from './ImageGridElement';
-import { Directory, getAssetUrl } from '@/awsUtils';
+import { Directory, getAssetUrl } from '@/googleCloudUtils';
 
 type Props = {
     directory: Directory
