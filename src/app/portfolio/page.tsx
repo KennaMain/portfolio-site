@@ -14,9 +14,14 @@ import { NavigationEvent } from '@/components/ResponsiveAppBar';
 const PAGE_HREF = "portfolio"
 
 export default function Portfolio() {
-  const [tab, setTab] = useState(-1)
+  const [tab, _setTab] = useState(-1)
   const [portfolioFileStructure, setPortfolioFileStructure] = useState<Directory | undefined>(undefined)
   const [loading, setLoading] = useState(true)
+
+  const setTab = (i: number) => {
+    _setTab(i)
+    window.scrollTo(0, 0)
+  }
 
   const emptyDirectory: Directory = {
     folders: {},
