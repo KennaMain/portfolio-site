@@ -38,7 +38,7 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
       <body>
         <AppRouterCacheProvider>
           <CustomThemeProvider>
-            <ResponsiveAppBar pages={pages}/>
+            {/* <ResponsiveAppBar pages={pages}/> */}
             {children}
           </CustomThemeProvider>
         </AppRouterCacheProvider>
