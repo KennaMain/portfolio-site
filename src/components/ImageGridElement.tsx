@@ -8,6 +8,7 @@ import "../special-css/fadeOnHide.css"
 import "../special-css/backgroundBlur.css"
 import { SingleGLTFViewer } from './GLTFViewer';
 import { Directory, DirectoryMetadata, fetchJsonFromGoogleCloud, getAssetUrl } from '@/googleCloudUtils';
+import {DynamicTypography} from './DynamicTypography'
 
 type Props = {
     isSpacerImage?: boolean
@@ -193,9 +194,8 @@ const ImageGridElement = ({ isSpacerImage, data, index, onClick, isModalOpen, de
   }
 
   return (
-    <Grid item xs={12} sm={4} md={3} lg={3} xl={3} key={index}>
+    <Grid item xs={4} sm={4} md={4} lg={4} xl={4} key={index} sx={{padding: "20px"}}>
       <Box sx={gridItemBackgroundStyling()} onClick={onClick}>
-        {createViewer()}
         {
           elementType === "project" 
           ? <Box sx={{
@@ -206,31 +206,31 @@ const ImageGridElement = ({ isSpacerImage, data, index, onClick, isModalOpen, de
               display: "flex",
               justifyContent: "center", /* Centers content horizontally */
               alignItems: "center",    /* Centers content vertically */
-              padding: "10px"
+              padding: "20px",
+              background: "#DBB181",
             }}>
               <Box sx={{
                 display: "flex", 
                 flexDirection:"column",
                 padding: "10px",
                 textAlign: "center", 
-                color: "#FEFBE0", 
-                fontSize: "20px", 
+                color:"#2d2d2e",
                 width: "100%", 
+                height: "100%",
+                justifyContent: "center",
+                alignItems: "center",
                 opacity: "90%",
-                backgroundColor:"#2d2d2e"
               }}>
                 {
-                  projectTitle.split('\n').map((titlePhrase, index) => 
-                    <Typography key={index+titlePhrase} sx={{
-                      fontSize: "20px"
-                    }}>
+                  projectTitle.toUpperCase().split(/\s/).map((titlePhrase, index) => 
+                    <DynamicTypography sx={{fontWeight: "bold"}} maxFontSize={40} key={index+titlePhrase}>
                       {titlePhrase}
-                    </Typography>
+                    </DynamicTypography>
                   )
                 }
               </Box>
             </Box> 
-          : null 
+          : createViewer() 
         }
       </Box>
     </Grid>
