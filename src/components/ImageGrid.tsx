@@ -235,7 +235,7 @@ const ImageGrid = ({ directory, hidden, spacerImagePaths, onClick: externalOnCli
         paddingBottom: "20px"
       }}>
         <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
-          {onClickBackButton ? <Button onClick={onClickBackButton} sx={{fontSize:"16px"}}>Back</Button> : null}
+          {onClickBackButton ? <Button onClick={onClickBackButton} sx={{fontSize:"16px", color: "#D4B387", fontWeight:"bold"}}>Back</Button> : null}
         </Grid>
         {
           Object.keys(directory.folders).map((folderName, index) => {
