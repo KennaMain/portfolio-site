@@ -44,7 +44,11 @@ export default function Home() {
 
       try {
         const files = await fetchPortfolioFiles()
-        setPortfolioFileStructure(files)
+        if (files.folders["Portfolio"]) {
+          setPortfolioFileStructure(files.folders["Portfolio"])
+        } else {
+          setPortfolioFileStructure(files)
+        }
         setLoading(false)
       } catch (error) {
         console.error('Error fetching data:', error);
