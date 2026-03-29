@@ -38,5 +38,5 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 ## Deploying to Heroku
 
 1. heroku login
-2. heroku git:remote -a kenna-portfolio-site
+2. heroku git:remote -a kenna-portfolio
 3. git push heroku main
