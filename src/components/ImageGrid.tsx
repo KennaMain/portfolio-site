@@ -230,7 +230,8 @@ const ImageGrid = ({ directory, hidden, spacerImagePaths, onClick: externalOnCli
 
       <Grid container spacing={2} sx={{
         // padding: "80px",
-        paddingBottom: "20px"
+        paddingBottom: "20px",
+        paddingTop: "20px"
       }}>
         <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
           {onClickBackButton ? <Button onClick={onClickBackButton} sx={{fontSize:"16px", color: "#D4B387", fontWeight:"bold"}}>Back</Button> : null}
