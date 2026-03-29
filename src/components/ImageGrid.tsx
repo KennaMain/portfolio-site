@@ -76,8 +76,6 @@ const ImageGrid = ({ directory, hidden, spacerImagePaths, onClick: externalOnCli
       setModalImage({href: imgSrc, alt: "Portfolio image " + (index+1)})
       setHideModal(false)
     }
-
-    window.scrollTo(0, 0)
   }
 
   // const gridItemBackgroundStyling = (index: number, isSpacerImage: boolean = false) => {
