@@ -85,9 +85,9 @@ export default function Home() {
           id="title container" 
           sx={{ 
             // adjust these values to change how much width the title takes up vs how much width the tiles take up
-            maxWidth: '6rem',
-            minWidth: '4rem',
-            width: "10%",
+            // maxWidth: '6rem',
+            // minWidth: '4rem',
+            width: "20%",
 
             position: 'relative', // Creates positioning context for SVG
             gridColumn: '1',

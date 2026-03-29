@@ -194,7 +194,7 @@ const ImageGridElement = ({ isSpacerImage, data, index, onClick, isModalOpen, de
   }
 
   return (
-    <Grid item xs={4} sm={4} md={4} lg={4} xl={4} key={index} sx={{padding: "20px"}}>
+    <Grid item xs={4} sm={4} md={4} lg={4} xl={4} key={index} sx={{padding: "2%"}}>
       <Box sx={gridItemBackgroundStyling()} onClick={onClick}>
         {
           elementType === "project" 
