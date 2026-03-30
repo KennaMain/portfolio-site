@@ -21,6 +21,7 @@ export default function Home() {
 
   const refPortfolio = useRef(null)
   const refAbout     = useRef(null)
+  const refContact   = useRef(null)
 
   const scrollPageTo = (ref?: React.RefObject<any>) => {
     if (!ref) {
@@ -60,16 +61,16 @@ export default function Home() {
     <div style={{backgroundImage: 'url("/site-assets/home_background.webp")'}}>
       {/* menu bar */}
       <div style={{ height: "fit-content", width: "100%", display: "flex", flexDirection: "row-reverse" }}>
-        <span style={{ float: "right", paddingRight: "5rem" }}>
-          <Button style={menuBarButtonStyle} onClick={() => scrollPageTo()}            >Home</Button>
+        <span style={{ float: "right", paddingRight: "10%" }}>
           <Button style={menuBarButtonStyle} onClick={() => scrollPageTo(refPortfolio)}>Portfolio</Button>
           <Button style={menuBarButtonStyle} onClick={() => scrollPageTo(refAbout)}    >About</Button>
+          <Button style={menuBarButtonStyle} onClick={() => scrollPageTo(refContact)}    >Contact</Button>
         </span>
       </div>
 
       {/* title */}
       <div style={{height: "40rem", display: "flex", flexDirection: "row-reverse", alignItems: "center", fontSize: "3rem" }}>
-          <div style={{color: color1, padding: "2rem"}}>
+          <div style={{color: color1, padding: "2rem", paddingRight:"10%"}}>
             <Typography style={{padding: "0.2rem", fontSize: "xx-large", fontWeight: "bold"}}>CONSTRUCT</Typography>
             <Typography style={{padding: "0.2rem", fontSize: "xx-large", fontWeight: "bold"}}>COMPOSE</Typography>
             <Typography style={{padding: "0.2rem", fontSize: "xx-large", fontWeight: "bold"}}>COMMUNICATE</Typography>
@@ -120,7 +121,7 @@ export default function Home() {
               }}
               // format <x1, y1, x2, y2> 
               // adjust x1 and x2 to control how zoomed in the text is
-              viewBox="100 0 600 3427" 
+              viewBox="220 0 600 3427" 
               version="1.1"
             >
               <g>
@@ -147,7 +148,8 @@ export default function Home() {
           height: "100%", 
           // mt: "-4rem"    // margin-top equivalent
           padding: "0px",
-          margin: "0px"
+          margin: "0px",
+          paddingRight: "7%"
         }}>
           {/* Button Grid */}
           {loading
@@ -178,9 +180,9 @@ export default function Home() {
       </Box>
 
       {/* Spacer */}
-      <Box sx={{ height: "2rem" }}></Box>
+      <Box ref={refContact} sx={{ height: "2rem" }}></Box>
 
-      {/* About Me Section */}
+      {/* Contact Section */}
       <Box sx={{ display: 'flex', padding: "2rem", background: "#292929D0", height: "fit-children", flexDirection: "column" }}>
         <Typography sx={{ 
           fontSize: "5rem", 
