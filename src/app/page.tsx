@@ -154,7 +154,7 @@ export default function Home() {
           {/* Button Grid */}
           {loading
             ? <Typography>Loading...</Typography>
-            : <ImageGrid hidden={false} directory={portfolioFileStructure ?? emptyDirectory}/>
+            : <ImageGrid hidden={false} rootDirectory={portfolioFileStructure ?? emptyDirectory}/>
           }
         </Box>
       </Box>

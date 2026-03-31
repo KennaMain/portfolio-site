@@ -1,6 +1,6 @@
 // components/ImageGrid.js
 import React, { useEffect, useState } from 'react';
-import { GridLegacy as Grid, Box, Backdrop, Button } from '@mui/material';
+import { GridLegacy as Grid, Box, Backdrop, Button, Typography } from '@mui/material';
 import ReactDom from 'react-dom';
 import "../special-css/fadeOnHide.css"
 import FadeInFadeOut from './FadeInFadeOut';
@@ -10,59 +10,35 @@ import ImageGridElement from './ImageGridElement';
 import { Directory, getAssetUrl } from '@/googleCloudUtils';
 
 type Props = {
-    directory: Directory
+    rootDirectory: Directory
     hidden: boolean
-    spacerImagePaths?: string[]
     onClick?: (imagePath: string, index: number) => void
-    onClickBackButton?: () => void
     showModalOnClick?: boolean
 }
 
-const ImageGrid = ({ directory, hidden, spacerImagePaths, onClick: externalOnClick, onClickBackButton, showModalOnClick }: Props) => {
-  // const [isSpacerImage, setIsSpacerImage] = useState([false])
-  // const [originalIndexMap, setOriginalIndexMap] = useState([-1]) // maps index_of_element_from(imagePaths) to index_of_same_element_in(rawImagePaths)
+const ImageGrid = ({ rootDirectory, hidden, onClick: externalOnClick, showModalOnClick }: Props) => {
   const [modalImage, setModalImage] = useState<{href: string, alt: string} | undefined>(undefined)
   const [hideModal, setHideModal] = useState(true)
-  const [projectIndex, setProjectIndex] = useState<string | undefined>(undefined)
+  const [currentDirectory, setCurrentDirectory] = useState<Directory>(rootDirectory)
+  const [pathToCurrentDirectory, setPathToCurrentDirectory] = useState<Directory[]>([])
 
   useEffect(() => {
     // whenever hidden is changed, reset the selected project
-    setProjectIndex(undefined) 
+    setCurrentDirectory(rootDirectory) 
   }, [hidden])
 
-  // =============================================
-  // Spacer Images
-  // ---------------------------------------------
+  useEffect(() => {
+    const relativePwd = currentDirectory.pwd.substring(rootDirectory.pwd.length)
+    const relativePath = relativePwd.split('/')
+    const pathToCurr = [rootDirectory]
+    relativePath.forEach(p => {
+      if (!p) return
 
-  // useEffect(() => {
-  //   if (!spacerImagePaths) return
-
-  //   const realImageRunLength = 6
-  //   const tempImagePaths = [spacerImagePaths[1]]
-  //   const tempOriginalIndexMap = [-1]
-  //   const tempIsSpacerImage = [true]
-  //   let j = 0
-  //   for (let i = 1; j < imagePaths.length; i++) {
-  //     if (i % (realImageRunLength+1) === 0) {
-  //       tempImagePaths.push(spacerImagePaths[0])
-  //       tempImagePaths.push(spacerImagePaths[1])
-  //       tempIsSpacerImage.push(true)
-  //       tempIsSpacerImage.push(true)
-  //       tempOriginalIndexMap.push(-1)
-  //       tempOriginalIndexMap.push(-1)
-  //     } else {
-  //       tempOriginalIndexMap.push(j)
-  //       j++
-  //       tempIsSpacerImage.push(false)
-  //     }
-  //   }
-  //   setIsSpacerImage(tempIsSpacerImage)
-  //   setOriginalIndexMap(tempOriginalIndexMap)
-  // }, [imagePaths, spacerImagePaths])
-
-  // ---------------------------------------------
-  // Spacer Images
-  // =============================================
+      const last = pathToCurr[pathToCurr.length-1]
+      pathToCurr.push(last.folders[p])
+    })
+    setPathToCurrentDirectory(pathToCurr)
+  }, [currentDirectory])
 
   // =============================================
   // Helper Functions and Styling
@@ -78,31 +54,6 @@ const ImageGrid = ({ directory, hidden, spacerImagePaths, onClick: externalOnCli
     }
   }
 
-  // const gridItemBackgroundStyling = (index: number, isSpacerImage: boolean = false) => {
-  //   const sx = {
-  //     position: 'relative',
-  //     width: '100%',
-  //     height: 0,
-  //     paddingBottom: '100%', // Creates a square container
-  //     transition: 'transform 0.3s ease-in-out',
-  //     // overflow: 'hidden',
-  //   }
-
-  //   if (!isSpacerImage)
-  //   {
-  //     return {
-  //       ...sx,
-  //       '&:hover img': {
-  //         transform: 'scale(1.05)',
-  //       },
-  //       // border: "3px solid " + theme.palette.background.defaultDark,
-  //       // borderRadius: "10px",
-  //       // background: theme.palette.background.paperLight
-  //     }
-  //   }
-
-  //   return sx
-  // }
 
   const resoureceIsModel = (href?: string) => {
     if (!href) return null
@@ -211,18 +162,6 @@ const ImageGrid = ({ directory, hidden, spacerImagePaths, onClick: externalOnCli
     document.body
   )
 
-  if (projectIndex) {
-    // todo: should I render all projects' image grids and just hide them unless their project index is selected?
-    return <ImageGrid 
-      directory={directory.folders[projectIndex]} 
-      hidden={hidden} 
-      spacerImagePaths={spacerImagePaths} 
-      onClick={externalOnClick} 
-      showModalOnClick={showModalOnClick}
-      onClickBackButton={() => setProjectIndex(undefined)}
-    />
-  }
-
   return (
     <FadeInFadeOut hidden={hidden}>
       {modalImage ? modal : null}
@@ -234,11 +173,33 @@ const ImageGrid = ({ directory, hidden, spacerImagePaths, onClick: externalOnCli
         paddingTop: "20px"
       }}>
         <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
-          {onClickBackButton ? <Button onClick={onClickBackButton} sx={{fontSize:"16px", color: "#D4B387", fontWeight:"bold"}}>Back</Button> : null}
+          <div style={{display: "flex"}}>
+            {pathToCurrentDirectory.length > 1 && pathToCurrentDirectory.map((dir: Directory) => {
+              return (<>
+                <Button 
+                  key={dir.pwd} 
+                  onClick={() => setCurrentDirectory(dir)} 
+                  disabled={dir === currentDirectory}
+                  sx={{
+                    fontSize:"16px", 
+                    color: "#D4B387", 
+                    ":hover": { color: "#ac906f" }, 
+                    ":disabled": { color: "#E8DFCD" },
+                    fontWeight:"bold"
+                  }}
+                >
+                  {dir.name}
+                </Button>
+                { dir !== currentDirectory &&
+                  <Typography sx={{fontSize:"16px", color: "#E8DFCD", fontWeight:"bold", alignContent: "center"}}>&gt;</Typography>
+                }
+              </>)
+            })}
+          </div>
         </Grid>
         {
-          Object.keys(directory.folders).map((folderName, index) => {
-            const folder = directory.folders[folderName]
+          Object.keys(currentDirectory.folders).map((folderName, index) => {
+            const folder = currentDirectory.folders[folderName]
 
             return <ImageGridElement 
               key={"proj"+index} 
@@ -247,22 +208,22 @@ const ImageGrid = ({ directory, hidden, spacerImagePaths, onClick: externalOnCli
               isSpacerImage={false}
               data={folder} 
               onClick={() => {
-                setProjectIndex(folderName)
+                setCurrentDirectory(folder)
               }}
               defaultProjectName={folderName}
             />
           })
         }
         {
-          directory.files.map((imagePath, index) => {
+          currentDirectory.files.map((imagePath, index) => {
             return <ImageGridElement 
               key={"file"+index} 
               index={index}
               isModalOpen={Boolean(modalImage)}
               isSpacerImage={false}
-              data={directory.pwd + imagePath} 
+              data={currentDirectory.pwd + imagePath} 
               onClick={() => {
-                onClick(index, directory.pwd + imagePath)
+                onClick(index, currentDirectory.pwd + imagePath)
               }}
             />
           })
