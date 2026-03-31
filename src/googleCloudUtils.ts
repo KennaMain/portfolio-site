@@ -15,6 +15,7 @@ export type Directory = {
   files: string[]
   folders: DirectoryList
   pwd: string
+  name?: string
 }
 
 type DirectoryList = {
@@ -61,7 +62,8 @@ const parseBucketXMLToObject = (xmlString: string): Directory => {
     const result: Directory = {
       files: [],
       folders: {},
-      pwd: "/"
+      pwd: "/",
+      name: "root"
     };
 
     keys.forEach(key => {
@@ -86,7 +88,8 @@ const parseBucketXMLToObject = (xmlString: string): Directory => {
             current.folders[folderName] = {
               files: [],
               folders: {},
-              pwd: '/' + segments.slice(0, i + 1).join('/') + '/'
+              pwd: '/' + segments.slice(0, i + 1).join('/') + '/',
+              name: folderName
             };
           }
           
@@ -148,10 +151,10 @@ async function fetchResourceTextFromGoogleCloud(resourcePath: string) {
 
 // Etc
 
-export const S3_BASE_URL = "https://storage.googleapis.com/kennamainportfolio"
+export const GCLOUD_BASE_URL = "https://storage.googleapis.com/kennamainportfolio"
 export const getAssetUrl = (assetName: string) => {
   if (!assetName.startsWith("/")) assetName = "/" + assetName
   if (assetName.startsWith("/site-assets")) return assetName
 
-  return `${S3_BASE_URL}${assetName}`
+  return `${GCLOUD_BASE_URL}${assetName}`
 }
