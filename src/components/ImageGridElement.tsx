@@ -24,8 +24,7 @@ enum ResourceType {
   IMAGE = "image",
   GLB_MODEL = "glb/gltf model",
   PDF = "pdf",
-  JSON = "json",
-  EMPTY_DIRECTORY = "empty directory"
+  JSON = "json"
 }
 
 const ImageGridElement = ({ isSpacerImage, data, index, onClick, isModalOpen, defaultProjectName }: Props) => {
@@ -33,7 +32,7 @@ const ImageGridElement = ({ isSpacerImage, data, index, onClick, isModalOpen, de
   const [resourceType, setResourceType] = useState(ResourceType.NONE)
   const [projectTitle, setProjectTitle] = useState(defaultProjectName ?? "Project")
   const elementType = typeof data === "string" ? "single file" : "project"
-  const shouldSkip = (typeof data === "string" && data.endsWith(".json")) || resourceType === ResourceType.EMPTY_DIRECTORY
+  const shouldSkip = typeof data === "string" && data.endsWith(".json")
 
   const setResourceUrl = (url: string) => {
     setThumbnail(url)
@@ -78,8 +77,6 @@ const ImageGridElement = ({ isSpacerImage, data, index, onClick, isModalOpen, de
       return ResourceType.IMAGE
     } else if (href.endsWith(".json")) {
       return ResourceType.JSON
-    } else if (!href.includes(".")) {
-      return ResourceType.EMPTY_DIRECTORY
     }
 
     // fallback to image viewing

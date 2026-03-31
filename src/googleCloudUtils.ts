@@ -31,12 +31,8 @@ type UnprocessedFolders = {
 
 // returns the Directory structure of all files in the portfolio
 export const fetchPortfolioFiles = async (): Promise<Directory> => {
-  console.log("fetching file structure")
   const googleCloudResourcesXML = await fetchResourceTextFromGoogleCloud("")
-
   const fileStructure = parseBucketXMLToObject(googleCloudResourcesXML)
-  console.log("File structure")
-  console.log(fileStructure)
 
   return fileStructure
 }
@@ -67,11 +63,13 @@ const parseBucketXMLToObject = (xmlString: string): Directory => {
       folders: {},
       pwd: "/"
     };
-    
+
     keys.forEach(key => {
       // Split the key by '/' to get path segments
-      const segments = key.split('/').filter(segment => segment.trim() !== '');
-      
+      // note: keys will include files, but also folders, eg "Portfolio/ILLUSTRATIONS/"
+      // this means we can tell key is a folder when segments[-1] is the empty string ""
+      const segments = key.split('/')
+
       if (segments.length === 1) {
         // Root level file
         result.files.push(segments[0]);
@@ -96,8 +94,8 @@ const parseBucketXMLToObject = (xmlString: string): Directory => {
           current = current.folders[folderName];
         }
         
-        // Add file to current folder
-        if (fileName != undefined) {
+        // Add file to current folder, if it is a file (if it is a folder, fileName will be "")
+        if (fileName) {
           current.files.push(fileName);
         }
 
