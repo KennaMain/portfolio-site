@@ -6,8 +6,8 @@
     ".next/cache"
   ],
   "engines": {
-    "node": "18.x",
-    "npm": "8.x"
+    "node": "22.16.0",
+    "pnpm": "10.12.1"
   },
   "scripts": {
     "dev": "next dev --turbopack",
