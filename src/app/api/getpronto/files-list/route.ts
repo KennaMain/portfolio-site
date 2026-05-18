@@ -1,17 +1,17 @@
 
-export type File = {
+type File = {
   name: string
   assetId: string
 }
 
-export type DirectoryMetadata = {
+type DirectoryMetadata = {
   thumbnail?: string // filename of the thumbnail for this directory
   title?: string
   description?: string
   spacerImageFilepath?: string // if set, will add spacer images. if not, won't
 }
 
-export type Directory = {
+type Directory = {
   files: File[]
   folders: DirectoryList
   pwd: string

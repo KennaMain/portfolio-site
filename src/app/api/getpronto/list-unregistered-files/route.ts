@@ -1,15 +1,12 @@
 
 
-export async function requestGetPronto() {}
-
-
 type File = string
 // export type File = {
 //   name: string
 //   assetId: string
 // }
 
-export type DirectoryMetadata = {
+type DirectoryMetadata = {
   thumbnail?: string // filename of the thumbnail for this directory
   title?: string
   description?: string
