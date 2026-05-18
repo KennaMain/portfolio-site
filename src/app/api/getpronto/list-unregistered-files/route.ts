@@ -95,11 +95,8 @@ async function getFiles(page: number): Promise<GetprontoFilesResponse> {
 
 export async function GET(request: Request) {
   // try {
-    console.log("REQUEST RECIEVED!")
-    console.log("API KEY: " + process.env.API_KEY)
     // const params = (await paramsPromise) ?? {}
     // const pageSize = 20
-
 
     const registeredFiles = allFilesCurrentlyRegisteredInPortfolio()
     // const registeredSetldjslfjk = new Set(registeredFiles.map(f => f.assetId))
