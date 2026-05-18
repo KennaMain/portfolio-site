@@ -7,7 +7,7 @@ import FadeInFadeOut from './FadeInFadeOut';
 import "../special-css/backgroundBlur.css"
 import { GLTFViewerRenderProvider, SingleGLTFViewer } from './GLTFViewer';
 import ImageGridElement from './ImageGridElement';
-import { Directory, getAssetUrl } from '@/googleCloudUtils';
+import { Directory, getAssetUrl } from '@/getProntoUtils';
 
 type Props = {
     rootDirectory: Directory
@@ -175,7 +175,7 @@ const ImageGrid = ({ rootDirectory, hidden, onClick: externalOnClick, showModalO
         <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
           <div style={{display: "flex"}}>
             {pathToCurrentDirectory.length > 1 && pathToCurrentDirectory.map((dir: Directory) => {
-              return (<>
+              return (<div key={dir.pwd}>
                 <Button 
                   key={dir.pwd} 
                   onClick={() => setCurrentDirectory(dir)} 
@@ -193,7 +193,7 @@ const ImageGrid = ({ rootDirectory, hidden, onClick: externalOnClick, showModalO
                 { dir !== currentDirectory &&
                   <Typography sx={{fontSize:"16px", color: "#E8DFCD", fontWeight:"bold", alignContent: "center"}}>&gt;</Typography>
                 }
-              </>)
+              </div>)
             })}
           </div>
         </Grid>

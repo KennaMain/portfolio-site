@@ -7,7 +7,7 @@ import Image from 'next/image';
 import "../special-css/fadeOnHide.css"
 import "../special-css/backgroundBlur.css"
 import { SingleGLTFViewer } from './GLTFViewer';
-import { Directory, DirectoryMetadata, fetchJsonFromGoogleCloud, getAssetUrl } from '@/googleCloudUtils';
+import { Directory, getAssetUrl } from '@/getProntoUtils';
 import {DynamicTypography} from './DynamicTypography'
 
 type Props = {
@@ -52,17 +52,21 @@ const ImageGridElement = ({ isSpacerImage, data, index, onClick, isModalOpen, de
     const directory = data as Directory
 
     (async () => {
-      // try fetch metadata
-      const metadata = directory.files.includes("metadata.json") ? await fetchJsonFromGoogleCloud<DirectoryMetadata>(directory.pwd + "metadata.json") : undefined
-      if (metadata?.title) {
-        setProjectTitle(metadata.title)
-      }
+      // TODO: restore metadata feature
 
-      if (metadata?.thumbnail) {
-        setResourceUrl(directory.pwd + metadata.thumbnail.replaceAll(" ", "+"))
-      } else {
-        setResourceUrl(directory.pwd + directory.files[0])
-      }
+      // // try fetch metadata
+      // const metadata = directory.files.includes("metadata.json") ? await fetchJsonFromGoogleCloud<DirectoryMetadata>(directory.pwd + "metadata.json") : undefined
+      // if (metadata?.title) {
+      //   setProjectTitle(metadata.title)
+      // }
+
+      // if (metadata?.thumbnail) {
+      //   setResourceUrl(directory.pwd + metadata.thumbnail.replaceAll(" ", "+"))
+      // } else {
+      //   setResourceUrl(directory.pwd + directory.files[0])
+      // }
+
+      setResourceUrl(directory.pwd + directory.files[0])
     })()
   }, [(data as Directory)?.pwd])
 

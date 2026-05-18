@@ -27,13 +27,13 @@ const Carousel: React.FC<CarouselProps> = ({
 
   const nextSlide = () => {
     setCurrentIndex((prevIndex) => 
-      prevIndex === items.length - 1 ? 0 : prevIndex + 1
+      prevIndex === items?.length - 1 ? 0 : prevIndex + 1
     );
   };
 
   const prevSlide = () => {
     setCurrentIndex((prevIndex) => 
-      prevIndex === 0 ? items.length - 1 : prevIndex - 1
+      prevIndex === 0 ? items?.length - 1 : prevIndex - 1
     );
   };
 
@@ -124,7 +124,7 @@ const Carousel: React.FC<CarouselProps> = ({
     }, autoPlayInterval);
 
     return () => clearInterval(interval);
-  }, [autoPlay, autoPlayInterval, items.length, isDragging, isHovered]);
+  }, [autoPlay, autoPlayInterval, items?.length, isDragging, isHovered]);
 
   // Calculate drag percentage for visual feedback
   const getDragPercentage = () => {
@@ -152,7 +152,7 @@ const Carousel: React.FC<CarouselProps> = ({
             transition: isDragging ? 'none' : 'transform 0.3s ease-in-out'
           }}
         >
-          {items.map((item, index) => (
+          {items?.map((item, index) => (
             <div 
               key={index}
               className="carousel-slide"
@@ -164,7 +164,7 @@ const Carousel: React.FC<CarouselProps> = ({
       </div>
 
       {/* Navigation arrows */}
-      {showNavigation && items.length > 1 && (
+      {showNavigation && items?.length > 1 && (
         <>
           <button 
             className="carousel-button carousel-button-prev"
@@ -184,9 +184,9 @@ const Carousel: React.FC<CarouselProps> = ({
       )}
 
       {/* Indicators */}
-      {showIndicators && items.length > 1 && (
+      {showIndicators && items?.length > 1 && (
         <div className="carousel-indicators">
-          {items.map((_, index) => (
+          {items?.map((_, index) => (
             <button
               key={index}
               className={`carousel-indicator ${

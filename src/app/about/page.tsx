@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { Box, GridLegacy as Grid, Typography, Paper, IconButton } from '@mui/material';
 import { DarkBox } from '../../components/DarkBox';
 import { theme } from '@/theme';
-import { fetchPortfolioFiles, getAssetUrl } from '@/googleCloudUtils';
+import { fetchPortfolioFiles, getAssetUrl } from '@/getProntoUtils';
 import Carousel from '@/components/Carousel';
 
 {/* eslint-disable-next-line @typescript-eslint/no-unsafe-function-type */}

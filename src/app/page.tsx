@@ -2,7 +2,7 @@
 
 import { Button, Typography, Box } from "@mui/material"
 import React, { useEffect, useRef, useState } from 'react';
-import { Directory, fetchPortfolioFiles } from "@/googleCloudUtils"
+import { Directory, fetchPortfolioFiles } from "@/getProntoUtils"
 import ImageGrid from "@/components/ImageGrid"
 
 const color1 = "#eadfcb"
