@@ -2,10 +2,33 @@
   "pwd": "",
   "files": [],
   "folders": {
+    "LAYOUTS": {
+      "pwd": "",
+      "files": [
+        "https://api.getpronto.io/v1/file/user-cmp9vhusx243647978nxj25i69a/toothed-topsnail-1779202425655-ee6fd231f35b8e5e.webp",
+        "https://api.getpronto.io/v1/file/user-cmp9vhusx243647978nxj25i69a/slime-mold-spread-1779202424150-0eef21856fa5f9b4.webp",
+        "https://api.getpronto.io/v1/file/user-cmp9vhusx243647978nxj25i69a/newsletter-1-1779202418153-ccc18d3ec36c8167.webp",
+        "https://api.getpronto.io/v1/file/user-cmp9vhusx243647978nxj25i69a/newsletter-2-1779202421217-d879b003c9d49030.webp",
+        "https://api.getpronto.io/v1/file/user-cmp9vhusx243647978nxj25i69a/newsletter-3-1779202422584-839e3b2e38d96094.webp",
+        "https://api.getpronto.io/v1/file/user-cmp9vhusx243647978nxj25i69a/decorator-crab-spread-1779202416876-e9203ef70ff90088.webp"
+      ],
+      "folders": {}
+    },
+    "TYPE + IMAGE": {
+      "pwd": "",
+      "files": [
+        "https://api.getpronto.io/v1/file/user-cmp9vhusx243647978nxj25i69a/tomatoes--1779300712796-2db7c5e7bc072907.jpg",
+        "https://api.getpronto.io/v1/file/user-cmp9vhusx243647978nxj25i69a/showposter-1779300711492-7912bdcd2c1c8f5d.webp",
+        "https://api.getpronto.io/v1/file/user-cmp9vhusx243647978nxj25i69a/pictureyourself-1779300710059-3fc86852deecb5b9.jpg",
+        "https://api.getpronto.io/v1/file/user-cmp9vhusx243647978nxj25i69a/bookstore-posters-1779300707631-571968f77efc84fa.webp",
+        "https://api.getpronto.io/v1/file/user-cmp9vhusx243647978nxj25i69a/keyleaf-layout-1779299084808-20e2b0488a6f8d81.jpg",
+        "https://api.getpronto.io/v1/file/user-cmp9vhusx243647978nxj25i69a/inbetweenworlds-1779299083428-51d6074318f5be33.jpg"
+      ],
+      "folders": {}
+    },
     "SOCIAL MEDIA": {
       "pwd": "",
       "files": [
-        "https://api.getpronto.io/v1/file/user-cmp9vhusx243647978nxj25i69a/save-our-children-1779065235521-aadd38178449bda3.gif",
         "https://api.getpronto.io/v1/file/user-cmp9vhusx243647978nxj25i69a/b9a-1779064525897-601841d176b3fa0c.gif",
         "https://api.getpronto.io/v1/file/user-cmp9vhusx243647978nxj25i69a/b1-1779063254947-ed1cad9228a527d3.gif",
         "https://api.getpronto.io/v1/file/user-cmp9vhusx243647978nxj25i69a/postcard-2-1779063030789-e50656e9f3c758bd.webp",
@@ -27,6 +50,114 @@
         "https://api.getpronto.io/v1/file/user-cmp9vhusx243647978nxj25i69a/c2-1779063005467-dcae823ccf7a5aba.webp"
       ],
       "folders": {}
-    } 
+    },
+    "VISUAL IDENTITIES": {
+      "pwd": "",
+      "files": [],
+      "folders": {
+        "AQUARIUM WAYFINDING": {
+          "pwd": "",
+          "files": [
+            "https://api.getpronto.io/v1/file/user-cmp9vhusx243647978nxj25i69a/whalesignmodel-2-1779202441136-5cc05b7d4adaf27f.webp",
+            "https://api.getpronto.io/v1/file/user-cmp9vhusx243647978nxj25i69a/whalesign-2-1779202439347-aee0381eb786c3e0.webp",
+            "https://api.getpronto.io/v1/file/user-cmp9vhusx243647978nxj25i69a/whalesign-1-1779202438155-cda898b547f3bce9.webp",
+            "https://api.getpronto.io/v1/file/user-cmp9vhusx243647978nxj25i69a/whalefallsignmodel-1-1779202436338-54734117f441f9ae.webp",
+            "https://api.getpronto.io/v1/file/user-cmp9vhusx243647978nxj25i69a/whale-fall-signs-1779202434618-ad349fe35072c00f.png",
+            "https://api.getpronto.io/v1/file/user-cmp9vhusx243647978nxj25i69a/hydrothermalsigns-2-1779202432956-dfeeac985b0ef751.webp",
+            "https://api.getpronto.io/v1/file/user-cmp9vhusx243647978nxj25i69a/hydrothermalsigns-1-1779202431779-2b5ee80c71b8260e.webp",
+            "https://api.getpronto.io/v1/file/user-cmp9vhusx243647978nxj25i69a/bathroomsigns-1779202430523-c4913f11b95aa3e3.webp"
+          ],
+          "folders": {}
+        }
+      }
+    },
+    "PHOTOGRAPHY": {
+      "files": [
+        "https://api.getpronto.io/v1/file/user-cmp9vhusx243647978nxj25i69a/andtherewasacryinpescataria-1779299058037-d7c9cfc439a708f0.jpg",
+        "https://api.getpronto.io/v1/file/user-cmp9vhusx243647978nxj25i69a/can-jello-1779299066127-979ab2715a580432.webp",
+        "https://api.getpronto.io/v1/file/user-cmp9vhusx243647978nxj25i69a/regalclown-1779890091577-9f5967e24476a50d.jpg",
+        "https://api.getpronto.io/v1/file/user-cmp9vhusx243647978nxj25i69a/standingclown-1779890095573-5406436a0ea4b63d.jpg",
+        "https://api.getpronto.io/v1/file/user-cmp9vhusx243647978nxj25i69a/laundrylab-1779299068785-4f4a3feca216af8e.webp",
+        "https://api.getpronto.io/v1/file/user-cmp9vhusx243647978nxj25i69a/sponge-1779299077195-4dee2c74e9e2c9ec.jpg",
+        "https://api.getpronto.io/v1/file/user-cmp9vhusx243647978nxj25i69a/boat3-1779299063617-05d84d4d7326c293.jpg",
+        "https://api.getpronto.io/v1/file/user-cmp9vhusx243647978nxj25i69a/boat2-1779299061950-c0b464e2f6330829.webp",
+        "https://api.getpronto.io/v1/file/user-cmp9vhusx243647978nxj25i69a/boat1-1779299060494-e01cff8750b5396f.webp",
+        "https://api.getpronto.io/v1/file/user-cmp9vhusx243647978nxj25i69a/calmclown-1779890094345-0ea2a7eb06521a81.jpg",
+        "https://api.getpronto.io/v1/file/user-cmp9vhusx243647978nxj25i69a/cave-1779891032311-7bfab1e8ad05c12b.jpg",
+        "https://api.getpronto.io/v1/file/user-cmp9vhusx243647978nxj25i69a/baroqueclown-1779299059261-6064e84c843a0124.jpg",
+        "https://api.getpronto.io/v1/file/user-cmp9vhusx243647978nxj25i69a/wizard-1779299080668-b9358681278d44b1.jpg",
+        "https://api.getpronto.io/v1/file/user-cmp9vhusx243647978nxj25i69a/moldy-beet-1779300716520-31cfc8812fb67a44.jpg",
+        "https://api.getpronto.io/v1/file/user-cmp9vhusx243647978nxj25i69a/yellowgum-1779890754331-bea02f34ed680e36.jpg",
+        "https://api.getpronto.io/v1/file/user-cmp9vhusx243647978nxj25i69a/mirrorbed-1779299073043-f412fb31ae3bfb96.jpg",
+        "https://api.getpronto.io/v1/file/user-cmp9vhusx243647978nxj25i69a/long-exposure-1779300715285-8d27c5f1e7833f15.webp",
+        "https://api.getpronto.io/v1/file/user-cmp9vhusx243647978nxj25i69a/pillowblur-1779890743754-a3eeec7a53229b63.jpg",
+        "https://api.getpronto.io/v1/file/user-cmp9vhusx243647978nxj25i69a/theglobe-1779299079261-430b42b8ee024784.jpg",
+        "https://api.getpronto.io/v1/file/user-cmp9vhusx243647978nxj25i69a/flowers-1779299067427-44cf8da54c3fb02b.jpg",
+        "https://api.getpronto.io/v1/file/user-cmp9vhusx243647978nxj25i69a/snorkel-1779299075652-6d9ff79c845f1d93.jpg",
+        "https://api.getpronto.io/v1/file/user-cmp9vhusx243647978nxj25i69a/self-image-1779299074367-57f913790303ab00.jpg",
+        "https://api.getpronto.io/v1/file/user-cmp9vhusx243647978nxj25i69a/window-1779890751251-c541002b469b2632.jpg",
+        "https://api.getpronto.io/v1/file/user-cmp9vhusx243647978nxj25i69a/mangopepper-1779299071653-faf279c3abf0f354.jpg",
+        "https://api.getpronto.io/v1/file/user-cmp9vhusx243647978nxj25i69a/facenose-1779890748382-d84d6a0c4201541c.jpg",
+        "https://api.getpronto.io/v1/file/user-cmp9vhusx243647978nxj25i69a/faceteeth-1779890752792-d56e9f37c95bced6.jpg",
+        "https://api.getpronto.io/v1/file/user-cmp9vhusx243647978nxj25i69a/facechin-1779890925021-8f7d472a1857fb7c.jpg",
+        "https://api.getpronto.io/v1/file/user-cmp9vhusx243647978nxj25i69a/facecovered-3-1779890749843-a46ba1d9a46578b4.jpg",
+        "https://api.getpronto.io/v1/file/user-cmp9vhusx243647978nxj25i69a/bathroomqueen-2-1779890930075-4806b47b76f3342c.jpg",
+        "https://api.getpronto.io/v1/file/user-cmp9vhusx243647978nxj25i69a/bathroomqueen-1779890931898-002737daa9ceb7e7.jpg",
+        "https://api.getpronto.io/v1/file/user-cmp9vhusx243647978nxj25i69a/eyecircle-1779890926245-5d9819a396082a12.jpg",
+        "https://api.getpronto.io/v1/file/user-cmp9vhusx243647978nxj25i69a/lemonzest-1779299070015-91406da2f42bcc85.webp",
+        "https://api.getpronto.io/v1/file/user-cmp9vhusx243647978nxj25i69a/peppercradle-1779890922982-3e100d55b54d0e46.jpg",
+        "https://api.getpronto.io/v1/file/user-cmp9vhusx243647978nxj25i69a/pepper-1779300719166-bf5cb1fffd68f754.jpg",
+        "https://api.getpronto.io/v1/file/user-cmp9vhusx243647978nxj25i69a/peach-1779300717988-d0fb806ef3a2d854.webp",
+        "https://api.getpronto.io/v1/file/user-cmp9vhusx243647978nxj25i69a/eyes-1779890927446-335899971ede7280.jpg",
+        "https://api.getpronto.io/v1/file/user-cmp9vhusx243647978nxj25i69a/applemold-1779299081914-d72253a97b16e4d6.webp",
+        "https://api.getpronto.io/v1/file/user-cmp9vhusx243647978nxj25i69a/chancecold-1779890755631-a89e31bfbcf9f82e.jpg",
+        "https://api.getpronto.io/v1/file/user-cmp9vhusx243647978nxj25i69a/bugs-1779890746248-46983ce91f3838b0.jpg",
+        "https://api.getpronto.io/v1/file/user-cmp9vhusx243647978nxj25i69a/bridge-1779299064793-6275d0988c9018fc.webp"
+      ]
+    },
+    "ILLUSTRATIONS": {
+      "pwd": "",
+      "files": [
+        "https://api.getpronto.io/v1/file/user-cmp9vhusx243647978nxj25i69a/save-our-children-1779065235521-aadd38178449bda3.gif",
+        "https://api.getpronto.io/v1/file/user-cmp9vhusx243647978nxj25i69a/lynx-spider-1779299050365-a246f1a254b32deb.jpg",
+        "https://api.getpronto.io/v1/file/user-cmp9vhusx243647978nxj25i69a/cicada-illustration-1779059066556-9ee8689d6838ce88.webp",
+        "https://api.getpronto.io/v1/file/user-cmp9vhusx243647978nxj25i69a/icecream-cone-1779059081467-22ee3524da8400f1.jpg",
+        "https://api.getpronto.io/v1/file/user-cmp9vhusx243647978nxj25i69a/florida-insects-1779059072704-f02f49c148afd4ac.webp",
+        "https://api.getpronto.io/v1/file/user-cmp9vhusx243647978nxj25i69a/bat-strawberry-1779059047781-15d5bd683290bd8d.webp",
+        "https://api.getpronto.io/v1/file/user-cmp9vhusx243647978nxj25i69a/hedgehogseahorse-1779059078442-0df0e6b00834ee29.JPG",
+        "https://api.getpronto.io/v1/file/user-cmp9vhusx243647978nxj25i69a/portrait-self-1779059097062-50351be86764f3d7.webp",
+        "https://api.getpronto.io/v1/file/user-cmp9vhusx243647978nxj25i69a/little-bats-1779059088846-dd80a0e70144433e.webp",
+        "https://api.getpronto.io/v1/file/user-cmp9vhusx243647978nxj25i69a/bat-sticker-2-1779299056221-313623be182fad3e.webp",
+        "https://api.getpronto.io/v1/file/user-cmp9vhusx243647978nxj25i69a/bat-sticker-1-1779299054448-8d01924845fd6296.webp",
+        "https://api.getpronto.io/v1/file/user-cmp9vhusx243647978nxj25i69a/leafhopper-1779059083983-e67ce7196dacc64a.webp",
+        "https://api.getpronto.io/v1/file/user-cmp9vhusx243647978nxj25i69a/slipper-lobster-1779202428194-5d5b2a716c9f6a0e.webp",
+        "https://api.getpronto.io/v1/file/user-cmp9vhusx243647978nxj25i69a/brokendash-1779059054685-0ce4e65e720625df.JPG",
+        "https://api.getpronto.io/v1/file/user-cmp9vhusx243647978nxj25i69a/a-treehopper-1779059043967-5dac03a9b98dc77e.webp",
+        "https://api.getpronto.io/v1/file/user-cmp9vhusx243647978nxj25i69a/birds-1779059049350-6ded84c01803ae67.jpg",
+        "https://api.getpronto.io/v1/file/user-cmp9vhusx243647978nxj25i69a/spoonbill-1779059104914-642afa1b9f6f014d.jpg",
+        "https://api.getpronto.io/v1/file/user-cmp9vhusx243647978nxj25i69a/pipefish-cc-1779059095110-5d29bbad8b52a76f.jpg",
+        "https://api.getpronto.io/v1/file/user-cmp9vhusx243647978nxj25i69a/sweet-baby-1779059344127-89231686b492d386.webp",
+        "https://api.getpronto.io/v1/file/user-cmp9vhusx243647978nxj25i69a/magic-seahorse-cc-1779059090314-e479d0be03126062.jpg",
+        "https://api.getpronto.io/v1/file/user-cmp9vhusx243647978nxj25i69a/shrimp-1779059103109-58d70aa6a5f474b9.webp",
+        "https://api.getpronto.io/v1/file/user-cmp9vhusx243647978nxj25i69a/seapig-cc-1779059100919-da91996ca984d256.jpg",
+        "https://api.getpronto.io/v1/file/user-cmp9vhusx243647978nxj25i69a/sea-angel-1779059099598-075823d472119527.jpg",
+        "https://api.getpronto.io/v1/file/user-cmp9vhusx243647978nxj25i69a/angler-fish-1779059046341-98fec8d15c33b4cf.webp",
+        "https://api.getpronto.io/v1/file/user-cmp9vhusx243647978nxj25i69a/eel-1779059071123-2259d6fb037d2216.jpg",
+        "https://api.getpronto.io/v1/file/user-cmp9vhusx243647978nxj25i69a/dumbo-octopus-1779059069390-7e6ca0ad2f4a0c40.webp",
+        "https://api.getpronto.io/v1/file/user-cmp9vhusx243647978nxj25i69a/crab-ring-1779059067827-6ce100f8579d7582.webp",
+        "https://api.getpronto.io/v1/file/user-cmp9vhusx243647978nxj25i69a/bugsgrey-1779059055846-0432bfcd1bf1e39f.jpg",
+        "https://api.getpronto.io/v1/file/user-cmp9vhusx243647978nxj25i69a/charcoal-1779300713978-41d65fa79837803f.webp",
+        "https://api.getpronto.io/v1/file/user-cmp9vhusx243647978nxj25i69a/ink-1779299053123-5a6625a882f8ebd2.webp",
+        "https://api.getpronto.io/v1/file/user-cmp9vhusx243647978nxj25i69a/portrait-1779059098266-9ed9dac386698b10.webp",
+        "https://api.getpronto.io/v1/file/user-cmp9vhusx243647978nxj25i69a/mouse-1779059093396-ac5e98c357c4327c.jpg",
+        "https://api.getpronto.io/v1/file/user-cmp9vhusx243647978nxj25i69a/cat-1779059061327-998cda4b408061ed.jpg",
+        "https://api.getpronto.io/v1/file/user-cmp9vhusx243647978nxj25i69a/monograms-1779059092114-8e160b94f90b32bd.jpg",
+        "https://api.getpronto.io/v1/file/user-cmp9vhusx243647978nxj25i69a/leaves-1779059085940-9c2464fa202a547d.jpg",
+        "https://api.getpronto.io/v1/file/user-cmp9vhusx243647978nxj25i69a/food-1779059073890-0d3d2c969e213cae.jpg",
+        "https://api.getpronto.io/v1/file/user-cmp9vhusx243647978nxj25i69a/brindley-s-1779059053315-fe247652e7c7dfbb.jpg",
+        "https://api.getpronto.io/v1/file/user-cmp9vhusx243647978nxj25i69a/br-ziggy-1779059052180-f3ee034ea324a47d.jpg"
+      ],
+      "folders": {}
+    }
   }
 }
