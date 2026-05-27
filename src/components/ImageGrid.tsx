@@ -1,5 +1,5 @@
 // components/ImageGrid.js
-import React, { useEffect, useState } from 'react';
+import React, { ReactNode, useEffect, useState } from 'react';
 import { GridLegacy as Grid, Box, Backdrop, Button, Typography } from '@mui/material';
 import ReactDom from 'react-dom';
 import "../special-css/fadeOnHide.css"
@@ -20,25 +20,62 @@ const ImageGrid = ({ rootDirectory, hidden, onClick: externalOnClick, showModalO
   const [modalImage, setModalImage] = useState<{href: string, alt: string} | undefined>(undefined)
   const [hideModal, setHideModal] = useState(true)
   const [currentDirectory, setCurrentDirectory] = useState<Directory>(rootDirectory)
-  const [pathToCurrentDirectory, setPathToCurrentDirectory] = useState<Directory[]>([])
+  const [pathToCurrentDirectory, setPathToCurrentDirectory] = useState<Directory[]>([rootDirectory])
+  const [navigationElementList, setNavigationElementList] = useState<ReactNode[]>([])
 
   useEffect(() => {
     // whenever hidden is changed, reset the selected project
     setCurrentDirectory(rootDirectory) 
   }, [hidden])
 
-  useEffect(() => {
-    const relativePwd = currentDirectory.pwd.substring(rootDirectory.pwd.length)
-    const relativePath = relativePwd.split('/')
-    const pathToCurr = [rootDirectory]
-    relativePath.forEach(p => {
-      if (!p) return
+  // useEffect(() => {
+  //   // // ===================
+  //   // // pwd-dependant implementation
+  //   // // ===================
+  //   //
+  //   // const relativePwd = currentDirectory.pwd.substring(rootDirectory.pwd.length)
+  //   // const relativePath = relativePwd.split('/')
+  //   // const pathToCurr = [rootDirectory]
+  //   // relativePath.forEach(p => {
+  //   //   if (!p) return
 
-      const last = pathToCurr[pathToCurr.length-1]
-      pathToCurr.push(last.folders[p])
+  //   //   const last = pathToCurr[pathToCurr.length-1]
+  //   //   pathToCurr.push(last.folders[p])
+  //   // })
+  //   // setPathToCurrentDirectory(pathToCurr)
+    
+  // }, [currentDirectory])
+
+  useEffect(() => {
+    let pwd = "/"
+    const navElemList = pathToCurrentDirectory.map((dir: Directory, index: number) => {
+      pwd += dir.name
+      return (<div key={pwd}>
+        <Button 
+          key={pwd} 
+          onClick={() => {
+            setCurrentDirectory(dir)
+            setPathToCurrentDirectory(pathToCurrentDirectory.slice(0, index+1))
+          }} 
+          disabled={dir === currentDirectory}
+          sx={{
+            fontSize:"16px", 
+            color: "#D4B387", 
+            ":hover": { color: "#ac906f" }, 
+            ":disabled": { color: "#E8DFCD" },
+            fontWeight:"bold"
+          }}
+        >
+          {dir.name}
+        </Button>
+        { dir !== currentDirectory &&
+          <Typography sx={{fontSize:"16px", color: "#E8DFCD", fontWeight:"bold", alignContent: "center"}}>&gt;</Typography>
+        }
+      </div>)
     })
-    setPathToCurrentDirectory(pathToCurr)
-  }, [currentDirectory])
+
+    setNavigationElementList(navElemList)
+  }, [pathToCurrentDirectory])
 
   // =============================================
   // Helper Functions and Styling
@@ -174,27 +211,7 @@ const ImageGrid = ({ rootDirectory, hidden, onClick: externalOnClick, showModalO
       }}>
         <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
           <div style={{display: "flex"}}>
-            {pathToCurrentDirectory.length > 1 && pathToCurrentDirectory.map((dir: Directory) => {
-              return (<div key={dir.pwd}>
-                <Button 
-                  key={dir.pwd} 
-                  onClick={() => setCurrentDirectory(dir)} 
-                  disabled={dir === currentDirectory}
-                  sx={{
-                    fontSize:"16px", 
-                    color: "#D4B387", 
-                    ":hover": { color: "#ac906f" }, 
-                    ":disabled": { color: "#E8DFCD" },
-                    fontWeight:"bold"
-                  }}
-                >
-                  {dir.name}
-                </Button>
-                { dir !== currentDirectory &&
-                  <Typography sx={{fontSize:"16px", color: "#E8DFCD", fontWeight:"bold", alignContent: "center"}}>&gt;</Typography>
-                }
-              </div>)
-            })}
+            {pathToCurrentDirectory.length > 1 && navigationElementList}
           </div>
         </Grid>
         {
@@ -209,6 +226,7 @@ const ImageGrid = ({ rootDirectory, hidden, onClick: externalOnClick, showModalO
               data={folder} 
               onClick={() => {
                 setCurrentDirectory(folder)
+                setPathToCurrentDirectory([...pathToCurrentDirectory, folder])
               }}
               defaultProjectName={folderName}
             />

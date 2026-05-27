@@ -1,8 +1,10 @@
 {
+  "name": "HOME",
   "pwd": "",
   "files": [],
   "folders": {
     "LAYOUTS": {
+      "name": "LAYOUTS",
       "pwd": "",
       "files": [
         "https://api.getpronto.io/v1/file/user-cmp9vhusx243647978nxj25i69a/toothed-topsnail-1779202425655-ee6fd231f35b8e5e.webp",
@@ -15,6 +17,7 @@
       "folders": {}
     },
     "TYPE + IMAGE": {
+      "name": "TYPE + IMAGE",
       "pwd": "",
       "files": [
         "https://api.getpronto.io/v1/file/user-cmp9vhusx243647978nxj25i69a/tomatoes--1779300712796-2db7c5e7bc072907.jpg",
@@ -27,6 +30,7 @@
       "folders": {}
     },
     "SOCIAL MEDIA": {
+      "name": "SOCIAL MEDIA",
       "pwd": "",
       "files": [
         "https://api.getpronto.io/v1/file/user-cmp9vhusx243647978nxj25i69a/b9a-1779064525897-601841d176b3fa0c.gif",
@@ -52,6 +56,7 @@
       "folders": {}
     },
     "VISUAL IDENTITIES": {
+      "name": "VISUAL IDENTITIES",
       "pwd": "",
       "files": [],
       "folders": {
@@ -72,6 +77,7 @@
       }
     },
     "PHOTOGRAPHY": {
+      "name": "PHOTOGRAPHY",
       "files": [
         "https://api.getpronto.io/v1/file/user-cmp9vhusx243647978nxj25i69a/andtherewasacryinpescataria-1779299058037-d7c9cfc439a708f0.jpg",
         "https://api.getpronto.io/v1/file/user-cmp9vhusx243647978nxj25i69a/can-jello-1779299066127-979ab2715a580432.webp",
@@ -116,6 +122,7 @@
       ]
     },
     "ILLUSTRATIONS": {
+      "name": "ILLUSTRATIONS",
       "pwd": "",
       "files": [
         "https://api.getpronto.io/v1/file/user-cmp9vhusx243647978nxj25i69a/save-our-children-1779065235521-aadd38178449bda3.gif",
