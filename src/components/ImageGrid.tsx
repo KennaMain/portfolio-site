@@ -27,25 +27,6 @@ const ImageGrid = ({ rootDirectory, hidden, onClick: externalOnClick, showModalO
     // whenever hidden is changed, reset the selected project
     setCurrentDirectory(rootDirectory) 
   }, [hidden])
-
-  // useEffect(() => {
-  //   // // ===================
-  //   // // pwd-dependant implementation
-  //   // // ===================
-  //   //
-  //   // const relativePwd = currentDirectory.pwd.substring(rootDirectory.pwd.length)
-  //   // const relativePath = relativePwd.split('/')
-  //   // const pathToCurr = [rootDirectory]
-  //   // relativePath.forEach(p => {
-  //   //   if (!p) return
-
-  //   //   const last = pathToCurr[pathToCurr.length-1]
-  //   //   pathToCurr.push(last.folders[p])
-  //   // })
-  //   // setPathToCurrentDirectory(pathToCurr)
-    
-  // }, [currentDirectory])
-
   useEffect(() => {
     let pwd = "/"
     const navElemList = pathToCurrentDirectory.map((dir: Directory, index: number) => {
