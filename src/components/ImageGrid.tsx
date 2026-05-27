@@ -50,9 +50,9 @@ const ImageGrid = ({ rootDirectory, hidden, onClick: externalOnClick, showModalO
     let pwd = "/"
     const navElemList = pathToCurrentDirectory.map((dir: Directory, index: number) => {
       pwd += dir.name
-      return (<div key={pwd}>
+      return (<>
         <Button 
-          key={pwd} 
+          key={pwd+" - folder"} 
           onClick={() => {
             setCurrentDirectory(dir)
             setPathToCurrentDirectory(pathToCurrentDirectory.slice(0, index+1))
@@ -69,9 +69,9 @@ const ImageGrid = ({ rootDirectory, hidden, onClick: externalOnClick, showModalO
           {dir.name}
         </Button>
         { dir !== currentDirectory &&
-          <Typography sx={{fontSize:"16px", color: "#E8DFCD", fontWeight:"bold", alignContent: "center"}}>&gt;</Typography>
+          <Typography key={pwd + " - arrow"} sx={{fontSize:"16px", color: "#E8DFCD", fontWeight:"bold", alignContent: "center"}}>&gt;</Typography>
         }
-      </div>)
+      </>)
     })
 
     setNavigationElementList(navElemList)
