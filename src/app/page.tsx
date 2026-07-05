@@ -5,15 +5,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Directory, fetchPortfolioFiles } from "@/getProntoUtils"
 import ImageGrid from "@/components/ImageGrid"
 
-const color1 = "#eadfcb"
-const color2 = "#e3af7a"
-const color3 = "#535353"
-
-const backgroundColor1 = "#292929"
-
-const menuBarButtonStyle: any = {color: color2, fontWeight: "bold", fontSize: "x-large", textTransform: "none", padding: "1rem"}
-
-
+const menuBarButtonStyle: any = {color: '#3B3B3B', fontWeight: "bold", fontSize: "x-large", textTransform: "none", padding: "1rem"}
 
 export default function Home() {
   const [portfolioFileStructure, setPortfolioFileStructure] = useState<Directory | undefined>(undefined)
@@ -58,9 +50,10 @@ export default function Home() {
   })
 
   return (
-    <div style={{backgroundImage: 'url("/site-assets/home_background.webp")'}}>
+    <div style={{backgroundColor: '#FFFEF2'}}>
+      <img src='/site-assets/hero image.png' style={{width: '100%', marginBottom: '-4px'}}/>
       {/* menu bar */}
-      <div style={{ height: "fit-content", width: "100%", display: "flex", flexDirection: "row-reverse" }}>
+      <div style={{ height: "fit-content", width: "100%", display: "flex", flexDirection: "row-reverse", position: 'absolute', top: '0px' }}>
         <span style={{ float: "right", paddingRight: "10%" }}>
           <Button style={menuBarButtonStyle} onClick={() => scrollPageTo(refPortfolio)}>Portfolio</Button>
           <Button style={menuBarButtonStyle} onClick={() => scrollPageTo(refAbout)}    >About</Button>
@@ -68,23 +61,11 @@ export default function Home() {
         </span>
       </div>
 
-      {/* title */}
-      <div style={{height: "40rem", display: "flex", flexDirection: "row-reverse", alignItems: "center", fontSize: "3rem" }}>
-          <div style={{color: color1, padding: "2rem", paddingRight:"10%"}}>
-            <Typography style={{padding: "0.2rem", fontSize: "xx-large", fontWeight: "bold"}}>CONSTRUCT</Typography>
-            <Typography style={{padding: "0.2rem", fontSize: "xx-large", fontWeight: "bold"}}>COMPOSE</Typography>
-            <Typography style={{padding: "0.2rem", fontSize: "xx-large", fontWeight: "bold"}}>COMMUNICATE</Typography>
-            <Typography style={{padding: "0.2rem", paddingTop: "1.5rem", fontSize: "xx-large"}}>
-              It's what I do.
-            </Typography>
-          </div>
-      </div>
-
       {/* Spacer */}
-      <Box ref={refPortfolio} sx={{ height: "2rem" }}></Box>
+      <Box ref={refPortfolio} sx={{ height: "0rem" }}></Box>
       
       {/* Portfolio Section */}
-      <Box id="portfolio section" sx={{ display: 'flex', background: "#292929D0" }}>
+      <Box id="portfolio section" sx={{ display: 'flex', background: "#BEBDB5" }}>
         {/* Left side title - narrow box */}
         <Box 
           id="title container" 
@@ -118,6 +99,7 @@ export default function Home() {
                 width: '100%', 
                 height: '100%',
                 objectFit: 'contain', // Maintains aspect ratio within bounds
+                fill: '#FFFEF2'
               }}
               // format <x1, y1, x2, y2> 
               // adjust x1 and x2 to control how zoomed in the text is
@@ -125,15 +107,15 @@ export default function Home() {
               version="1.1"
             >
               <g>
-                <path d="M576.646,387.061l-0,-202.125l-374.325,0l0,94.5l130.2,0l0,107.625c0,63 31.5,95.025 92.925,95.025l58.275,0c61.425,0 92.925,-32.025 92.925,-95.025Zm-135.975,0.525c-20.475,0 -27.825,-7.35 -27.825,-28.875l0,-79.275l83.475,0l0,79.275c0,21.525 -6.825,28.875 -27.825,28.875l-27.825,0Z" style={{"fill":"#eadfcb", "fillRule":"nonzero"}} />
-                <path d="M581.896,758.758l0,-118.125c0,-63 -31.5,-95.025 -92.925,-95.025l-198.975,0c-61.425,0 -92.925,32.025 -92.925,95.025l0,118.125c0,63 31.5,95.025 92.925,95.025l198.975,0c61.425,0 92.925,-32.025 92.925,-95.025Zm-108.15,0.525l-168.525,0c-20.475,0 -27.825,-7.35 -27.825,-28.875l-0,-61.425c0,-21.525 7.35,-28.875 27.825,-28.875l168.525,0c21,0 27.825,7.35 27.825,28.875l0,61.425c0,21.525 -6.825,28.875 -27.825,28.875Z" style={{"fill":"#eadfcb", "fillRule":"nonzero"}} />
-                <path d="M202.321,1168.78l0,110.25l138.6,-94.5c11.55,36.225 40.425,54.075 86.625,54.075l56.175,0c61.425,0 92.925,-32.025 92.925,-95.55l0,-203.175l-374.325,0l0,94.5l132.825,0l0,43.05l-132.825,91.35Zm294,-134.4l0,80.325c0,22.05 -6.825,29.4 -27.825,29.4l-25.725,0c-20.475,0 -27.3,-7.35 -27.3,-29.4l0,-80.325l80.85,0Z" style={{"fill":"#eadfcb", "fillRule":"nonzero"}} />
-                <path d="M576.646,1598.752l0,-307.65l-80.325,0l0,106.575l-294,0l0,94.5l294,0l0,106.575l80.325,0Z" style={{"fill":"#eadfcb", "fillRule":"nonzero"}} />
-                <path d="M496.321,1929.499l80.325,0l0,-265.65l-374.325,0l0,94.5l139.65,0l0,149.1l80.325,0l0,-149.1l74.025,0l0,171.15Z" style={{"fill":"#eadfcb", "fillRule":"nonzero"}} />
-                <path d="M581.896,2208.796l0,-118.125c0,-63 -31.5,-95.025 -92.925,-95.025l-198.975,0c-61.425,0 -92.925,32.025 -92.925,95.025l0,118.125c0,63 31.5,95.025 92.925,95.025l198.975,0c61.425,0 92.925,-32.025 92.925,-95.025Zm-108.15,0.525l-168.525,0c-20.475,0 -27.825,-7.35 -27.825,-28.875l0,-61.425c0,-21.525 7.35,-28.875 27.825,-28.875l168.525,0c21,0 27.825,7.35 27.825,28.875l0,61.425c0,21.525 -6.825,28.875 -27.825,28.875Z" style={{"fill":"#eadfcb", "fillRule":"nonzero"}} />
-                <path d="M282.646,2484.418l294,0l0,-94.5l-374.325,0l0,259.875l80.325,0l-0,-165.375Z" style={{"fill":"#eadfcb", "fillRule":"nonzero"}} />
-                <path d="M202.321,2715.415l0,94.5l374.325,0l0,-94.5l-374.325,0Z" style={{"fill":"#eadfcb", "fillRule":"nonzero"}} />
-                <path d="M581.896,3109.162l-0,-118.125c0,-63 -31.5,-95.025 -92.925,-95.025l-198.975,0c-61.425,0 -92.925,32.025 -92.925,95.025l0,118.125c0,63 31.5,95.025 92.925,95.025l198.975,0c61.425,0 92.925,-32.025 92.925,-95.025Zm-108.15,0.525l-168.525,0c-20.475,0 -27.825,-7.35 -27.825,-28.875l0,-61.425c0,-21.525 7.35,-28.875 27.825,-28.875l168.525,0c21,0 27.825,7.35 27.825,28.875l0,61.425c0,21.525 -6.825,28.875 -27.825,28.875Z" style={{"fill":"#eadfcb", "fillRule":"nonzero"}} />
+                <path d="M576.646,387.061l-0,-202.125l-374.325,0l0,94.5l130.2,0l0,107.625c0,63 31.5,95.025 92.925,95.025l58.275,0c61.425,0 92.925,-32.025 92.925,-95.025Zm-135.975,0.525c-20.475,0 -27.825,-7.35 -27.825,-28.875l0,-79.275l83.475,0l0,79.275c0,21.525 -6.825,28.875 -27.825,28.875l-27.825,0Z" style={{"fillRule":"nonzero"}} />
+                <path d="M581.896,758.758l0,-118.125c0,-63 -31.5,-95.025 -92.925,-95.025l-198.975,0c-61.425,0 -92.925,32.025 -92.925,95.025l0,118.125c0,63 31.5,95.025 92.925,95.025l198.975,0c61.425,0 92.925,-32.025 92.925,-95.025Zm-108.15,0.525l-168.525,0c-20.475,0 -27.825,-7.35 -27.825,-28.875l-0,-61.425c0,-21.525 7.35,-28.875 27.825,-28.875l168.525,0c21,0 27.825,7.35 27.825,28.875l0,61.425c0,21.525 -6.825,28.875 -27.825,28.875Z" style={{"fillRule":"nonzero"}} />
+                <path d="M202.321,1168.78l0,110.25l138.6,-94.5c11.55,36.225 40.425,54.075 86.625,54.075l56.175,0c61.425,0 92.925,-32.025 92.925,-95.55l0,-203.175l-374.325,0l0,94.5l132.825,0l0,43.05l-132.825,91.35Zm294,-134.4l0,80.325c0,22.05 -6.825,29.4 -27.825,29.4l-25.725,0c-20.475,0 -27.3,-7.35 -27.3,-29.4l0,-80.325l80.85,0Z" style={{"fillRule":"nonzero"}} />
+                <path d="M576.646,1598.752l0,-307.65l-80.325,0l0,106.575l-294,0l0,94.5l294,0l0,106.575l80.325,0Z" style={{"fillRule":"nonzero"}} />
+                <path d="M496.321,1929.499l80.325,0l0,-265.65l-374.325,0l0,94.5l139.65,0l0,149.1l80.325,0l0,-149.1l74.025,0l0,171.15Z" style={{"fillRule":"nonzero"}} />
+                <path d="M581.896,2208.796l0,-118.125c0,-63 -31.5,-95.025 -92.925,-95.025l-198.975,0c-61.425,0 -92.925,32.025 -92.925,95.025l0,118.125c0,63 31.5,95.025 92.925,95.025l198.975,0c61.425,0 92.925,-32.025 92.925,-95.025Zm-108.15,0.525l-168.525,0c-20.475,0 -27.825,-7.35 -27.825,-28.875l0,-61.425c0,-21.525 7.35,-28.875 27.825,-28.875l168.525,0c21,0 27.825,7.35 27.825,28.875l0,61.425c0,21.525 -6.825,28.875 -27.825,28.875Z" style={{"fillRule":"nonzero"}} />
+                <path d="M282.646,2484.418l294,0l0,-94.5l-374.325,0l0,259.875l80.325,0l-0,-165.375Z" style={{"fillRule":"nonzero"}} />
+                <path d="M202.321,2715.415l0,94.5l374.325,0l0,-94.5l-374.325,0Z" style={{"fillRule":"nonzero"}} />
+                <path d="M581.896,3109.162l-0,-118.125c0,-63 -31.5,-95.025 -92.925,-95.025l-198.975,0c-61.425,0 -92.925,32.025 -92.925,95.025l0,118.125c0,63 31.5,95.025 92.925,95.025l198.975,0c61.425,0 92.925,-32.025 92.925,-95.025Zm-108.15,0.525l-168.525,0c-20.475,0 -27.825,-7.35 -27.825,-28.875l0,-61.425c0,-21.525 7.35,-28.875 27.825,-28.875l168.525,0c21,0 27.825,7.35 27.825,28.875l0,61.425c0,21.525 -6.825,28.875 -27.825,28.875Z" style={{"fillRule":"nonzero"}} />
               </g>
             </svg>
           </Box>
@@ -160,47 +142,83 @@ export default function Home() {
       </Box>
 
       {/* Spacer */}
-      <Box ref={refAbout} sx={{ height: "2rem" }}></Box>
+      <Box ref={refAbout} sx={{ height: "0rem" }}></Box>
 
       {/* About Me Section */}
-      <Box sx={{ color: color3, display: 'flex', padding: "2rem", background: "#C9C9C9ee", height: "fit-children", flexDirection: "column" }}>
-        <Typography sx={{ 
-          fontSize: "5rem", 
-          color: color3, 
-          fontWeight: "bold",
-        }}>
-          ABOUT ME
-        </Typography>
-        <Typography style={{padding: "0.2rem", fontSize: "x-large"}}>
-          I have a background in both <span style={{fontWeight: "bold"}}>graphic design</span> and <span style={{fontWeight: "bold"}}>biology</span>, and I find that the two influence each other quite a bit.
-        </Typography>
-        <Typography style={{padding: "0.2rem", fontSize: "x-large"}}>
-          As a graphic designer I look to incorporate observation, research, visual interest, flow, surprise, and storytelling. My goal is to inspire conversation, inform, and share with others through design.
-        </Typography>
+      <Box
+        sx={{
+          color: '#566E62',
+          display: 'flex',
+          flexDirection: 'row',        // side by side
+          background: "#FFFEF2",
+          // height is auto; will be determined by the typography content
+        }}
+      >
+        {/* Left: Typography content */}
+        <Box sx={{ width: "66%", margin: '2rem' }}>
+          <Typography sx={{ 
+            fontSize: "5rem", 
+            fontWeight: "bold",
+          }}>
+            ABOUT ME
+          </Typography>
+          <Typography style={{ padding: "0.2rem", fontSize: "x-large" }}>
+            I have a background in both <span style={{fontWeight: "bold"}}>graphic design</span> and <span style={{fontWeight: "bold"}}>biology</span>, and I find that the two influence each other quite a bit.
+          </Typography>
+          <Typography style={{ padding: "0.2rem", fontSize: "x-large" }}>
+            As a graphic designer I look to incorporate observation, research, visual interest, flow, surprise, and storytelling. My goal is to inspire conversation, inform, and share with others through design.
+          </Typography>
+        </Box>
+
+        {/* Right: Image box – stretches to match the left box height */}
+        <Box
+          sx={{
+            width: "33%",
+            overflow: "hidden",       // hides any overflow from the image
+            // height is auto, flex stretch will make it fill the container
+          }}
+        >
+          <img
+            src="/site-assets/me.png"
+            alt="Me"
+            style={{
+              height: "106%",
+              width: "106%",
+              marginTop: "-3%",
+              objectFit: "contain",     // or "contain" if you want the whole image visible
+            }}
+          />
+        </Box>
       </Box>
 
       {/* Spacer */}
-      <Box ref={refContact} sx={{ height: "2rem" }}></Box>
+      <Box ref={refContact} sx={{ height: "0rem" }}></Box>
 
       {/* Contact Section */}
-      <Box sx={{ display: 'flex', padding: "2rem", background: "#292929D0", height: "fit-children", flexDirection: "column" }}>
+      <Box sx={{ 
+        display: 'flex', 
+        padding: "2rem", 
+        background: "#A2CAB7", 
+        color: "#566E62", 
+        height: "fit-children", 
+        flexDirection: "column" 
+      }}>
         <Typography sx={{ 
           fontSize: "5rem", 
-          color: color2, 
           fontWeight: "bold",
         }}>
           CONTACT
         </Typography>
-        <Typography style={{ color: color1, padding: "0.2rem", fontSize: "xx-large", fontWeight: "bold" }}>
+        <Typography style={{ padding: "0.2rem", fontSize: "xx-large", fontWeight: "bold" }}>
           LinkedIn
         </Typography>
-        <Typography style={{ color: color1, padding: "0.2rem", fontSize: "large", fontWeight: "bold" }}>
+        <Typography style={{ padding: "0.2rem", fontSize: "large", fontWeight: "bold" }}>
           <a href="https://www.linkedin.com/in/kenna-main-design">www.linkedin.com/in/kenna-main-design</a>
         </Typography>
-        <Typography style={{ color: color1, padding: "0.2rem", fontSize: "xx-large", fontWeight: "bold" }}>
+        <Typography style={{ padding: "0.2rem", fontSize: "xx-large", fontWeight: "bold" }}>
           Email
         </Typography>
-        <Typography style={{ color: color1, padding: "0.2rem", fontSize: "large", fontWeight: "bold" }}>
+        <Typography style={{ padding: "0.2rem", fontSize: "large", fontWeight: "bold" }}>
           <a href="mailto:Kenna.m@icloud.com">Kenna.m@icloud.com</a>
         </Typography>
       </Box>

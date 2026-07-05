@@ -211,14 +211,14 @@ const ImageGridElement = ({ isSpacerImage, data, index, onClick, isModalOpen, de
               justifyContent: "center", /* Centers content horizontally */
               alignItems: "center",    /* Centers content vertically */
               padding: "20px",
-              background: "#DBB181",
+              background: "#FFFEF2",
+              color:"#4F6F61",
             }}>
               <Box sx={{
                 display: "flex", 
                 flexDirection:"column",
                 padding: "10px",
                 textAlign: "center", 
-                color:"#2d2d2e",
                 width: "100%", 
                 height: "100%",
                 justifyContent: "center",

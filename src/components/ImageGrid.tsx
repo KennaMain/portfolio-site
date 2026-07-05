@@ -41,9 +41,9 @@ const ImageGrid = ({ rootDirectory, hidden, onClick: externalOnClick, showModalO
           disabled={dir === currentDirectory}
           sx={{
             fontSize:"16px", 
-            color: "#D4B387", 
-            ":hover": { color: "#ac906f" }, 
-            ":disabled": { color: "#E8DFCD" },
+            color: "#677D71", 
+            ":hover": { color: "#3B3B3B" }, 
+            ":disabled": { color: "#FFFEF2" },
             fontWeight:"bold"
           }}
         >
