@@ -10,7 +10,7 @@ type Props = {
   fadeTime?: string
 }
 
-const FadeInFadeOut = ({ hidden, children, onAnimationEnd, onFadeOutAnimationEnd, onFadeInAnimationEnd, fadeTime }: Props) => {
+export const FadeInFadeOut = ({ hidden, children, onAnimationEnd, onFadeOutAnimationEnd, onFadeInAnimationEnd, fadeTime }: Props) => {
   const [isFirst, setIsFirst] = useState(true)
   const [isFading, setIsFading] = useState(false);
   const [animation, setAnimation] = useState(hidden ? "fadeOut" : "fadeIn");
@@ -42,5 +42,3 @@ const FadeInFadeOut = ({ hidden, children, onAnimationEnd, onFadeOutAnimationEnd
     </div>
   );
 }
-
-export default FadeInFadeOut
