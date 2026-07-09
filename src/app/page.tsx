@@ -1,9 +1,8 @@
 'use client'
 
-import { Typography, Box } from "@mui/material"
+import { Box } from "@mui/material"
 import React, { useEffect, useRef, useState } from 'react';
 import { Directory, fetchPortfolioFiles } from "@/getProntoUtils"
-import ImageGrid from "@/components/ImageGrid"
 import "./globals.css"
 import { HeroImage } from "./rootPage/HeroImage";
 import { PortfolioSection } from "./rootPage/PortfolioSection";

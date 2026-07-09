@@ -4,8 +4,8 @@
 import React, { ReactNode, SyntheticEvent, useEffect, useState } from 'react';
 import { GridLegacy as Grid, Box, Typography } from '@mui/material';
 import Image from 'next/image';
-import "../special-css/fadeOnHide.css"
-import "../special-css/backgroundBlur.css"
+import "./fadeOnHide.css"
+import "./backgroundBlur.css"
 import { SingleGLTFViewer } from './GLTFViewer';
 import { Directory, getAssetUrl } from '@/getProntoUtils';
 import {DynamicTypography} from './DynamicTypography'

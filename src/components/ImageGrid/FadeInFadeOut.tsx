@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import '../special-css/fadeOnHide.css'
+import './fadeOnHide.css'
 
 type Props = {
   hidden: boolean,

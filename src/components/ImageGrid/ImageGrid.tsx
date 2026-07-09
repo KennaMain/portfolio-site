@@ -2,9 +2,9 @@
 import React, { ReactNode, useEffect, useState } from 'react';
 import { GridLegacy as Grid, Box, Backdrop, Button, Typography } from '@mui/material';
 import ReactDom from 'react-dom';
-import "../special-css/fadeOnHide.css"
+import "./fadeOnHide.css"
 import { FadeInFadeOut } from './FadeInFadeOut';
-import "../special-css/backgroundBlur.css"
+import "./backgroundBlur.css"
 import { GLTFViewerRenderProvider, SingleGLTFViewer } from './GLTFViewer';
 import ImageGridElement from './ImageGridElement';
 import { Directory, getAssetUrl } from '@/getProntoUtils';

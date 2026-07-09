@@ -1,7 +1,7 @@
 
 import { Typography, Box } from "@mui/material"
 import React from 'react';
-import ImageGrid from "@/components/ImageGrid"
+import ImageGrid from "@/components/ImageGrid/ImageGrid"
 import "../globals.css"
 
 export const PortfolioSection = ({loading, portfolioFileStructure, emptyDirectory}: any) => {
