@@ -1,11 +1,12 @@
 'use client'
 
-import { Button, Typography, Box } from "@mui/material"
+import { Typography, Box } from "@mui/material"
 import React, { useEffect, useRef, useState } from 'react';
 import { Directory, fetchPortfolioFiles } from "@/getProntoUtils"
 import ImageGrid from "@/components/ImageGrid"
+import "./globals.css"
 
-const menuBarButtonStyle: any = {color: '#3B3B3B', fontWeight: "bold", fontSize: "x-large", textTransform: "none", padding: "1rem"}
+const menuBarButtonStyle: any = {fontWeight: "bold", fontSize: "x-large", textTransform: "none", padding: "1rem"}
 
 export default function Home() {
   const [portfolioFileStructure, setPortfolioFileStructure] = useState<Directory | undefined>(undefined)
@@ -50,14 +51,14 @@ export default function Home() {
   })
 
   return (
-    <div style={{backgroundColor: '#FFFEF2'}}>
+    <div className="page">
       <img src='/site-assets/hero image.png' style={{width: '100%', marginBottom: '-4px'}}/>
       {/* menu bar */}
       <div style={{ height: "fit-content", width: "100%", display: "flex", flexDirection: "row-reverse", position: 'absolute', top: '0px' }}>
         <span style={{ float: "right", paddingRight: "10%" }}>
-          <Button style={menuBarButtonStyle} onClick={() => scrollPageTo(refPortfolio)}>Portfolio</Button>
-          <Button style={menuBarButtonStyle} onClick={() => scrollPageTo(refAbout)}    >About</Button>
-          <Button style={menuBarButtonStyle} onClick={() => scrollPageTo(refContact)}    >Contact</Button>
+          <button style={menuBarButtonStyle} className="menuBarButton" onClick={() => scrollPageTo(refPortfolio)}>Portfolio</button>
+          <button style={menuBarButtonStyle} className="menuBarButton" onClick={() => scrollPageTo(refAbout)}    >About</button>
+          <button style={menuBarButtonStyle} className="menuBarButton" onClick={() => scrollPageTo(refContact)}  >Contact</button>
         </span>
       </div>
 
@@ -65,7 +66,7 @@ export default function Home() {
       <Box ref={refPortfolio} sx={{ height: "0rem" }}></Box>
       
       {/* Portfolio Section */}
-      <Box id="portfolio section" sx={{ display: 'flex', background: "#BEBDB5" }}>
+      <Box id="portfolio section" className="portfolioSection" sx={{ display: 'flex' }}>
         {/* Left side title - narrow box */}
         <Box 
           id="title container" 
@@ -95,11 +96,11 @@ export default function Home() {
             }}
           >
             <svg 
+              className="portfolioTitleText"
               style={{ 
                 width: '100%', 
                 height: '100%',
                 objectFit: 'contain', // Maintains aspect ratio within bounds
-                fill: '#FFFEF2'
               }}
               // format <x1, y1, x2, y2> 
               // adjust x1 and x2 to control how zoomed in the text is
@@ -146,11 +147,10 @@ export default function Home() {
 
       {/* About Me Section */}
       <Box
+        className="aboutMeSection"
         sx={{
-          color: '#566E62',
           display: 'flex',
           flexDirection: 'row',        // side by side
-          background: "#FFFEF2",
           // height is auto; will be determined by the typography content
         }}
       >
@@ -195,14 +195,15 @@ export default function Home() {
       <Box ref={refContact} sx={{ height: "0rem" }}></Box>
 
       {/* Contact Section */}
-      <Box sx={{ 
-        display: 'flex', 
-        padding: "2rem", 
-        background: "#A2CAB7", 
-        color: "#566E62", 
-        height: "fit-children", 
-        flexDirection: "column" 
-      }}>
+      <Box 
+        className="contactMeSection"
+        sx={{ 
+          display: 'flex', 
+          padding: "2rem", 
+          height: "fit-children", 
+          flexDirection: "column" 
+        }}
+      >
         <Typography sx={{ 
           fontSize: "5rem", 
           fontWeight: "bold",

@@ -202,7 +202,7 @@ const ImageGridElement = ({ isSpacerImage, data, index, onClick, isModalOpen, de
       <Box sx={gridItemBackgroundStyling()} onClick={onClick}>
         {
           elementType === "project"
-          ? <Box sx={{
+          ? <Box className="portfolioButton" sx={{
               height: "100%",
               width: "100%",
               lineHeight: "100%",
@@ -211,8 +211,6 @@ const ImageGridElement = ({ isSpacerImage, data, index, onClick, isModalOpen, de
               justifyContent: "center", /* Centers content horizontally */
               alignItems: "center",    /* Centers content vertically */
               padding: "20px",
-              background: "#FFFEF2",
-              color:"#4F6F61",
             }}>
               <Box sx={{
                 display: "flex", 

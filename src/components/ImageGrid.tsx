@@ -32,25 +32,25 @@ const ImageGrid = ({ rootDirectory, hidden, onClick: externalOnClick, showModalO
     const navElemList = pathToCurrentDirectory.map((dir: Directory, index: number) => {
       pwd += dir.name
       return (<>
-        <Button 
+        <button 
           key={pwd+" - folder"} 
           onClick={() => {
             setCurrentDirectory(dir)
             setPathToCurrentDirectory(pathToCurrentDirectory.slice(0, index+1))
           }} 
           disabled={dir === currentDirectory}
-          sx={{
+          className='portfolioNavigationBarButton'
+          style={{
             fontSize:"16px", 
-            color: "#677D71", 
-            ":hover": { color: "#3B3B3B" }, 
-            ":disabled": { color: "#FFFEF2" },
-            fontWeight:"bold"
+            fontWeight:"bold",
+            paddingRight: "0.5rem",
+            paddingLeft: "0.5rem"
           }}
         >
           {dir.name}
-        </Button>
+        </button>
         { dir !== currentDirectory &&
-          <Typography key={pwd + " - arrow"} sx={{fontSize:"16px", color: "#E8DFCD", fontWeight:"bold", alignContent: "center"}}>&gt;</Typography>
+          <Typography key={pwd + " - arrow"} className='portfolioNavigationBar' sx={{fontSize:"16px",fontWeight:"bold", alignContent: "center"}}>&gt;</Typography>
         }
       </>)
     })
