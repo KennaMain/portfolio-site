@@ -5,6 +5,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Directory, fetchPortfolioFiles } from "@/getProntoUtils"
 import ImageGrid from "@/components/ImageGrid"
 import "./globals.css"
+import { HeroImage } from "./rootPage/HeroImage";
 
 const menuBarButtonStyle: any = {fontWeight: "bold", fontSize: "x-large", textTransform: "none", padding: "1rem"}
 
@@ -52,7 +53,7 @@ export default function Home() {
 
   return (
     <div className="page">
-      <img src='/site-assets/hero image.png' style={{width: '100%', marginBottom: '-4px'}}/>
+      <HeroImage/>
       {/* menu bar */}
       <div style={{ height: "fit-content", width: "100%", display: "flex", flexDirection: "row-reverse", position: 'absolute', top: '0px' }}>
         <span style={{ float: "right", paddingRight: "10%" }}>
