@@ -29,6 +29,16 @@
   --secondary-300: #4F6F61;
 }
 
+:root[data-theme='dark'] {
+  --primary-100: #FFFEF2;
+  --primary-200: #BEBDB5;
+  --primary-300: #3B3B3B;
+  --secondary-100: #4F6F61;
+  --secondary-200: #566E62;
+  --secondary-210: #677D71;
+  --secondary-3000: #A2CAB7;
+}
+
 .menuBarButton {
   color: var(--primary-100);
   background: none;
