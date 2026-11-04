@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Kenna Main Designs</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+    <!-- Frozen header -->
+    <header class="site-header" id="siteHeader">
+        <div class="containerbody">
+            <nav class="navigation" aria-label="Primary navigation">
+                <ul class="nav-list">
+                    <li><a style="text-decoration:none" href="/about">about</a></li>
+                    <li><a style="text-decoration:none" href="/work">work</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero image -->
+    <section class="hero" id="hero">
+        <div class="containerhero">
+            <div class="flexhero">
+                <img src="hero_image.png" alt="Hero" class="image" loading="lazy" width="1200" height="800" />
+            </div>
+        </div>
+    </section>
+
+    <!-- "me" image (scrolls with page so it leaves at scrollY = 132vh) -->
+    <div class="me-container" id="meContainer">
+        <img src="me.png" alt="Me" class="me-image" loading="lazy" width="400" height="400" />
+    </div>
+
+    <!-- 200vh scroll runway: 100vh for me + 100vh for hero slide-out -->
+    <div class="scroll-spacer" id="scrollSpacer"></div>
+
+    <!-- Scrollable content -->
+    <section class="contentwork">
+        <div class="containerwork">
+            <h1 id="work">All Work</h1>
+        </div>
+        <div>
+            <h2 id="play">...and some play</h2>
+        </div>
+    </section>
+
+    <section class="contentcard">
+        <div class="containercards">
+            <div class="flex-cards">
+                <div class="grid">
+                    <a style="text-decoration:none" href="/gilded_butterfly">
+                      <article class="card">
+                        <div class="card_text">
+                          <h3 class="card__title">The Gilded Butterfly</h3>
+                          <p class="card__description">Brand Identity</p>
+                        </div>
+                        <img src="gilded_butterfly/spin_gb.png" alt="logo sketches" class="spin secondary-content-vb"/>  
+                      </article>
+                    </a>
+                    <a style="text-decoration:none" href="/aquarium">
+                      <article class="card">
+                        <div class="card_text">
+                          <h3 class="card__title">Deep Sea Aquarium</h3>
+                          <p class="card__description">Visual Identity + Wayfinding System</p>
+                        </div>
+                      </article>
+                    </a>
+                    <a style="text-decoration:none" href="/404">
+                      <article class="card">
+                        <div class="card_text">
+                          <h3 class="card__title">Client-Based Items</h3>
+                          <p class="card__description">Brand Identity + Social Media Design</p>
+                        </div>
+                      </article>
+                    </a>
+                    <a style="text-decoration:none" href="/lbtp">
+                      <article class="card">
+                        <div class="card_text">
+                          <h3 class="card__title">La Brea Tar Pits</h3>
+                          <p class="card__description">Visual Identity</p>
+                        </div>
+                      </article>
+                    </a>
+                    <a style="text-decoration:none" href="/404">
+                      <article class="card">
+                        <div class="card_text">
+                          <h3 class="card__title">Camelot Emporium</h3>
+                          <p class="card__description">Logo Design</p>
+                        </div>
+                      </article>
+                    </a>
+                    <a style="text-decoration:none" href="/404">
+                      <article class="card">
+                        <div class="card_text">
+                          <h3 class="card__title">One Shots</h3>
+                          <p class="card__description">Illustration + Typography</p>
+                        </div>
+                      </article>
+                    </a>
+                </div>
+            </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        (function () {
+            const hero = document.getElementById('hero');
+            const siteHeader = document.getElementById('siteHeader');
+            const meContainer = document.getElementById('meContainer');
+
+            // Where "me" fully leaves the top of the viewport.
+            // me-image is -32vh below expected (centered) position for stylistic reasons, so that must be accounted for when calculating sizes:
+            // me-container is absolute at top:0 with height:100vh → leaves at 100vh + 32vh.
+            let meExitPoint = window.innerHeight * 1.32;
+            // Where the hero fully slides off (one more viewport of scrolling).
+            let heroExitPoint = meExitPoint + window.innerHeight;
+
+            let ticking = false;
+
+            function recalc() {
+                const viewHeight = meContainer.getBoundingClientRect().height;
+                meExitPoint = viewHeight * 1.32;
+                heroExitPoint = meExitPoint + viewHeight;
+            }
+
+            function update() {
+                const y = window.scrollY;
+
+                // Before me leaves: hero + header frozen at 0.
+                // After me leaves: slide hero + header up 1:1 with scroll,
+                // so content below enters from the bottom while hero exits top.
+                const offset = Math.max(0, Math.min(y - meExitPoint, meExitPoint));
+                const t = 'translate3d(0, -' + offset + 'px, 0)';
+
+                hero.style.transform = t;
+                siteHeader.style.transform = t;
+
+                // Fully off-screen? Hide to free up interaction.
+                const fullyGone = offset >= meExitPoint - 0.5;
+                hero.classList.toggle('is-offscreen', fullyGone);
+                siteHeader.classList.toggle('is-offscreen', fullyGone);
+
+                ticking = false;
+            }
+
+            function onScroll() {
+                if (ticking) return;
+                ticking = true;
+                requestAnimationFrame(update);
+            }
+
+            window.addEventListener('scroll', onScroll, { passive: true });
+            window.addEventListener('resize', function () {
+                recalc();
+                update();
+            });
+
+            recalc();
+            update();
+        })();
+    </script>
+</body>
+
+</html>

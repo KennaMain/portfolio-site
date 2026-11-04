@@ -1,0 +1,326 @@
+@font-face {
+  font-family: Erbaum;
+  src: url(fonts/Erbaum-Book.otf);
+}
+
+@font-face {
+  font-family: Erbaum;
+  src: url(fonts/Erbaum-Bold.otf);
+  font-weight: bold;
+}
+
+:root {
+  --color-primary: #2563eb;
+  --color-secondary: #64748b;
+  --color-background: #ffffff;
+  --color-surface: #f8fafc;
+  --color-text: #0f172a;
+  --color-muted-text: #64748b;
+  --color-border: #e2e8f0;
+  --color-accent: #0ea5e9;
+  --font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+  --max-width: 1200px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: auto;
+}
+
+body {
+  font-family: Erbaum, var(--font-family);
+  color: var(--color-text);
+  background-color: #F2F2EC;
+  margin: 0;
+  min-height: 100vh;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+.containerbody {
+  width: min(100% - 32px, var(--max-width));
+  margin-inline: auto;
+}
+
+.nav-list {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  justify-content: center;
+}
+
+.nav-list a {
+  text-decoration: none;
+  color: #6BB8A3;
+  font-weight: 500;
+}
+
+.nav-list a:hover {
+  color: #F99C31;
+}
+
+.card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* ---------- Frozen header (scrolls away with hero on release) ---------- */
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 20px 0;
+  background-color: #F2F2EC;
+  z-index: 1000;
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
+}
+
+/* ---------- Hero: fixed; translated up after release ---------- */
+.hero {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  padding: 0;
+  background-color: #F2F2EC;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 900;
+  overflow: hidden;
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
+}
+
+/* Once fully off-screen, drop it out of the interaction tree */
+.hero.is-offscreen {
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.containerhero {
+  padding: 0 16px;
+  margin: 0 auto;
+  max-width: 2000px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.flexhero {
+  display: flex;
+  flex-direction: row-reverse;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  outline: 1.5px solid #6BB8A3;
+  outline-offset: 30px;
+  border-radius: 1px;
+  margin: 50px;
+  width: 100%;
+  max-width: 1000px;
+}
+
+.flexhero .image {
+  width: 100%;
+  height: auto;
+  max-height: 60vh;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+/* ---------- "me" image: bottom-right, above everything, scrolls with page ---------- */
+.me-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 2000;
+}
+
+.me-image {
+  position: absolute;
+  bottom: -12vh;
+  right: 20px;
+  width: 30vh;
+  height: 30vh;
+  object-fit: contain;
+  pointer-events: auto;
+}
+
+/* ---------- Spacer: 200vh = 100vh (me exits) + 100vh (hero slides out) ---------- */
+.scroll-spacer {
+  height: 232vh;
+  pointer-events: none;
+}
+
+/* ---------- Scrollable content (starts at doc position 200vh) ---------- */
+.contentwork {
+  position: relative;
+  z-index: 10;
+  background-color: #F99C31;
+  padding: 20px 0;
+}
+
+.containerwork {
+  padding: 0;
+  margin: 0 auto;
+  max-width: 1200px;
+  width: 100%;
+}
+
+.contentwork h1 {
+  font-weight: 500;
+  font-size: 2.5rem;
+  color: #F2F2EC;
+  text-align: center;
+  margin-bottom: 0;
+}
+
+.contentwork h2 {
+  font-weight: 300;
+  font-size: 1rem;
+  color: #F2F2EC;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.contentcard {
+  position: relative;
+  z-index: 10;
+  background-color: #F2F2EC;
+  padding: 20px 0;
+}
+
+.containercards {
+  padding: 0 16px;
+  margin: 0 auto;
+  background-color: #F2F2EC;
+  max-width: 1200px;
+  width: 100%;
+}
+
+.flex-cards {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 18px;
+  padding: 0;
+}
+
+.grid {
+  display: grid;
+  gap: 15px;
+  grid-template-columns: 1fr 1fr;
+  width: 100%;
+}
+
+.card {
+  padding: 24px;
+  background-color: #F9F9F6;
+  border-radius: 8px;
+  border: 1.5px solid #6BB8A3;
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+.card__title,
+.card__description {
+  color: #6BB8A3;
+}
+
+.containerlastcard {
+  padding-left: 15px;
+  padding-right: 15px;
+  margin: 0 auto;
+  max-width: 1200px;
+  width: 100%;
+}
+
+.lastcard {
+  width: 100%;
+}
+
+.lastcard-flex {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 500px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 375px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .flexhero {
+    margin: 20px;
+    outline-offset: 15px;
+  }
+
+  .me-image {
+    width: 22vh;
+    height: 22vh;
+    bottom: 12px;
+    right: 12px;
+  }
+
+
+}
+
+.spin {
+  animation-name: spinAnim;
+  animation-duration: 5000ms;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  position: right;
+  width: 30%;
+}
+
+@keyframes spinAnim {
+    from {
+        transform:rotate(0deg);
+    }
+    to {
+        transform:rotate(360deg);
+    }
+}
+
+.card_text {
+flex: 1;
+}
+
+a {
+  text-decoration: none;
+}
