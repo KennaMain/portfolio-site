@@ -126,6 +126,12 @@ a.button:hover,
   border-radius: 8px;
 }
 
+.mark_image {
+  width: 100%;
+  border-radius: 8px;
+  padding: 30px;
+}
+
 .card {
   padding: 40px;
   background-color: var(--color-background);
